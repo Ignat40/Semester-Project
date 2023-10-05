@@ -1,6 +1,5 @@
 
 <h1 align="center">
-  <br>
   <a href="http: width="200"></a>
   <br>
   ECO-EXPLORER
