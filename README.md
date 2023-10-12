@@ -50,7 +50,7 @@ This software uses the following open source packages:
 <br>
 - [Altan]()
 <br>
-- [Vedat]()
+- [Vedat](https://github.com/Vedat-Esendag)
 <br>
 - [Leonardo]()
 
