@@ -46,8 +46,8 @@ This software uses the following open source packages:
 ## Contact Members
 - [Ignat](https://github.com/Ignat40)
 <br>
-- [Frederik]()
-<br>
+- [Frederik](https://github.com/FupsGamer)
+- <br>
 - [Altan]()
 <br>
 - [Vedat](https://github.com/Vedat-Esendag)
