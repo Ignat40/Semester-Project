@@ -113,16 +113,36 @@
 
         private static void PrintWelcome()
         {
-            Console.WriteLine("Welcome to the World of Zuul!");
-            Console.WriteLine("World of Zuul is a new, incredibly boring adventure game.");
+            Console.WriteLine("Welcome to the World of Zuul! :)");
+            System.Console.WriteLine("╔╦╦╦═╦╗╔═╦═╦══╦═╗");
+            System.Console.WriteLine("║║║║╩╣╚╣═╣║║║║║╩╣");
+            System.Console.WriteLine("╚══╩═╩═╩═╩═╩╩╩╩═╝");
+            Console.WriteLine("World of Zuul is a text-based adventure game, \nwhich focus to contribute UN SDGs and educate players to improve life infrastructure in the world");
+            System.Console.WriteLine("Do not forget! Your aim is to apply SDGs to future people and save the city. Good Luck!");
+            System.Console.WriteLine("First enter your name hero!!");
+            Hero hero = new Hero();
+            hero.Name = Console.ReadLine();
+            if (hero.Name == null)
+            {
+                System.Console.WriteLine("You dont prefer to say your name ____ OK.");
+                System.Console.WriteLine("I'm going to call you Mr Eco");
+                hero.Name = "Mr Eco";
+                System.Console.WriteLine($"Good to see you {hero.Name}");
+            }
+            else
+            {
+                System.Console.WriteLine("Nice name :)");
+                System.Console.WriteLine($"Good to see you {hero.Name}");
+            }
             PrintHelp();
             Console.WriteLine();
         }
 
         private static void PrintHelp()
         {
-            Console.WriteLine("You are lost. You are alone. You wander");
-            Console.WriteLine("around the university.");
+            Console.WriteLine("You are lost. You are alone. This is not the best moment in your life, is it?");
+            Console.WriteLine("You wander around the Sønderborg city, which located in South Denmark next to the Baltic Sea.");
+            System.Console.WriteLine("You need to search for something or ... someone to save yourself in this situation.");
             Console.WriteLine();
             Console.WriteLine("Navigate by typing 'north', 'south', 'east', or 'west'.");
             Console.WriteLine("Type 'look' for more details.");

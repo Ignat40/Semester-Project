@@ -27,3 +27,17 @@ C:/Users/maxdk/source/repos/WorldOfZuul/WorldOfZuul/obj/Debug/net6.0/ref/WorldOf
 /Users/ignat/Desktop/Semester-Project/WorldOfZuul/WorldOfZuul/obj/Debug/net6.0/WorldOfZuul.pdb
 /Users/ignat/Desktop/Semester-Project/WorldOfZuul/WorldOfZuul/obj/Debug/net6.0/WorldOfZuul.genruntimeconfig.cache
 /Users/ignat/Desktop/Semester-Project/WorldOfZuul/WorldOfZuul/obj/Debug/net6.0/ref/WorldOfZuul.dll
+C:\Users\admin\Desktop\SDU\GitHub\Semester-Project\WorldOfZuul\WorldOfZuul\bin\Debug\net6.0\WorldOfZuul.exe
+C:\Users\admin\Desktop\SDU\GitHub\Semester-Project\WorldOfZuul\WorldOfZuul\bin\Debug\net6.0\WorldOfZuul.deps.json
+C:\Users\admin\Desktop\SDU\GitHub\Semester-Project\WorldOfZuul\WorldOfZuul\bin\Debug\net6.0\WorldOfZuul.runtimeconfig.json
+C:\Users\admin\Desktop\SDU\GitHub\Semester-Project\WorldOfZuul\WorldOfZuul\bin\Debug\net6.0\WorldOfZuul.dll
+C:\Users\admin\Desktop\SDU\GitHub\Semester-Project\WorldOfZuul\WorldOfZuul\bin\Debug\net6.0\WorldOfZuul.pdb
+C:\Users\admin\Desktop\SDU\GitHub\Semester-Project\WorldOfZuul\WorldOfZuul\obj\Debug\net6.0\WorldOfZuul.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\admin\Desktop\SDU\GitHub\Semester-Project\WorldOfZuul\WorldOfZuul\obj\Debug\net6.0\WorldOfZuul.AssemblyInfoInputs.cache
+C:\Users\admin\Desktop\SDU\GitHub\Semester-Project\WorldOfZuul\WorldOfZuul\obj\Debug\net6.0\WorldOfZuul.AssemblyInfo.cs
+C:\Users\admin\Desktop\SDU\GitHub\Semester-Project\WorldOfZuul\WorldOfZuul\obj\Debug\net6.0\WorldOfZuul.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\SDU\GitHub\Semester-Project\WorldOfZuul\WorldOfZuul\obj\Debug\net6.0\WorldOfZuul.dll
+C:\Users\admin\Desktop\SDU\GitHub\Semester-Project\WorldOfZuul\WorldOfZuul\obj\Debug\net6.0\refint\WorldOfZuul.dll
+C:\Users\admin\Desktop\SDU\GitHub\Semester-Project\WorldOfZuul\WorldOfZuul\obj\Debug\net6.0\WorldOfZuul.pdb
+C:\Users\admin\Desktop\SDU\GitHub\Semester-Project\WorldOfZuul\WorldOfZuul\obj\Debug\net6.0\WorldOfZuul.genruntimeconfig.cache
+C:\Users\admin\Desktop\SDU\GitHub\Semester-Project\WorldOfZuul\WorldOfZuul\obj\Debug\net6.0\ref\WorldOfZuul.dll
