@@ -97,6 +97,21 @@ namespace WorldOfZuul
             }
 
             Console.WriteLine("Thank you for playing World of Zuul!");
+            System.Console.WriteLine("We hope you enjoyed and gain educational information about SDGs");
+            System.Console.WriteLine("Creators are:");
+            System.Console.WriteLine("___Vedat Esendag___");
+            System.Console.WriteLine("___Altan Esmer___");
+            System.Console.WriteLine("___Frederik Handberg___");
+            System.Console.WriteLine("___Ignat Bozhinov___");
+            System.Console.WriteLine("___Leonardo Gianola___");
+            System.Console.WriteLine("___Habib Ahmed Wasi___\n");
+            System.Console.WriteLine("▄█▀▀║░▄█▀▄║▄█▀▄║██▀▄║");
+            System.Console.WriteLine("██║▀█║██║█║██║█║██║█║");
+            System.Console.WriteLine("▀███▀║▀██▀║▀██▀║███▀║");
+            System.Console.WriteLine("───────────────────────");
+            System.Console.WriteLine("───▐█▀▄─ ▀▄─▄▀ █▀▀──█───");
+            System.Console.WriteLine("───▐█▀▀▄ ──█── █▀▀──▀───");
+            System.Console.WriteLine("───▐█▄▄▀ ──▀── ▀▀▀──▄───");
         }
 
         private void Move(string direction)
@@ -147,7 +162,7 @@ namespace WorldOfZuul
             System.Console.WriteLine("You need to search for something or ... someone to save yourself in this situation.");
             Console.WriteLine();
             Console.WriteLine("Navigate by typing 'north', 'south', 'east', or 'west'.");
-            Console.WriteLine("Type 'look' for more details.");
+            Console.WriteLine("Type 'look' for more details about environment.");
             Console.WriteLine("Type 'back' to go to the previous room.");
             Console.WriteLine("Type 'help' to print this message again.");
             Console.WriteLine("Type 'quit' to exit the game.");
