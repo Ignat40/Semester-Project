@@ -14,22 +14,23 @@ namespace WorldOfZuul
 
         private void CreateRooms()
         {
-  
+            //We need to decide room names and contents to develop faster
+            //Direction information in descriptions should be added
             Room? outside = new("Outside", "You are standing outside the main entrance of the university. To the east is a large building, to the south is a computing lab, and to the west is the campus pub.");
             Room? theatre = new("Theatre", "You find yourself inside a large lecture theatre. Rows of seats ascend up to the back, and there's a podium at the front. It's quite dark and quiet.");
-            Room? pub = new("Pub", "You've entered the campus pub. It's a cozy place, with a few students chatting over drinks. There's a bar near you and some pool tables at the far end.");
-            Room? lab = new("Lab", "You're in a computing lab. Desks with computers line the walls, and there's an office to the east. The hum of machines fills the room.");
-            Room? office = new("Office", "You've entered what seems to be an administration office. There's a large desk with a computer on it, and some bookshelves lining one wall.");
+            Room? beach = new("Beach", "Your are now locating on a local beach. The gold color sand and beautiful sea covers all around you. But it looks very dirty. People didn't behave excellently to this beach.");
+            Room? lab = new("Lab", "You're in university's lab. It contains lots of equipment, for instance,  broken water filtration system and other tools. There is a stairs to the rooftop of the university east of the lab. Labs are useful rooms for development, this one is also looking good."); 
+            Room? rooftop = new("Rooftop", "That's the highest point of university. It's mostly empty. Only one red light is situating next to the edge of the rooftop. When looking at around, this empty part can be useful for building something there ...... something cool.");
 
-            outside.SetExits(null, theatre, lab, pub); // North, East, South, West
+            outside.SetExits(null, theatre, lab, beach); // North, East, South, West
 
             theatre.SetExit("west", outside);
 
-            pub.SetExit("east", outside);
+            beach.SetExit("east", outside);
 
-            lab.SetExits(outside, office, null, null);
+            lab.SetExits(outside, rooftop, null, null);
 
-            office.SetExit("west", lab);
+            rooftop.SetExit("west", lab);
 
             currentRoom = outside;
         }
@@ -134,12 +135,14 @@ namespace WorldOfZuul
             System.Console.WriteLine("╔╦╦╦═╦╗╔═╦═╦══╦═╗");
             System.Console.WriteLine("║║║║╩╣╚╣═╣║║║║║╩╣");
             System.Console.WriteLine("╚══╩═╩═╩═╩═╩╩╩╩═╝");
+            System.Console.WriteLine("I'm the mayor of this city");
             Console.WriteLine("World of Zuul is a text-based adventure game, \nwhich focus to contribute UN SDGs and educate players to improve life infrastructure in the world");
             System.Console.WriteLine("Do not forget! Your aim is to apply SDGs to future people and save the city. Good Luck!");
             System.Console.WriteLine("First enter your name hero!!");
+            //I used public struct to define name of hero globally
             Hero hero = new Hero();
             hero.Name = Console.ReadLine();
-            if (hero.Name == "")
+            if (hero.Name == "")//if name is empty, Mr Eco name is tagged to the user
             {
                 System.Console.WriteLine("You dont prefer to say your name ____ OK.");
                 System.Console.WriteLine("I'm going to call you Mr Eco");
