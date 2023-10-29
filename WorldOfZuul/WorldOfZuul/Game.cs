@@ -1,4 +1,6 @@
-﻿namespace WorldOfZuul
+﻿using static WorldOfZuul.Program;
+
+namespace WorldOfZuul
 {
     public class Game
     {
@@ -122,7 +124,7 @@
             System.Console.WriteLine("First enter your name hero!!");
             Hero hero = new Hero();
             hero.Name = Console.ReadLine();
-            if (hero.Name == null)
+            if (hero.Name == "")
             {
                 System.Console.WriteLine("You dont prefer to say your name ____ OK.");
                 System.Console.WriteLine("I'm going to call you Mr Eco");

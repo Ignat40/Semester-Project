@@ -85,7 +85,7 @@ namespace WorldOfZuul
             Game game = new();
             game.Play();
         }
-        struct Hero
+        public struct Hero
         {
             public string? Name;
         }
