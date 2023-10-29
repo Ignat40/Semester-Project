@@ -48,7 +48,7 @@ This software uses the following open source packages:
 <br>
 - [Frederik](https://github.com/FupsGamer)
 - <br>
-- [Altan]()
+- [Altan](https://github.com/AltanEsmer)
 <br>
 - [Vedat](https://github.com/Vedat-Esendag)
 <br>
