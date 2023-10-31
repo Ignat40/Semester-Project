@@ -87,7 +87,13 @@ namespace WorldOfZuul
         }
         public struct Hero//This struct is using for hero's properties and can be used to add
         {                 //further future properties about hero
-            public string? Name;
+            public string? PlayerName;
+        }
+
+        public class NPCs
+        {
+            public string NpcName {get; set;}
+            public string? Sentence {get; set;}
         }
     }
 }
