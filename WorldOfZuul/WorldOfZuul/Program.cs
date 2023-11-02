@@ -84,6 +84,7 @@ namespace WorldOfZuul
         {
             Game game = new();
             game.Play();
+            Console.Beep();
         }
         public struct Hero//This struct is using for hero's properties and can be used to add
         {                 //further future properties about hero
@@ -92,8 +93,16 @@ namespace WorldOfZuul
 
         public class NPCs
         {
-            public string NpcName {get; set;}
+            public string? NpcName; //= Console.ReadLine();
+            public string? NpcName2; //= Console.ReadLine();
             public string? Sentence {get; set;}
+        }
+
+        public class Bees
+        {
+            public int HiveID;
+            //Timer tm = new(); 
+            //should fix
         }
     }
 }
