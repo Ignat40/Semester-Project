@@ -1,4 +1,5 @@
-﻿using System.Formats.Asn1;
+﻿using System.ComponentModel;
+using System.Formats.Asn1;
 using System.Net;
 using System.Reflection.Metadata;
 using static WorldOfZuul.Program;
@@ -107,6 +108,10 @@ namespace WorldOfZuul
                             ComminicationWithBees();
                             BuildHives();
                             break;
+                            case "Basement":
+                            Basement();
+                            break;
+                            
                             default: System.Console.WriteLine("There is no mission in this area(room)");
                             break;
                         }
@@ -522,6 +527,10 @@ namespace WorldOfZuul
             System.Console.WriteLine("Mission is completed successfully.");
             System.Console.WriteLine();
             System.Console.WriteLine("Well done!");
+        }
+        private  void Basement()
+        {
+            Console.Write("denem123");
         }
     }
 }
