@@ -104,6 +104,11 @@ namespace WorldOfZuul
             //Timer tm = new(); 
             //should fix
         }
+        
+        public class Basement
+        {
+            public bool talkedToPlumber = false;
+        }
     }
 }
 

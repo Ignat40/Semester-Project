@@ -109,7 +109,7 @@ namespace WorldOfZuul
                             BuildHives();
                             break;
                             case "Basement":
-                            Basement();
+                            BasementTask();
                             break;
                             
                             default: System.Console.WriteLine("There is no mission in this area(room)");
@@ -528,9 +528,44 @@ namespace WorldOfZuul
             System.Console.WriteLine();
             System.Console.WriteLine("Well done!");
         }
-        private  void Basement()
+        private  void BasementTask()
         {
-            Console.Write("denem123");
+            Basement basement =new();
+            bool plumb = true;
+            while(plumb)
+            {
+                
+                Console.WriteLine("1.Talk\n2.Challenge\n3.Exit");
+                string? basementChoice = Console.ReadLine().ToLower();
+                if (basementChoice =="talk")
+                {
+                    Console.WriteLine("BLA BLA BLA BLA");
+                    basement.talkedToPlumber = true;
+                }
+                else if (basementChoice == "challenge" && !basement.talkedToPlumber)
+                {
+                Console.WriteLine("You need to talk with the plumber first!");
+                }
+                else if (basementChoice == "challenge" && basement.talkedToPlumber)
+                {
+                    PipePuzzle();
+                }
+                else if(basementChoice =="exit")
+                {
+                    Console.WriteLine("Exiting");
+                    plumb= false;
+                }
+                else
+                {
+                    Console.WriteLine("INCORRECT INPUT!");
+                }
+            }
+
         }
+        private void PipePuzzle()
+        {
+            Console.WriteLine("Under construction.");
+        }
+
     }
 }
