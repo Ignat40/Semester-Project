@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Formats.Asn1;
+using System.IO.Compression;
 using System.Net;
 using System.Reflection.Metadata;
 using static WorldOfZuul.Program;
@@ -21,7 +22,7 @@ namespace WorldOfZuul
             //We need to decide room names and contents to develop faster
             //Direction information in descriptions should be added
             Room? outside = new("Outside", "You are standing outside the main entrance of the university. To the east is a large building, to the south is a computing lab, and to the west is the campus pub.");
-            Room? farm = new("Farm", "There is a farm in front of you. Beautfiul flowers and huge trees are covering all way around. If you look more carefully, you can see that there are lots of hives for bees But why honey is not existing inside the hives? Interesting!");
+            Room? farm = new("Farm", "There is a farm in front of you. Beautfiul flowers and huge trees are covering all way around. If you look more carefully, you can see that there are lots of hives for bees But why honey is not existing inside the hives? Interesting\n");
             Room? beach = new("Beach", "Your are now locating on a local beach. The gold color sand and beautiful sea covers all around you. But it looks very dirty. People didn't behave excellently to this beach.");
             Room? lab = new("Lab", "You're in university's lab. It contains lots of equipment, for instance,  broken water filtration system and other tools. There is a stairs to the rooftop of the university east of the lab. Labs are useful rooms for development, this one is also looking good.\nYou saw Professor next to the mainframe computers. Should you talk wit him?"); 
             Room? rooftop = new("Rooftop", "That's the highest point of university. It's mostly empty. Only one red light is situating next to the edge of the rooftop. When looking at around, this empty part can be useful for building something there ...... something cool.");
@@ -41,6 +42,7 @@ namespace WorldOfZuul
 
         public void Play()
         {
+            Bees bees = new();
             Parser parser = new();
 
             PrintWelcome();
@@ -105,8 +107,22 @@ namespace WorldOfZuul
                         {
                             case "Farm":
                             HiveQuiz();
-                            ComminicationWithBees();
-                            BuildHives();
+                            if (bees.Completed1)
+                            {
+                                ComminicationWithBees();
+                                if (bees.Completed2)
+                                {
+                                    BuildHives();
+                                }
+                                else
+                                {
+                                    System.Console.WriteLine("Mission failed.");
+                                }
+                            }
+                            else
+                            {
+                                System.Console.WriteLine("Mission failed.");
+                            }
                             break;
                             case "Basement":
                             BasementTask();
@@ -135,6 +151,16 @@ namespace WorldOfZuul
             System.Console.WriteLine("___Ignat Bozhinov___");
             System.Console.WriteLine("___Leonardo Gianola___");
             System.Console.WriteLine("___Habib Ahmed Wasi___\n");
+            System.Console.WriteLine("            ^^                   @@@@@@@@@");   
+            System.Console.WriteLine("       ^^       ^^            @@@@@@@@@@@@@@@");
+            System.Console.WriteLine("                           @@@@@@@@@@@@@@@@@@              ^^");
+            System.Console.WriteLine("                           @@@@@@@@@@@@@@@@@@@@");
+            System.Console.WriteLine(" ~~~~ ~~ ~~~~~ ~~~~~~~~ ~~ &&&&&&&&&&&&&&&&&&&& ~~~~~~~ ~~~~~~~~~~~ ~~~");
+            System.Console.WriteLine(" ~         ~~   ~  ~       ~~~~~~~~~~~~~~~~~~~~ ~       ~~     ~~ ~");
+            System.Console.WriteLine("   ~      ~~      ~~ ~~ ~~  ~~~~~~~~~~~~~ ~~~~  ~     ~~~    ~ ~~~  ~ ~~");
+            System.Console.WriteLine("   ~  ~~     ~         ~      ~~~~~~  ~~ ~~~       ~~ ~ ~~  ~~ ~");
+            System.Console.WriteLine(" ~  ~       ~ ~      ~           ~~ ~~~~~~  ~      ~~  ~             ~~");
+            System.Console.WriteLine("       ~             ~        ~      ~      ~~   ~             ~\n");
             System.Console.WriteLine("▄█▀▀║░▄█▀▄║▄█▀▄║██▀▄║");
             System.Console.WriteLine("██║▀█║██║█║██║█║██║█║");
             System.Console.WriteLine("▀███▀║▀██▀║▀██▀║███▀║");
@@ -142,6 +168,7 @@ namespace WorldOfZuul
             System.Console.WriteLine("───▐█▀▄─ ▀▄─▄▀ █▀▀──█───");
             System.Console.WriteLine("───▐█▀▀▄ ──█── █▀▀──▀───");
             System.Console.WriteLine("───▐█▄▄▀ ──▀── ▀▀▀──▄───");
+            Console.Beep();
         }
 
         private void Move(string direction)
@@ -243,7 +270,7 @@ namespace WorldOfZuul
         private static void Accept()
         {
             System.Console.WriteLine("You had accepted the mission.");
-            
+            System.Console.WriteLine();
         }
 
         //Mission 5 - Development start point
@@ -251,15 +278,21 @@ namespace WorldOfZuul
         private static void HiveQuiz()
         {
             //Quiz part to obtain materials
+            Bees bees = new();
             NPCs communicate = new();
             Hero hero = new Hero();
             int count = 0;
             System.Console.WriteLine("Welcome to last mission.");
             System.Console.WriteLine();
-            System.Console.WriteLine("Finally, when you complete this mission, you will have reached your goal.");
+            System.Console.WriteLine("Finally, when you complete this mission, you will have your goals.");
             System.Console.WriteLine();
             System.Console.WriteLine("You need to build new hives to create advanced infrastructure of honey production for bees.");
             System.Console.WriteLine();
+            System.Console.WriteLine("   _   _");
+            System.Console.WriteLine("  ( | / )");
+            System.Console.WriteLine("\\\\ ||/,'");
+            System.Console.WriteLine("('')(_)()))=");
+            System.Console.WriteLine("    <\\\\\n");
             System.Console.WriteLine("For this, you will need materials. You need to gain beekeeper trust to obtain materails and build hives.");
             System.Console.WriteLine();
             System.Console.WriteLine("GOOD LUCK!!!");
@@ -300,20 +333,19 @@ namespace WorldOfZuul
                     {
                         System.Console.WriteLine("Invalid data entry");
                         System.Console.WriteLine("You need to learn the difference between texts and numbers");
-                        cont = false;
+                        break;
                     }
                     else if (ans1 == 17)
                     {
                         System.Console.WriteLine("Correct");
                         System.Console.WriteLine();
                         System.Console.WriteLine("You know SDGs. Nice for you!");
-                        //continue;
                         count++;
                     }
                     else
                     {
                         System.Console.WriteLine($"It's wrong. I am not going to give my tools to you, {hero.PlayerName}");
-                        cont = false;
+                        break;
                     }
                     System.Console.WriteLine("Second question.");
                     System.Console.WriteLine();
@@ -325,13 +357,12 @@ namespace WorldOfZuul
                         System.Console.WriteLine("Correct");
                         System.Console.WriteLine();
                         System.Console.WriteLine("Did you prepare for this?");
-                        //continue;
                         count++;
                     }
                     else
                     {
                         System.Console.WriteLine($"It's wrong. I am not going to give my tools to you, {hero.PlayerName}");
-                        cont = false;
+                        break;
                     }
                     System.Console.WriteLine("Third question");
                     System.Console.WriteLine();
@@ -345,31 +376,29 @@ namespace WorldOfZuul
                         System.Console.WriteLine("CORRECT!!");
                         System.Console.WriteLine();
                         System.Console.WriteLine("Let's go!!!");
-                        //continue;
                         count++;
                     }
                     else
                     {
                         System.Console.WriteLine($"It's wrong. I am not going to give my tools to you, {hero.PlayerName}");
-                        cont = false;
+                        break;
                     }
                     System.Console.WriteLine("Now, I'm asking the final question");
                     System.Console.WriteLine();
                     System.Console.WriteLine("Which honey bees can sting? [Female/Male]");
                     string? ans4 = Console.ReadLine();
                     System.Console.WriteLine();
-                    if (ans4 == "Female")
+                    ans4.ToLower();
+                    if (ans4 == "female")
                     {
                         System.Console.WriteLine($"Well done {hero.PlayerName}. You passed my quiz :)");
                         System.Console.WriteLine();
                         System.Console.WriteLine("You are deserved my tools and materials within my trust");
                         count++;
-                        continue;
                     }
                     else
                     {
-                        System.Console.WriteLine($"It's wrong. I am not going to give my tools to you, {hero.PlayerName}");
-                    cont = false; 
+                        System.Console.WriteLine($"It's wrong. I am not going to give my tools to you, {hero.PlayerName}"); 
                     }
                     if (count == 4)
                     {
@@ -377,15 +406,15 @@ namespace WorldOfZuul
                         System.Console.WriteLine();
                         System.Console.WriteLine("But you need to communcite with bees for this construction. Bees also have some trust issues to humans.");
                         System.Console.WriteLine();
-                        System.Console.WriteLine("I will provide you some sort of notes for making comminication with bees easier.");
+                        System.Console.WriteLine("I will provide you some sort of notes for making comminication with bees easier.\n");
+                        bees.Completed1 = true;
                         break;
                     }
                     else
                     {
-                        System.Console.WriteLine("You did not pass my quiz. So,");
-                        System.Console.WriteLine();
-                        System.Console.WriteLine($"I am not going to give my tools to you, {hero.PlayerName}");
-                        cont = false;
+                        System.Console.WriteLine("You did not pass my quiz.");
+                        bees.Completed1 = false;
+                        break;
                     }
                 }
             }
@@ -394,6 +423,7 @@ namespace WorldOfZuul
         //Part 2
         private static void ComminicationWithBees()
         {
+            Bees bees = new();
             NPCs communicate = new();
             communicate.NpcName = "Wazolski";
             communicate.Sentence = "I'm bringing you my secret friendship receipt, which contains tips about how to communicate with bees. Good Luck! Do not make them angry.";
@@ -408,11 +438,17 @@ namespace WorldOfZuul
             System.Console.WriteLine("3-\t[Wzzzzzzzzzzzzzzzz] = I understand, You can either say nice, okay or good.");
             System.Console.WriteLine("-\t[WzzzzzzWzz] = I accept your offer, I hope she is going to say this sentence to you. You must say [For bees] to caress her soul.");
             System.Console.WriteLine();
-            System.Console.WriteLine("Be careful while talking with queen!");
+            System.Console.WriteLine("Be careful while talking with queen!\n");
+            System.Console.WriteLine("   __         .' '.");
+            System.Console.WriteLine(" _/__)        .   .       .");
+            System.Console.WriteLine("(8|)_}}- .      .        .");
+            System.Console.WriteLine(" `\\__)    '. . ' ' .  . '\n");
             communicate.NpcName2 = "Queen";
             System.Console.WriteLine();
             System.Console.WriteLine("Introduce yourself by telling your name first.");
             string? name = Console.ReadLine();
+            int count = 0;
+            bool cont = true;
             if (name == "")
             {
                 System.Console.WriteLine("Why are you not telling your name to her!!");
@@ -422,73 +458,98 @@ namespace WorldOfZuul
             }
             else
             {
-                System.Console.WriteLine(communicate.NpcName2);
-                System.Console.WriteLine();
-                System.Console.WriteLine("___Wzzzzzzzzzwz___");
-                System.Console.WriteLine();
-                System.Console.WriteLine(name);
-                string? ans1 = Console.ReadLine();
-                ans1.ToLower();
-                if (ans1 == "hi" || ans1 == "hello")
+                while (cont)
                 {
-                    System.Console.WriteLine("Wzzwwwwz - [Nice to meet you]");
+                    System.Console.WriteLine(communicate.NpcName2);
+                    System.Console.WriteLine();
+                    System.Console.WriteLine("___Wzzzzzzzzzwz___");
+                    System.Console.WriteLine();
+                    System.Console.WriteLine(name);
+                    string? ans1 = Console.ReadLine();
+                    ans1.ToLower();
+                    if (ans1 == "hi" || ans1 == "hello")
+                    {
+                        System.Console.WriteLine("Wzzwwwwz - [Nice to meet you]");
+                        count++;
+                    }
+                    else
+                    {
+                        System.Console.WriteLine("WZZZZZZZZZZZZZZZZZZZZ!!! - [Anger]");
+                        return;
+                    }
+                    System.Console.WriteLine(communicate.NpcName2);
+                    System.Console.WriteLine();
+                    System.Console.WriteLine("WzWzWzWz");
+                    System.Console.WriteLine();
+                    System.Console.WriteLine(name);
+                    string? ans2 = Console.ReadLine();
+                    ans2.ToLower();
+                    if (ans2.Contains("sdg") && ans2.Contains("honey"))
+                    {
+                        System.Console.WriteLine("WzzHoneyWzz - [Honey is improtant for us].");
+                        count++;
+                    }
+                    else
+                    {
+                        System.Console.WriteLine("WZZZZZZZZZZZZZZZZZZZZ!!! - [Anger]");
+                        return;
+                    }
+                    System.Console.WriteLine(communicate.NpcName2);
+                    System.Console.WriteLine();
+                    System.Console.WriteLine("Wzzzzzzzzzzzzzzzz");
+                    System.Console.WriteLine();
+                    System.Console.WriteLine(name);
+                    string? ans3 = Console.ReadLine();
+                    ans3.ToLower();
+                    if (ans3 == "nice" || ans3 == "okay" || ans3 == "good")
+                    {
+                        System.Console.WriteLine("Wzwwwzz - [You're good at listening].");
+                        count++;
+                    }
+                    else
+                    {
+                        System.Console.WriteLine("WZZZZZZZZZZZZZZZZZZZZ!!! - [Anger]");
+                        return;
+                    }
+                    System.Console.WriteLine(communicate.NpcName2);
+                    System.Console.WriteLine();
+                    System.Console.WriteLine("WzzzzzzWzz");
+                    System.Console.WriteLine();
+                    System.Console.WriteLine(name);
+                    string? ans4 = Console.ReadLine();
+                    ans4.ToLower();
+                    if (ans4 == "for bees")
+                    {
+                        System.Console.WriteLine("G ---- good. L-- eee - lets ----- start");
+                        count++;
+                    }
+                    else
+                    {
+                        System.Console.WriteLine("WZZZZZZZZZZZZZZZZZZZZ!!! - [Anger]");
+                        return;
+                    }
+                    if (count == 4)
+                    {
+                        System.Console.WriteLine("You have finished second mission successfully. Well done!\n");
+                        bees.Completed2 = true;
+                        cont = false;
+                        System.Console.WriteLine("         .' '.              __");
+                        System.Console.WriteLine(".        .   .             (__\\");
+                        System.Console.WriteLine("  .         .         . -{{_(|8)");
+                        System.Console.WriteLine("     ' .  . ' ' .  . '     (__/\n");
+            
+                    }
+                    else
+                    {
+                        System.Console.WriteLine("Communication with bees mission isn't completed. Try again later.");
+                        bees.Completed2 = false;
+                        return;
+                    }
                 }
-                else
-                {
-                    System.Console.WriteLine("WZZZZZZZZZZZZZZZZZZZZ!!! - [Anger]");
-                    return;
-                }
-                System.Console.WriteLine(communicate.NpcName2);
-                System.Console.WriteLine();
-                System.Console.WriteLine("WzWzWzWz");
-                System.Console.WriteLine();
-                System.Console.WriteLine(name);
-                string? ans2 = Console.ReadLine();
-                ans2.ToLower();
-                if (ans2.Contains("sdg") && ans2.Contains("honey"))
-                {
-                    System.Console.WriteLine("WzzHoneyWzz - [Honey is improtant for us].");
-                }
-                else
-                {
-                    System.Console.WriteLine("WZZZZZZZZZZZZZZZZZZZZ!!! - [Anger]");
-                    return;
-                }
-                System.Console.WriteLine(communicate.NpcName2);
-                System.Console.WriteLine();
-                System.Console.WriteLine("Wzzzzzzzzzzzzzzzz");
-                System.Console.WriteLine();
-                System.Console.WriteLine(name);
-                string? ans3 = Console.ReadLine();
-                ans3.ToLower();
-                if (ans3 == "nice" || ans3 == "okay" || ans3 == "good")
-                {
-                    System.Console.WriteLine("Wzwwwzz - [You're good at listening].");
-                }
-                else
-                {
-                    System.Console.WriteLine("WZZZZZZZZZZZZZZZZZZZZ!!! - [Anger]");
-                    return;
-                }
-                System.Console.WriteLine(communicate.NpcName2);
-                System.Console.WriteLine();
-                System.Console.WriteLine("WzzzzzzWzz");
-                System.Console.WriteLine();
-                System.Console.WriteLine(name);
-                string? ans4 = Console.ReadLine();
-                ans4.ToLower();
-                if (ans4 == "For bees")
-                {
-                    System.Console.WriteLine("G ---- good. L-- eee - lets ----- start");
-                }
-                else
-                {
-                    System.Console.WriteLine("WZZZZZZZZZZZZZZZZZZZZ!!! - [Anger]");
-                    return;
-                }
+               
             }
         }
-
+        //Final part
         private static void BuildHives()
         {
             NPCs communicate = new();
@@ -528,6 +589,7 @@ namespace WorldOfZuul
             System.Console.WriteLine();
             System.Console.WriteLine("Well done!");
         }
+        //Task 2 First part
         private  void BasementTask()
         {
             Basement basement =new();
@@ -553,7 +615,7 @@ namespace WorldOfZuul
                 else if(basementChoice =="exit")
                 {
                     Console.WriteLine("Exiting");
-                    plumb= false;
+                    plumb = false;
                 }
                 else
                 {
@@ -562,6 +624,7 @@ namespace WorldOfZuul
             }
 
         }
+        //Task 2 Second part
         private void PipePuzzle()
         {
             Console.WriteLine("Under construction.");
