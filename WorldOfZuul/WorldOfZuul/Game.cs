@@ -107,23 +107,8 @@ namespace WorldOfZuul
                         switch (currentRoom?.ShortDescription)
                         {
                             case "Farm":
-                            Task5.HiveQuiz();
-                            if (bees.Completed1)
-                            {
-                                Task5.CommunicationWithBees();
-                                if (bees.Completed2)
-                                {
-                                    Task5.BuildHives();
-                                }
-                                else
-                                {
-                                    System.Console.WriteLine("Mission failed.");
-                                }
-                            }
-                            else
-                            {
-                                System.Console.WriteLine("Mission failed.");
-                            }
+                            task5.StartMissionsTask5();
+                            
                             break;
                             case "Basement":
                                 Move(command.Name);

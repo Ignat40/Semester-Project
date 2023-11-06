@@ -104,13 +104,6 @@ namespace WorldOfZuul
             public int HiveID;
             //Timer tm = new(); 
             //should fix
-            public bool Completed1;
-            public bool Completed2;
-            /*public Bees(bool completed1, bool completed2)
-            {
-                Completed1 = completed1;
-                Completed2 = completed2;
-            }*/
         }
     }
 }    
