@@ -627,8 +627,61 @@ namespace WorldOfZuul
         //Task 2 Second part
         private void PipePuzzle()
         {
-            Console.WriteLine("Under construction.");
+            Basement basement = new();
+
+            string[] pipe ={"Disconnected","Disconnected","Disconnected","Disconnected","Disconnected","Disconnected","Disconnected"};
+            string[] cSequence = { "Blue", "Red", "Green", "Yellow","Purple","Pink","White"};
+            int sequenceIndex = 0;
+            Console.WriteLine("There is a secret sequence to connect all 7 pipes. You need to solve the secret sequence and connect them. If you make a mistake you have to star all over  again so becarefull.");
+            while (true)
+                {
+                    Basement.DisplayPipe(pipe);
+
+                    Console.WriteLine($"Connect the {cSequence[sequenceIndex]} pipe.");
+
+                    int choice;
+                    if (!int.TryParse(Console.ReadLine(), out choice))
+                    {
+                        Console.WriteLine("Invalid input. Please enter a number between 1 and 7 or 8 to exit.");
+                        continue;
+                    }
+                    else if(choice == 8)
+                        break;
+
+                    if (choice < 1 || choice > 7)
+                    {
+                        Console.WriteLine("Invalid choice. Please choose a number between 1 and 7.");
+                        continue;
+                    }
+
+                    if (cSequence[sequenceIndex] == "Blue" && choice == 3 ||
+                        cSequence[sequenceIndex] == "Red" && choice == 1 ||
+                        cSequence[sequenceIndex] == "Green" && choice == 6 ||
+                        cSequence[sequenceIndex] == "Yellow" && choice == 5 ||
+                        cSequence[sequenceIndex] == "Purple" && choice == 7 ||
+                        cSequence[sequenceIndex] == "Pink" && choice == 4 ||
+                        cSequence[sequenceIndex] == "White" && choice == 2)
+                    {
+                        Basement.ConnectPipe(pipe, choice);
+                        sequenceIndex++;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Wrong pipe! All pipes are disconnected. Start over.");
+                        Basement.ResetPipe(pipe);
+                        sequenceIndex = 0;
+                    }
+
+                    if (sequenceIndex == 7)
+                    {
+                        Basement.DisplayPipe(pipe);
+                        Console.WriteLine("Congratulations! You've successfully connected all the pipes.");
+                        break;
+                    }
+                }
         }
+            
+        
 
     }
 }

@@ -116,7 +116,37 @@ namespace WorldOfZuul
         public class Basement
         {
             public bool talkedToPlumber = false;
+            public static void DisplayPipe(string[] pipe)
+            {
+                Console.WriteLine("---------------");
+                for(int i = 0; i<pipe.Length; i++)
+                {
+                    Console.WriteLine($"{i+1}.{pipe[i]}");
+                }
+                Console.WriteLine("---------------");
+            }
+    
+            public static void ConnectPipe(string[] pipe, int choice)
+            {
+                if(pipe[choice -1] == "Disconnected")
+                {
+                    pipe[choice - 1] = "Connected";
+                }
+                else
+                {
+                    Console.WriteLine("Pipe is already connected");
+                }
+
+            }
+    
+            public static void ResetPipe(string[] pipe)
+            {
+                for(int i =0; i<pipe.Length; i++)
+                {
+                    pipe[i]= "Disconnected";
+                }
+            }
+
         }
     }
-}
-
+}    
