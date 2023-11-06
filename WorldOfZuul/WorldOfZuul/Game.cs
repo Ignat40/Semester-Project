@@ -23,19 +23,24 @@ namespace WorldOfZuul
             //Direction information in descriptions should be added
             Room? outside = new("Outside", "You are standing outside the main entrance of the university. To the east is a large building, to the south is a computing lab, and to the west is the campus pub.");
             Room? farm = new("Farm", "There is a farm in front of you. Beautfiul flowers and huge trees are covering all way around. If you look more carefully, you can see that there are lots of hives for bees But why honey is not existing inside the hives? Interesting\n");
-            Room? beach = new("Beach", "Your are now locating on a local beach. The gold color sand and beautiful sea covers all around you. But it looks very dirty. People didn't behave excellently to this beach.");
-            Room? lab = new("Lab", "You're in university's lab. It contains lots of equipment, for instance,  broken water filtration system and other tools. There is a stairs to the rooftop of the university east of the lab. Labs are useful rooms for development, this one is also looking good.\nYou saw Professor next to the mainframe computers. Should you talk wit him?"); 
-            Room? rooftop = new("Rooftop", "That's the highest point of university. It's mostly empty. Only one red light is situating next to the edge of the rooftop. When looking at around, this empty part can be useful for building something there ...... something cool.");
+            Room? beach = new("Beach", "Your are now locating on a local beach. The gold color sand and beautiful sea covers all around you. But it looks dirty. People didn't behave excellently to this beach.");
+            Room? lab = new("Lab", "You're in university's lab. It contains lots of equipment, for instance,  broken water filtration system, lots of scientific calculator and other tools. There is a stairs to the rooftop of the university east of the lab. Labs are useful rooms for development, this one is also looking good.\nYou saw Professor next to the mainframe computers. Should you talk wit him?"); 
+            Room? rooftop = new("Rooftop", "That's the highest point of university. It's mostly empty. Only one red light is situating next to the edge of the rooftop. When looking at around, this empty part can be useful for building something there ...... something cool. Also, you can see all the city on this point.");
             Room? basement = new("Basement","base...");
+            Room? station = new("Station","You are standing opposite the city's only train station. There is no one there except a young man.\nApparently there are no trains passing through here today except an old one standing left side of the station. Still, this place is clean.");
             outside.SetExits(basement, farm, lab, beach); // North, East, South, West
             //Need to create visual map for the rooms
             farm.SetExit("west", outside);
 
             beach.SetExit("east", outside);
 
-            lab.SetExits(outside, rooftop, null, null);
+            basement.SetExit("south", outside);
+
+            lab.SetExits(outside, rooftop, null, station);
 
             rooftop.SetExit("west", lab);
+
+            station.SetExit("east", lab);
 
             currentRoom = outside;
         }
@@ -74,6 +79,42 @@ namespace WorldOfZuul
                 {
                     case "look":
                         Console.WriteLine(currentRoom?.LongDescription);
+                        switch (currentRoom?.ShortDescription)
+                        {
+                            case "Station":
+                                string ascii_Station = "Ascii.txt";
+                                string text = File.ReadAllText(ascii_Station);
+                                System.Console.WriteLine(text);
+                                break;
+                            case "Beach":
+                                string ascii_Beach = "Ascii2.txt";
+                                string text2 = File.ReadAllText(ascii_Beach);
+                                System.Console.WriteLine(text2);
+                                System.Console.WriteLine();
+                                System.Console.WriteLine("Wonderfull view.");
+                                break;
+                            case "Lab":
+                                string ascii_Lab = "Ascii3.txt";
+                                string text3 = File.ReadAllText(ascii_Lab);
+                                System.Console.WriteLine(text3);
+                                break;
+                            case "Farm":
+                                string ascii_Farm = "Ascii4.txt";
+                                string text4 = File.ReadAllText(ascii_Farm);
+                                System.Console.WriteLine(text4);
+                                System.Console.WriteLine();
+                                System.Console.WriteLine("Love animals");
+                                break;
+                            case "Rooftop":
+                                string ascii_Rooftop = "Ascii5.txt";
+                                string text5 = File.ReadAllText(ascii_Rooftop);
+                                System.Console.WriteLine(text5);
+                                System.Console.WriteLine();
+                                System.Console.WriteLine("What a gorgeous city");
+                                break;
+                            default: System.Console.WriteLine();
+                                break;
+                        }
                         break;
 
                     case "back":
@@ -249,6 +290,10 @@ namespace WorldOfZuul
                 System.Console.WriteLine();
                 System.Console.WriteLine($"|{communicate.NpcName}|");
                 break; 
+                case "Station":
+                communicate.NpcName = "Jackson";
+                communicate.Sentence = "";
+                break;
                 default: System.Console.WriteLine("There is nobody to talk with.");
                 break;
             }
