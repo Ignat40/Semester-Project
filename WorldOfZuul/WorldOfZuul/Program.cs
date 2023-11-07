@@ -104,49 +104,6 @@ namespace WorldOfZuul
             public int HiveID;
             //Timer tm = new(); 
             //should fix
-            public bool Completed1;
-            public bool Completed2;
-            /*public Bees(bool completed1, bool completed2)
-            {
-                Completed1 = completed1;
-                Completed2 = completed2;
-            }*/
-        }
-        
-        public class Basement
-        {
-            public bool talkedToPlumber = false;
-            public static void DisplayPipe(string[] pipe)
-            {
-                Console.WriteLine("---------------");
-                for(int i = 0; i<pipe.Length; i++)
-                {
-                    Console.WriteLine($"{i+1}.{pipe[i]}");
-                }
-                Console.WriteLine("---------------");
-            }
-    
-            public static void ConnectPipe(string[] pipe, int choice)
-            {
-                if(pipe[choice -1] == "Disconnected")
-                {
-                    pipe[choice - 1] = "Connected";
-                }
-                else
-                {
-                    Console.WriteLine("Pipe is already connected");
-                }
-
-            }
-    
-            public static void ResetPipe(string[] pipe)
-            {
-                for(int i =0; i<pipe.Length; i++)
-                {
-                    pipe[i]= "Disconnected";
-                }
-            }
-
         }
     }
 }    
