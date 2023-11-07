@@ -3,12 +3,18 @@ namespace WorldOfZuul
     class WaterPurificaiton
     {
         public bool talkedToPlumber = false;
+        public static ConsoleColor[] pipeColor = { ConsoleColor.Red, ConsoleColor.White, ConsoleColor.Blue, ConsoleColor.Cyan, ConsoleColor.Yellow, ConsoleColor.Green, ConsoleColor.Magenta };
         public static void DisplayPipe(string[] pipe)
         {
             Console.WriteLine("---------------");
             for (int i = 0; i < pipe.Length; i++)
             {
+                if(pipe[i] == "Connected")
+                {
+                    Console.ForegroundColor = WaterPurificaiton.pipeColor[i];
+                }
                 Console.WriteLine($"{i + 1}.{pipe[i]}");
+                Console.ResetColor();
             }
             Console.WriteLine("---------------");
         }
@@ -18,6 +24,9 @@ namespace WorldOfZuul
             if (pipe[choice - 1] == "Disconnected")
             {
                 pipe[choice - 1] = "Connected";
+                Console.ForegroundColor = WaterPurificaiton.pipeColor[choice - 1];
+                Console.WriteLine($"Pipe {choice} connected!");
+                Console.ResetColor();
             }
             else
             {
@@ -70,7 +79,7 @@ namespace WorldOfZuul
             
 
             string[] pipe ={"Disconnected","Disconnected","Disconnected","Disconnected","Disconnected","Disconnected","Disconnected"};
-            string[] cSequence = { "Blue", "Red", "Green", "Yellow","Purple","Pink","White"};
+            string[] cSequence = { "Blue", "Red", "Green", "Yellow","Magenta","Cyan","White"};
             int sequenceIndex = 0;
             Console.WriteLine("There is a secret sequence to connect all 7 pipes. You need to solve the secret sequence and connect them. If you make a mistake you have to star all over  again so becarefull.");
             while (true)
@@ -98,8 +107,8 @@ namespace WorldOfZuul
                         cSequence[sequenceIndex] == "Red" && choice == 1 ||
                         cSequence[sequenceIndex] == "Green" && choice == 6 ||
                         cSequence[sequenceIndex] == "Yellow" && choice == 5 ||
-                        cSequence[sequenceIndex] == "Purple" && choice == 7 ||
-                        cSequence[sequenceIndex] == "Pink" && choice == 4 ||
+                        cSequence[sequenceIndex] == "Magenta" && choice == 7 ||
+                        cSequence[sequenceIndex] == "Cyan" && choice == 4 ||
                         cSequence[sequenceIndex] == "White" && choice == 2)
                     {
                         WaterPurificaiton.ConnectPipe(pipe, choice);
