@@ -8,7 +8,7 @@ namespace WorldOfZuul
          public bool isCompletedHiveQuiz = false; // Flag for HiveQuiz completion
         public bool isCompletedCommunicationWithBees = false;
         
-        public void StartMissionsTask5()
+        public void StartMissionsTask5(Player player)
         {
             Console.WriteLine("Welcome to the world of missions!");
 
@@ -32,7 +32,7 @@ namespace WorldOfZuul
                     case 1:
                         if (!isCompletedHiveQuiz)
                         {
-                            HiveQuiz();
+                            HiveQuiz(player);
                         }
                         else
                         {
@@ -85,12 +85,13 @@ namespace WorldOfZuul
             }
         }
 
-        public void HiveQuiz()
+        public void HiveQuiz(Player player)
         {
             //Quiz part to obtain materials
             Bees bees = new();
             NPCs communicate = new();
-            Hero hero = new Hero();
+
+            //Hero hero = new Hero();
             Task5 task = new(); 
             int count = 0;
             System.Console.WriteLine("Welcome to last mission.");
@@ -129,15 +130,16 @@ namespace WorldOfZuul
                 System.Console.WriteLine("First question.");
                 System.Console.WriteLine();
                 System.Console.WriteLine("But before that, what is your name?");
-                hero.PlayerName = Console.ReadLine();
-                if (hero.PlayerName == "")
+                //hero.PlayerName = Console.ReadLine();
+                
+                if (player.PlayerName == "")
                 {
                     System.Console.WriteLine("I am not going to give my tools to no name person.");
                     break;
                 }
                 else
                 {
-                    System.Console.WriteLine($"Nice to meet you {hero.PlayerName}");
+                    System.Console.WriteLine($"Nice to meet you {player.PlayerName}");
                     System.Console.WriteLine();
                     System.Console.WriteLine("How many SDGs are existing?");
                     if (!int.TryParse(Console.ReadLine(), out int ans1))
@@ -155,7 +157,7 @@ namespace WorldOfZuul
                     }
                     else
                     {
-                        System.Console.WriteLine($"It's wrong. I am not going to give my tools to you, {hero.PlayerName}");
+                        System.Console.WriteLine($"It's wrong. I am not going to give my tools to you, {player.PlayerName}");
                         break;
                     }
                     System.Console.WriteLine("Second question.");
@@ -172,7 +174,7 @@ namespace WorldOfZuul
                     }
                     else
                     {
-                        System.Console.WriteLine($"It's wrong. I am not going to give my tools to you, {hero.PlayerName}");
+                        System.Console.WriteLine($"It's wrong. I am not going to give my tools to you, {player.PlayerName}");
                         break;
                     }
                     System.Console.WriteLine("Third question");
@@ -191,7 +193,7 @@ namespace WorldOfZuul
                     }
                     else
                     {
-                        System.Console.WriteLine($"It's wrong. I am not going to give my tools to you, {hero.PlayerName}");
+                        System.Console.WriteLine($"It's wrong. I am not going to give my tools to you, {player.PlayerName}");
                         break;
                     }
                     System.Console.WriteLine("Now, I'm asking the final question");
@@ -202,14 +204,14 @@ namespace WorldOfZuul
                     ans4.ToLower();
                     if (ans4 == "female")
                     {
-                        System.Console.WriteLine($"Well done {hero.PlayerName}. You passed my quiz :)");
+                        System.Console.WriteLine($"Well done {player.PlayerName}. You passed my quiz :)");
                         System.Console.WriteLine();
                         System.Console.WriteLine("You are deserved my tools and materials within my trust");
                         count++;
                     }
                     else
                     {
-                        System.Console.WriteLine($"It's wrong. I am not going to give my tools to you, {hero.PlayerName}"); 
+                        System.Console.WriteLine($"It's wrong. I am not going to give my tools to you, {player.PlayerName}"); 
                     }
                     if (count == 4)
                     {

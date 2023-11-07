@@ -85,11 +85,7 @@ namespace WorldOfZuul
             Game game = new();
             game.Play();
         }
-        public struct Hero//This struct is using for hero's properties and can be used to add
-        {                 //further future properties about hero
-            public string? PlayerName;
-        }
-
+       
         public class NPCs
         {
             public string? NpcName; //= Console.ReadLine();
