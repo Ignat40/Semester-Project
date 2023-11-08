@@ -114,6 +114,9 @@ namespace WorldOfZuul
                                 System.Console.WriteLine(text5);
                                 System.Console.WriteLine();
                                 System.Console.WriteLine("What a gorgeous city");
+                                Move(command.Name);
+                                RooftopMission rooftopMission = new();
+                                rooftopMission.StartMission(player);
                                 break;
                             default:
                                 System.Console.WriteLine();
