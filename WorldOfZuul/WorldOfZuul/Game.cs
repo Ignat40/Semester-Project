@@ -47,10 +47,10 @@ namespace WorldOfZuul
 
         public void Play()
         {
-            Bees bees = new();
+            //Bees bees = new();
             Parser parser = new();
-            Task5 task5 = new();
             Player player = new Player();
+            HoneyHive honeyHive = new("Hive1", 1);
 
             PrintWelcome(player);
 
@@ -155,8 +155,7 @@ namespace WorldOfZuul
                         switch (currentRoom?.ShortDescription)
                         {
                             case "Farm":
-                                task5.StartMissionsTask5(player);
-
+                                honeyHive.StartMissionsTask5(player);
                                 break;
                             case "Basement":
                                 Move(command.Name);

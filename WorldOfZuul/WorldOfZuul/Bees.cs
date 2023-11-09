@@ -1,12 +1,26 @@
 using System;
+using System.Runtime.Versioning;
 using System.Threading;
 using static WorldOfZuul.Program;
 namespace WorldOfZuul
 {
-    public class Task5
+    public class HoneyHive
     {
-         public bool isCompletedHiveQuiz = false; // Flag for HiveQuiz completion
+        public bool isCompletedHiveQuiz = false;
         public bool isCompletedCommunicationWithBees = false;
+        public string Name {get; set;}
+        public int Level {get; set;}
+        public int Honey {get; set;}
+        static List<HoneyHive> honeyHives = new List<HoneyHive>();
+        static int resources = 100;
+
+        public HoneyHive(string name, int level)
+        {
+            Name = name;
+            Level = level;
+            Honey = 0;
+        }
+        
         
         public void StartMissionsTask5(Player player)
         {
@@ -88,11 +102,9 @@ namespace WorldOfZuul
         public void HiveQuiz(Player player)
         {
             //Quiz part to obtain materials
-            Bees bees = new();
+            //Bees bees = new();
             NPCs communicate = new();
 
-            //Hero hero = new Hero();
-            Task5 task = new(); 
             int count = 0;
             System.Console.WriteLine("Welcome to last mission.");
             System.Console.WriteLine();
@@ -215,7 +227,7 @@ namespace WorldOfZuul
                     }
                     if (count == 4)
                     {
-                        task.isCompletedHiveQuiz = true;
+                        isCompletedHiveQuiz = true;
                         System.Console.WriteLine("Now you have the materials for building new hives for bees.");
                         System.Console.WriteLine();
                         System.Console.WriteLine("But you need to communcite with bees for this construction. Bees also have some trust issues to humans.");
@@ -236,8 +248,7 @@ namespace WorldOfZuul
 
         public void CommunicationWithBees()
         {
-            Task5 task = new();
-            Bees bees = new();
+            //Bees bees = new();
             NPCs communicate = new();
                 communicate.NpcName = "Wazolski";
                 communicate.Sentence = "I'm bringing you my secret friendship receipt, which contains tips about how to communicate with bees. Good Luck! Do not make them angry.";
@@ -344,7 +355,7 @@ namespace WorldOfZuul
                         }
                         if (count == 4)
                         {
-                            task.isCompletedCommunicationWithBees = true;
+                            isCompletedCommunicationWithBees = true;
                             System.Console.WriteLine("You have finished second mission successfully. Well done!\n");
                             cont = false;
                             System.Console.WriteLine("         .' '.              __");
@@ -363,45 +374,125 @@ namespace WorldOfZuul
             isCompletedCommunicationWithBees = true;
         }
 
+        public void Upgrade()
+        {
+            Level++;
+            Console.WriteLine($"{Name} honey hive upgraded to level {Level}!");
+        }
+
+        public void ProduceHoney()
+        {
+            Honey += Level * 10;
+            Console.WriteLine($"{Name} honey hive produced {Level * 10} honey!");
+        }
+
         public void BuildHives()
         {
-             NPCs communicate = new();
-            communicate.NpcName = "Wazolski";
-            communicate.NpcName2 = "Queen";
-            System.Console.WriteLine(communicate.NpcName2);
-            System.Console.WriteLine();
-            System.Console.WriteLine("Wzzzwzzzzzzzzzzzz - [Now you can build hives for our kingdom].");
-            System.Console.WriteLine();
-            System.Console.WriteLine(communicate.NpcName);
-            System.Console.WriteLine();
-            System.Console.WriteLine("Well, use my tools to build hives for honey bees.");
-            Random random = new();
-            int totalHives = random.Next(4,10);
-            Bees bees = new();
-            bees.HiveID = 0;
-            System.Console.WriteLine(communicate.NpcName2);
-            System.Console.WriteLine();
-            System.Console.WriteLine("Wzzzzzzzzzzwzzzzzzzz");
-            System.Console.WriteLine();
-            System.Console.WriteLine(communicate.NpcName);
-            System.Console.WriteLine();
-            System.Console.WriteLine($"She is trying to tell you that you must build {totalHives} hives for improving infrastructure of honey production.");
-            System.Console.WriteLine();
-            System.Console.WriteLine("Let's start.");
-            System.Console.WriteLine();
-            System.Console.WriteLine();
-            System.Console.WriteLine();
-            System.Console.WriteLine("Building hives...");
-            for(int i = 0; i < totalHives; i++)
+            System.Console.WriteLine("Wazolski\n");
+            System.Console.WriteLine("You had accepted for the construction of honey hives. Let's begin!");
+            Console.WriteLine("\nOptions:");
+            Console.WriteLine("1. Build a honey hive");
+            Console.WriteLine("2. Upgrade a honey hive");
+            Console.WriteLine("3. View honey hives");
+            Console.WriteLine("4. Collect honey");
+            Console.WriteLine("5. Exit");
+
+            Console.Write("Enter your choice: ");
+            string? choice = Console.ReadLine();
+
+            switch (choice)
             {
-                System.Threading.Thread.Sleep(1000); // Sleep for 1000 milliseconds (1 second)
-                bees.HiveID++;
-                System.Console.WriteLine($"Hive number {bees.HiveID} had built!");
-                //Timer needed to develop better visual
+                case "1":
+                    BuildHoneyHive();
+                    break;
+                case "2":
+                    UpgradeHoneyHive();
+                    break;
+                case "3":
+                    ViewHoneyHives();
+                    break;
+                case "4":
+                    CollectHoney();
+                    break;
+                case "5":
+                    Console.WriteLine("Exiting the game. Thanks for playing!");
+                    return;
+                default:
+                    Console.WriteLine("Invalid choice. Please try again.");
+                    break;
             }
-            System.Console.WriteLine("Mission is completed successfully.");
-            System.Console.WriteLine();
-            System.Console.WriteLine("Well done!");
+        }
+
+        static void BuildHoneyHive()
+        {
+            if (resources >= 50)
+            {
+                Console.Write("Enter a name for your honey hive: ");
+                string hiveName = Console.ReadLine();
+                honeyHives.Add(new HoneyHive(hiveName, 1));
+                resources -= 50;
+                Console.WriteLine($"{hiveName} honey hive built successfully!");
+            }
+            else
+            {
+                Console.WriteLine("Not enough resources to build a honey hive. Collect more resources.");
+            }
+        }
+
+        static void UpgradeHoneyHive()
+        {
+            if (honeyHives.Count > 0)
+            {
+                Console.WriteLine("Select a hive to upgrade:");
+                for (int i = 0; i < honeyHives.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {honeyHives[i].Name} (Level {honeyHives[i].Level})");
+                }
+
+                Console.Write("Enter the number of the hive to upgrade: ");
+                if (int.TryParse(Console.ReadLine(), out int hiveIndex) && hiveIndex >= 1 && hiveIndex <= honeyHives.Count)
+                {
+                    HoneyHive selectedHive = honeyHives[hiveIndex - 1];
+                    if (resources >= 30 * selectedHive.Level)
+                    {
+                        selectedHive.Upgrade();
+                        resources -= 30 * selectedHive.Level;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Not enough resources to upgrade the hive. Collect more resources.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid hive number. Please try again.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("No honey hives to upgrade. Build a hive first.");
+            }
+        }
+
+        static void ViewHoneyHives()
+        {
+            Console.WriteLine("\nYour Honey Hives:");
+            foreach (HoneyHive hive in honeyHives)
+            {
+                Console.WriteLine($"{hive.Name} (Level {hive.Level}) - Honey: {hive.Honey}");
+            }
+            Console.WriteLine($"Resources: {resources}");
+        }
+
+        static void CollectHoney()
+        {
+            foreach (HoneyHive hive in honeyHives)
+            {
+                hive.ProduceHoney();
+                resources += hive.Honey;
+                hive.Honey = 0;
+            }
+            Console.WriteLine("Honey collected from all hives!");
         }
     }
 }

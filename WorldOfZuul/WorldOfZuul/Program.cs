@@ -95,11 +95,10 @@ namespace WorldOfZuul
             
         }
 
-        public class Bees
+        /*public class Bees
         {
-            public int HiveID;
-            //Timer tm = new(); 
-            //should fix
-        }
+            //static List<Task5> honeyHives = new List<Task5>();
+            //static int resources = 100;
+        }*/
     }
 }    
