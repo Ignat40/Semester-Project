@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Runtime.Versioning;
 using System.Threading;
 using static WorldOfZuul.Program;
@@ -8,11 +9,13 @@ namespace WorldOfZuul
     {
         public bool isCompletedHiveQuiz = false;
         public bool isCompletedCommunicationWithBees = false;
+        public static bool isAllMissionsCompleted = false;
         public string Name {get; set;}
         public int Level {get; set;}
         public int Honey {get; set;}
         static List<HoneyHive> honeyHives = new List<HoneyHive>();
-        static int resources = 100;
+        static int resources = 500;
+        static int score = 0;
 
         public HoneyHive(string name, int level)
         {
@@ -20,7 +23,6 @@ namespace WorldOfZuul
             Level = level;
             Honey = 0;
         }
-        
         
         public void StartMissionsTask5(Player player)
         {
@@ -73,6 +75,7 @@ namespace WorldOfZuul
                         if (isCompletedHiveQuiz && isCompletedCommunicationWithBees)
                         {
                             BuildHives();
+                            isAllMissionsCompleted = true;
                         }
                         else if (!isCompletedHiveQuiz)
                         {
@@ -99,151 +102,107 @@ namespace WorldOfZuul
             }
         }
 
+        static void MultipleChoiceQuestion(string question, Dictionary<string, string> options, string correctAnswer)
+        {
+            Console.WriteLine($"\n{question}");
+            DisplayOptions(options);
+
+            string userAnswer = GetUserAnswer(options.Keys.ToList());
+            CheckAnswer(userAnswer, correctAnswer);
+        }
+
+        static void TrueFalseQuestion(string question, string correctAnswer)
+        {
+            Console.WriteLine($"\n{question}");
+
+            string userAnswer = GetUserAnswer(new List<string> { "true", "false" });
+            CheckAnswer(userAnswer, correctAnswer);
+        }
+
+        static void OpenEndedQuestion(string question, string correctAnswer)
+        {
+            Console.WriteLine($"\n{question}");
+
+            string userAnswer = GetUserAnswer(null);
+            CheckAnswer(userAnswer.ToLower(), correctAnswer);
+        }
+
+        static void DisplayOptions(Dictionary<string, string> options)
+        {
+            foreach (var option in options)
+            {
+                Console.WriteLine($"{option.Key}) {option.Value}");
+            }
+        }
+
+        static string GetUserAnswer(List<string> allowedOptions)
+        {
+            Console.Write("Your answer: ");
+            string userAnswer = Console.ReadLine().ToLower();
+
+            if (allowedOptions != null && !allowedOptions.Contains(userAnswer))
+            {
+                Console.WriteLine("Invalid option. Try again.");
+                return GetUserAnswer(allowedOptions);
+            }
+
+            return userAnswer;
+        }
+
+        static void CheckAnswer(string userAnswer, string correctAnswer)
+        {
+            if (userAnswer == correctAnswer)
+            {
+                Console.WriteLine("Correct!");
+                score++;
+            }
+            else
+            {
+                Console.WriteLine($"Incorrect. The correct answer is {correctAnswer.ToUpper()}.");
+            }
+
+            Thread.Sleep(1000);
+        }
+        
         public void HiveQuiz(Player player)
         {
-            //Quiz part to obtain materials
-            //Bees bees = new();
             NPCs communicate = new();
-
-            int count = 0;
-            System.Console.WriteLine("Welcome to last mission.");
-            System.Console.WriteLine();
-            System.Console.WriteLine("Finally, when you complete this mission, you will have your goals.");
-            System.Console.WriteLine();
-            System.Console.WriteLine("You need to build new hives to create advanced infrastructure of honey production for bees.");
-            System.Console.WriteLine();
+            System.Console.WriteLine("\nWelcome to last mission.\n");
+            System.Console.WriteLine($"Hi {player.PlayerName}");
+            System.Console.WriteLine("Finally, when you complete this mission, you will have your goals.\n");
+            System.Console.WriteLine("You need to build new hives to create advanced infrastructure of honey production for bees.\n");
+            Console.ForegroundColor = ConsoleColor.Yellow;
             System.Console.WriteLine("   _   _");
             System.Console.WriteLine("  ( | / )"); 
             System.Console.WriteLine("\\\\ ||/,'");
             System.Console.WriteLine("('')(_)()))=");
             System.Console.WriteLine("    <\\\\\n");
+            Console.ResetColor();
             System.Console.WriteLine("For this, you will need materials. You need to gain beekeeper trust to obtain materails and build hives.");
             System.Console.WriteLine();
-            System.Console.WriteLine("GOOD LUCK!!!");
+            System.Console.WriteLine("GOOD LUCK!!!\n");
+
             communicate.NpcName = "Beekeeper Wazolski";
             communicate.Sentence = "Welcome to my farm. My name is Wazolski. To obtain my tools and materials for hives, you need to pass my quiz. You know..... trust issues.";
             System.Console.WriteLine($"Hey this is {communicate.NpcName}, standing next to the truck.");
-            System.Console.WriteLine();
-            System.Console.WriteLine("Go and talk with him.");
-            string? helper = Console.ReadLine();
-            helper.ToLower();
-            if (helper == "talk")
+
+            MultipleChoiceQuestion("How many SDGs are existing?", new Dictionary<string, string> { { "a", "14" }, { "b", "17" }, { "c", "20" } }, "b");
+            TrueFalseQuestion("Only female bees can sting. (True/False)", "true");
+            OpenEndedQuestion("What is the name of this city", "sonderborg");
+            MultipleChoiceQuestion("Which programming language is this game written in?", new Dictionary<string, string> { { "a", "Java" }, { "b", "Python" }, { "c", "C#" } }, "c");
+            TrueFalseQuestion("SDG 5 is supported in this mission.(True/False)", "false");
+            OpenEndedQuestion("Final, a riddle time. I’m tall when I’m young, and I’m short when I’m old. What am I?", "candle");
+            
+            if (score == 6)
             {
-                System.Console.WriteLine($"Hi! {communicate.Sentence}");
+                System.Console.WriteLine("You passed my quiz by answering all questions correct.");
+                isCompletedHiveQuiz = true;
             }
             else
             {
-                System.Console.WriteLine("You don't want to talk? Ok then, another time.");
+                System.Console.WriteLine("You failed");
                 return;
             }
-            bool cont = true;
-            while (cont)
-            {
-                System.Console.WriteLine("First question.");
-                System.Console.WriteLine();
-                System.Console.WriteLine("But before that, what is your name?");
-                //hero.PlayerName = Console.ReadLine();
-                
-                if (player.PlayerName == "")
-                {
-                    System.Console.WriteLine("I am not going to give my tools to no name person.");
-                    break;
-                }
-                else
-                {
-                    System.Console.WriteLine($"Nice to meet you {player.PlayerName}");
-                    System.Console.WriteLine();
-                    System.Console.WriteLine("How many SDGs are existing?");
-                    if (!int.TryParse(Console.ReadLine(), out int ans1))
-                    {
-                        System.Console.WriteLine("Invalid data entry");
-                        System.Console.WriteLine("You need to learn the difference between texts and numbers");
-                        break;
-                    }
-                    else if (ans1 == 17)
-                    {
-                        System.Console.WriteLine("Correct");
-                        System.Console.WriteLine();
-                        System.Console.WriteLine("You know SDGs. Nice for you!");
-                        count++;
-                    }
-                    else
-                    {
-                        System.Console.WriteLine($"It's wrong. I am not going to give my tools to you, {player.PlayerName}");
-                        break;
-                    }
-                    System.Console.WriteLine("Second question.");
-                    System.Console.WriteLine();
-                    System.Console.WriteLine("Which SDG is supported in this task (Name of the SDG)");
-                    string? ans2 = Console.ReadLine();
-                    ans2.ToLower();
-                    if (ans2 == "life on land")
-                    {
-                        System.Console.WriteLine("Correct");
-                        System.Console.WriteLine();
-                        System.Console.WriteLine("Did you prepare for this?");
-                        count++;
-                    }
-                    else
-                    {
-                        System.Console.WriteLine($"It's wrong. I am not going to give my tools to you, {player.PlayerName}");
-                        break;
-                    }
-                    System.Console.WriteLine("Third question");
-                    System.Console.WriteLine();
-                    System.Console.WriteLine("What is the purpose of the SDGs?");
-                    System.Console.WriteLine("a)\tIncrease population.");
-                    System.Console.WriteLine("b)\tAim to transform our world.");
-                    System.Console.WriteLine("c\tMake United Nations rich.");
-                    string? ans3 = Console.ReadLine();
-                    if (ans3 == "b")
-                    {
-                        System.Console.WriteLine("CORRECT!!");
-                        System.Console.WriteLine();
-                        System.Console.WriteLine("Let's go!!!");
-                        count++;
-                    }
-                    else
-                    {
-                        System.Console.WriteLine($"It's wrong. I am not going to give my tools to you, {player.PlayerName}");
-                        break;
-                    }
-                    System.Console.WriteLine("Now, I'm asking the final question");
-                    System.Console.WriteLine();
-                    System.Console.WriteLine("Which honey bees can sting? [Female/Male]");
-                    string? ans4 = Console.ReadLine();
-                    System.Console.WriteLine();
-                    ans4.ToLower();
-                    if (ans4 == "female")
-                    {
-                        System.Console.WriteLine($"Well done {player.PlayerName}. You passed my quiz :)");
-                        System.Console.WriteLine();
-                        System.Console.WriteLine("You are deserved my tools and materials within my trust");
-                        count++;
-                    }
-                    else
-                    {
-                        System.Console.WriteLine($"It's wrong. I am not going to give my tools to you, {player.PlayerName}"); 
-                    }
-                    if (count == 4)
-                    {
-                        isCompletedHiveQuiz = true;
-                        System.Console.WriteLine("Now you have the materials for building new hives for bees.");
-                        System.Console.WriteLine();
-                        System.Console.WriteLine("But you need to communcite with bees for this construction. Bees also have some trust issues to humans.");
-                        System.Console.WriteLine();
-                        System.Console.WriteLine("I will provide you some sort of notes for making comminication with bees easier.\n");
-                        break;
-                    }
-                    else
-                    {
-                        System.Console.WriteLine("You did not pass my quiz.");
-                        break;
-                        
-                    }
-                }
-            }
-            isCompletedHiveQuiz = true;
         }
 
         public void CommunicationWithBees()
@@ -258,16 +217,20 @@ namespace WorldOfZuul
                 System.Console.WriteLine();
                 System.Console.WriteLine("You are going to talk with queen bee.");
                 System.Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 System.Console.WriteLine("1-\t[Wzzzzzzzzzwz] = Hi, You need to say hello or hi to queen bee.");
                 System.Console.WriteLine("2-\t[WzWzWzWz] = What is your purpose of visiting my kingdom, You need to tell her about SDG and honey - both of them");
                 System.Console.WriteLine("3-\t[Wzzzzzzzzzzzzzzzz] = I understand, You can either say nice, okay or good.");
                 System.Console.WriteLine("-\t[WzzzzzzWzz] = I accept your offer, I hope she is going to say this sentence to you. You must say [For bees] to caress her soul.");
+                Console.ResetColor();
                 System.Console.WriteLine();
                 System.Console.WriteLine("Be careful while talking with queen!\n");
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 System.Console.WriteLine("   __         .' '.");
                 System.Console.WriteLine(" _/__)        .   .       .");
                 System.Console.WriteLine("(8|)_}}- .      .        .");
                 System.Console.WriteLine(" `\\__)    '. . ' ' .  . '\n");
+                Console.ResetColor();
                 communicate.NpcName2 = "Queen";
                 System.Console.WriteLine();
                 System.Console.WriteLine("Introduce yourself by telling your name first.");
@@ -358,11 +321,12 @@ namespace WorldOfZuul
                             isCompletedCommunicationWithBees = true;
                             System.Console.WriteLine("You have finished second mission successfully. Well done!\n");
                             cont = false;
+                            Console.ForegroundColor = ConsoleColor.Yellow;
                             System.Console.WriteLine("         .' '.              __");
                             System.Console.WriteLine(".        .   .             (__\\");
                             System.Console.WriteLine("  .         .         . -{{_(|8)");
                             System.Console.WriteLine("     ' .  . ' ' .  . '     (__/\n");
-                
+                            Console.ResetColor();
                         }
                         else
                         {
@@ -377,26 +341,38 @@ namespace WorldOfZuul
         public void Upgrade()
         {
             Level++;
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"{Name} honey hive upgraded to level {Level}!");
+            Console.ResetColor();
         }
 
         public void ProduceHoney()
         {
             Honey += Level * 10;
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"{Name} honey hive produced {Level * 10} honey!");
+            Console.ResetColor();
         }
 
         public void BuildHives()
         {
+            Console.ForegroundColor = ConsoleColor.Blue;
             System.Console.WriteLine("Wazolski\n");
             System.Console.WriteLine("You had accepted for the construction of honey hives. Let's begin!");
+            System.Console.WriteLine("You must collect 1000 resources to finish the task.");
             Console.WriteLine("\nOptions:");
+            Thread.Sleep(1000);
             Console.WriteLine("1. Build a honey hive");
+            Thread.Sleep(1000);
             Console.WriteLine("2. Upgrade a honey hive");
+            Thread.Sleep(1000);
             Console.WriteLine("3. View honey hives");
+            Thread.Sleep(1000);
             Console.WriteLine("4. Collect honey");
+            Thread.Sleep(1000);
             Console.WriteLine("5. Exit");
-
+            Thread.Sleep(1000);
+            Console.ResetColor();
             Console.Write("Enter your choice: ");
             string? choice = Console.ReadLine();
 
@@ -427,15 +403,19 @@ namespace WorldOfZuul
         {
             if (resources >= 50)
             {
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write("Enter a name for your honey hive: ");
                 string hiveName = Console.ReadLine();
                 honeyHives.Add(new HoneyHive(hiveName, 1));
                 resources -= 50;
                 Console.WriteLine($"{hiveName} honey hive built successfully!");
+                Console.ResetColor();
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Not enough resources to build a honey hive. Collect more resources.");
+                Console.ResetColor();
             }
         }
 
@@ -493,6 +473,14 @@ namespace WorldOfZuul
                 hive.Honey = 0;
             }
             Console.WriteLine("Honey collected from all hives!");
+
+            if (resources >= 1000)  //Win condition 
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Congratulations! You've reached the honey production goal. You win!");
+                Console.ResetColor();
+                isAllMissionsCompleted = true;
+            }
         }
     }
 }

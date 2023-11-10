@@ -75,11 +75,18 @@ to maintain modularity, extensibility, and maintainability.
 
 */
 
-
+using System;
+using System.Timers;
+using Timer = System.Timers.Timer;
+using System.Media;
+using System.Threading;
+using System.IO;
+using System.Diagnostics;
 namespace WorldOfZuul
 {
     public class Program
     {
+        //public static System.Timers.Timer timer;
         public static void Main()
         {
             Game game = new();
@@ -88,8 +95,8 @@ namespace WorldOfZuul
        
         public class NPCs
         {
-            public string? NpcName; //= Console.ReadLine();
-            public string? NpcName2; //= Console.ReadLine();
+            public string? NpcName;
+            public string? NpcName2;
             public string? Sentence {get; set;}
 
             

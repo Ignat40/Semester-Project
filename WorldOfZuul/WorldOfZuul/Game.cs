@@ -3,6 +3,7 @@ using System.Formats.Asn1;
 using System.IO.Compression;
 using System.Net;
 using System.Reflection.Metadata;
+//using System.Timers;
 using static WorldOfZuul.Program;
 
 namespace WorldOfZuul
@@ -11,6 +12,7 @@ namespace WorldOfZuul
     {
         private Room? currentRoom;
         private Room? previousRoom;
+
 
         public Game()
         {
@@ -151,7 +153,6 @@ namespace WorldOfZuul
                         break;
 
                     case "accept":
-                        Accept();
                         switch (currentRoom?.ShortDescription)
                         {
                             case "Farm":
@@ -182,21 +183,31 @@ namespace WorldOfZuul
             System.Console.WriteLine("Creators are:");
             System.Console.WriteLine();
             System.Console.WriteLine("___Vedat Esendag___");
+            Thread.Sleep(1000);
             System.Console.WriteLine("___Altan Esmer___");
+            Thread.Sleep(1000);
             System.Console.WriteLine("___Frederik Handberg___");
+            Thread.Sleep(1000);
             System.Console.WriteLine("___Ignat Bozhinov___");
+            Thread.Sleep(1000);
             System.Console.WriteLine("___Leonardo Gianola___");
+            Thread.Sleep(1000);
             System.Console.WriteLine("___Habib Ahmed Wasi___\n");
+            Thread.Sleep(1000);
+            Console.ForegroundColor = ConsoleColor.Yellow;
             System.Console.WriteLine("            ^^                   @@@@@@@@@");
             System.Console.WriteLine("       ^^       ^^            @@@@@@@@@@@@@@@");
             System.Console.WriteLine("                           @@@@@@@@@@@@@@@@@@              ^^");
             System.Console.WriteLine("                           @@@@@@@@@@@@@@@@@@@@");
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.Blue;
             System.Console.WriteLine(" ~~~~ ~~ ~~~~~ ~~~~~~~~ ~~ &&&&&&&&&&&&&&&&&&&& ~~~~~~~ ~~~~~~~~~~~ ~~~");
             System.Console.WriteLine(" ~         ~~   ~  ~       ~~~~~~~~~~~~~~~~~~~~ ~       ~~     ~~ ~");
             System.Console.WriteLine("   ~      ~~      ~~ ~~ ~~  ~~~~~~~~~~~~~ ~~~~  ~     ~~~    ~ ~~~  ~ ~~");
             System.Console.WriteLine("   ~  ~~     ~         ~      ~~~~~~  ~~ ~~~       ~~ ~ ~~  ~~ ~");
             System.Console.WriteLine(" ~  ~       ~ ~      ~           ~~ ~~~~~~  ~      ~~  ~             ~~");
             System.Console.WriteLine("       ~             ~        ~      ~      ~~   ~             ~\n");
+            Console.ResetColor();
             System.Console.WriteLine("▄█▀▀║░▄█▀▄║▄█▀▄║██▀▄║");
             System.Console.WriteLine("██║▀█║██║█║██║█║██║█║");
             System.Console.WriteLine("▀███▀║▀██▀║▀██▀║███▀║");
@@ -223,10 +234,13 @@ namespace WorldOfZuul
 
         private static void PrintWelcome(Player player)
         {
-            Console.WriteLine("Welcome to the World of Zuul! :)");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Welcome to the World of Zuul! :)\n");
             System.Console.WriteLine("╔╦╦╦═╦╗╔═╦═╦══╦═╗");
             System.Console.WriteLine("║║║║╩╣╚╣═╣║║║║║╩╣");
-            System.Console.WriteLine("╚══╩═╩═╩═╩═╩╩╩╩═╝");
+            System.Console.WriteLine("╚══╩═╩═╩═╩═╩╩╩╩═╝\n");
+            Console.ResetColor();
+
             System.Console.WriteLine("I'm the mayor of this city");
             System.Console.WriteLine();
             Console.WriteLine("World of Zuul is a text-based adventure game, \nwhich focus to contribute UN SDGs and educate players to improve life infrastructure in the world");
@@ -234,11 +248,14 @@ namespace WorldOfZuul
             System.Console.WriteLine("Do not forget! Your aim is to apply SDGs to future people and save the city. Good Luck!");
             System.Console.WriteLine();
             System.Console.WriteLine("First enter your name hero!!");
+            
             player.DisplayPlayer();
             System.Console.WriteLine("Note: When the game ends for any reason, you are going to hear a voice. This is a message that tells you the game reached the end.");
             PrintHelp();
             Console.WriteLine();
         }
+
+        
 
         private static void PrintHelp()
         {
@@ -287,13 +304,6 @@ namespace WorldOfZuul
                     System.Console.WriteLine("There is nobody to talk with.");
                     break;
             }
-
-        }
-
-        private static void Accept()
-        {
-            System.Console.WriteLine("You had accepted the mission.");
-            System.Console.WriteLine();
         }
     }
 }
