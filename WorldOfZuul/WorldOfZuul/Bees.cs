@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Runtime.Versioning;
 using System.Threading;
 using static WorldOfZuul.Program;
@@ -9,13 +10,21 @@ namespace WorldOfZuul
     {
         public bool isCompletedHiveQuiz = false;
         public bool isCompletedCommunicationWithBees = false;
+        public static bool isCompletedTicTacToeGame = false;
         public static bool isAllMissionsCompleted = false;
         public string Name {get; set;}
         public int Level {get; set;}
         public int Honey {get; set;}
         static List<HoneyHive> honeyHives = new List<HoneyHive>();
-        static int resources = 500;
-        static int score = 0;
+        static int Resources = 500;
+        static int Score = 0;
+        static char[,] board = {
+        {'1', '2', '3'},
+        {'4', '5', '6'},
+        {'7', '8', '9'}
+    };
+
+        static char currentPlayer = 'X';
 
         public HoneyHive(string name, int level)
         {
@@ -33,8 +42,9 @@ namespace WorldOfZuul
                 Console.WriteLine("Choose an option:");
                 Console.WriteLine("1. Start Hive Quiz");
                 Console.WriteLine("2. Start Communication with Bees");
-                Console.WriteLine("3. Build Hives");
-                Console.WriteLine("4. Exit");
+                Console.WriteLine("3. TicTacToe game");
+                Console.WriteLine("4. Build Hives");
+                Console.WriteLine("5. Exit");
 
                 int choice;
                 if (!int.TryParse(Console.ReadLine(), out choice))
@@ -72,7 +82,28 @@ namespace WorldOfZuul
                         break;
 
                     case 3:
-                        if (isCompletedHiveQuiz && isCompletedCommunicationWithBees)
+                        //TicTacToe();
+                        //break;
+                        if (isCompletedHiveQuiz && isCompletedCommunicationWithBees && !isCompletedTicTacToeGame)
+                        {
+                            TicTacToe();
+                        }
+                        else if (!isCompletedHiveQuiz)
+                        {
+                            Console.WriteLine("You must complete the Hive Quiz before starting Communication with Bees.");
+                        }
+                        else if (!isCompletedCommunicationWithBees)
+                        {
+                            Console.WriteLine("You must complete Communication with Bees before building hives.");
+                        }
+                        else
+                        {
+                            System.Console.WriteLine("You already won the tic-tac-toe game.");
+                        }
+                        break;
+
+                    case 4:
+                        if (isCompletedHiveQuiz && isCompletedCommunicationWithBees && isCompletedTicTacToeGame)
                         {
                             BuildHives();
                             isAllMissionsCompleted = true;
@@ -85,13 +116,17 @@ namespace WorldOfZuul
                         {
                             Console.WriteLine("You must complete Communication with Bees before building hives.");
                         }
+                        else if (!isCompletedTicTacToeGame)
+                        {
+                            Console.WriteLine("You must complete Tic-Tac-Toe game.");
+                        }
                         else
                         {
                             Console.WriteLine("You have already built the hives.");
                         }
                         break;
 
-                    case 4:
+                    case 5:
                         Console.WriteLine("Exiting the world of missions.");
                         return;
 
@@ -154,7 +189,7 @@ namespace WorldOfZuul
             if (userAnswer == correctAnswer)
             {
                 Console.WriteLine("Correct!");
-                score++;
+                Score++;
             }
             else
             {
@@ -191,23 +226,25 @@ namespace WorldOfZuul
             OpenEndedQuestion("What is the name of this city", "sonderborg");
             MultipleChoiceQuestion("Which programming language is this game written in?", new Dictionary<string, string> { { "a", "Java" }, { "b", "Python" }, { "c", "C#" } }, "c");
             TrueFalseQuestion("SDG 5 is supported in this mission.(True/False)", "false");
-            OpenEndedQuestion("Final, a riddle time. I’m tall when I’m young, and I’m short when I’m old. What am I?", "candle");
+            OpenEndedQuestion("Final, a riddle time. I'm tall when I'm young, and I'm short when I'm old. What am I?", "candle");
             
-            if (score == 6)
+            if (Score == 6)
             {
-                System.Console.WriteLine("You passed my quiz by answering all questions correct.");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                System.Console.WriteLine("\nYou passed my quiz by answering all questions correct.");
+                Console.ResetColor();
                 isCompletedHiveQuiz = true;
             }
             else
             {
-                System.Console.WriteLine("You failed");
-                return;
+                Console.ForegroundColor = ConsoleColor.Red;
+                System.Console.WriteLine("\nYou failed.");
+                Console.ResetColor();
             }
         }
 
         public void CommunicationWithBees()
         {
-            //Bees bees = new();
             NPCs communicate = new();
                 communicate.NpcName = "Wazolski";
                 communicate.Sentence = "I'm bringing you my secret friendship receipt, which contains tips about how to communicate with bees. Good Luck! Do not make them angry.";
@@ -233,7 +270,7 @@ namespace WorldOfZuul
                 Console.ResetColor();
                 communicate.NpcName2 = "Queen";
                 System.Console.WriteLine();
-                System.Console.WriteLine("Introduce yourself by telling your name first.");
+                System.Console.WriteLine("Introduce yourself by telling your name first.\n");
                 string? name = Console.ReadLine();
                 int count = 0;
                 bool cont = true;
@@ -257,29 +294,30 @@ namespace WorldOfZuul
                         ans1.ToLower();
                         if (ans1 == "hi" || ans1 == "hello")
                         {
-                            System.Console.WriteLine("Wzzwwwwz - [Nice to meet you]");
+                            System.Console.WriteLine("\nWzzwwwwz - [Nice to meet you]");
                             count++;
                         }
                         else
                         {
-                            System.Console.WriteLine("WZZZZZZZZZZZZZZZZZZZZ!!! - [Anger]");
+                            System.Console.WriteLine("\nWZZZZZZZZZZZZZZZZZZZZ!!! - [Anger]");
                             return;
                         }
+                        Console.WriteLine();
                         System.Console.WriteLine(communicate.NpcName2);
                         System.Console.WriteLine();
-                        System.Console.WriteLine("WzWzWzWz");
-                        System.Console.WriteLine();
+                        System.Console.WriteLine("WzWzWzWz\n");
                         System.Console.WriteLine(name);
+                        Console.WriteLine();
                         string? ans2 = Console.ReadLine();
                         ans2.ToLower();
                         if (ans2.Contains("sdg") && ans2.Contains("honey"))
                         {
-                            System.Console.WriteLine("WzzHoneyWzz - [Honey is improtant for us].");
+                            System.Console.WriteLine("\nWzzHoneyWzz - [Honey is improtant for us].\n");
                             count++;
                         }
                         else
                         {
-                            System.Console.WriteLine("WZZZZZZZZZZZZZZZZZZZZ!!! - [Anger]");
+                            System.Console.WriteLine("\nWZZZZZZZZZZZZZZZZZZZZ!!! - [Anger]\n");
                             return;
                         }
                         System.Console.WriteLine(communicate.NpcName2);
@@ -337,6 +375,217 @@ namespace WorldOfZuul
                 }
             isCompletedCommunicationWithBees = true;
         }
+
+            static void TicTacToe()
+            {
+                System.Console.WriteLine("Welcome to third mission of the task5");
+                System.Console.WriteLine("You must beat my friend Bob for the guidline of communication with bees.\n");
+                bool cont = false;
+                do
+                {
+                    DrawBoard();
+
+                    if (currentPlayer == 'X')
+                    {
+                        int move = GetPlayerMove();
+                        MakeMove(move);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Computer's turn:");
+                        int move = GetComputerMove();
+                        MakeMove(move);
+                    }
+
+                    if (CheckForWin() || CheckForTie())
+                    {
+                        DrawBoard();
+                        Console.WriteLine("Game Over!");
+                        if (CheckForWin())
+                        {
+                            Console.WriteLine($"Player {currentPlayer} wins!");
+                            isCompletedTicTacToeGame = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("It's a tie!");
+                            isCompletedTicTacToeGame = false;
+                        }
+                        //need small fix
+                        cont = PlayAgain();
+                        if (cont)
+                        {
+                            InitializeGame();
+                        }
+                        else
+                        {
+                            InitializeGame();
+                            Console.WriteLine("Closing the program(game)");
+                            break;
+                        }
+                    }
+
+                    SwitchPlayer();
+
+                } while (!cont);
+            }
+
+            static bool PlayAgain()
+            {
+                Console.Write("Do you want to play again? (y/n): ");
+                string? selection = Console.ReadLine().Trim().ToLower();
+                if (selection == "y")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            static void InitializeGame()
+            {
+                board = new char[,]
+                {
+                    { '1', '2', '3' },
+                    { '4', '5', '6' },
+                    { '7', '8', '9' }
+                };
+                
+                currentPlayer = 'X';
+            }
+
+
+
+            static void DrawBoard()
+            {
+                Console.Clear();
+                Console.WriteLine("Tic Tac Toe\n");
+                for (int row = 0; row < 3; row++)
+                {
+                    for (int col = 0; col < 3; col++)
+                    {
+                        Console.Write($" {board[row, col]} ");
+                        if (col < 2) Console.Write("|");
+                    }
+                    Console.WriteLine();
+                    if (row < 2) Console.WriteLine("-----------");
+                }
+
+                Console.WriteLine();
+            }
+
+            static int GetPlayerMove()
+            {
+                int move;
+                bool isValidMove;
+
+                do
+                {
+                    Console.Write($"Player {currentPlayer}, enter your move (1-9): ");
+                    isValidMove = int.TryParse(Console.ReadLine(), out move) && move >= 1 && move <= 9 && IsSpaceFree(move);
+
+                    if (!isValidMove)
+                    {
+                        Console.WriteLine("Invalid move. Try again.");
+                    }
+
+                } while (!isValidMove);
+
+                return move;
+            }
+
+            static int GetComputerMove()
+            {
+                Random random = new Random();
+                int move;
+
+                do
+                {
+                    move = random.Next(1, 10);
+
+                } while (!IsSpaceFree(move));
+
+                Console.WriteLine($"Computer chose {move}");
+                return move;
+            }
+
+            static void MakeMove(int move)
+            {
+                int row = (move - 1) / 3;
+                int col = (move - 1) % 3;
+
+                board[row, col] = currentPlayer;
+            }
+
+            static void SwitchPlayer()
+            {
+                currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
+            }
+
+            static bool IsSpaceFree(int move)
+            {
+                int row = (move - 1) / 3;
+                int col = (move - 1) % 3;
+
+                return board[row, col] == 'X' || board[row, col] == 'O' ? false : true;
+            }
+
+            static bool CheckForWin()
+            {
+                return CheckRow() || CheckColumn() || CheckDiagonal();
+            }
+
+            static bool CheckRow()
+            {
+                for (int row = 0; row < 3; row++)
+                {
+                    if (board[row, 0] == currentPlayer && board[row, 1] == currentPlayer && board[row, 2] == currentPlayer)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            static bool CheckColumn()
+            {
+                for (int col = 0; col < 3; col++)
+                {
+                    if (board[0, col] == currentPlayer && board[1, col] == currentPlayer && board[2, col] == currentPlayer)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            static bool CheckDiagonal()
+            {
+                if ((board[0, 0] == currentPlayer && board[1, 1] == currentPlayer && board[2, 2] == currentPlayer) ||
+                    (board[0, 2] == currentPlayer && board[1, 1] == currentPlayer && board[2, 0] == currentPlayer))
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            static bool CheckForTie()
+            {
+                for (int row = 0; row < 3; row++)
+                {
+                    for (int col = 0; col < 3; col++)
+                    {
+                        if (board[row, col] != 'X' && board[row, col] != 'O')
+                        {
+                            return false;
+                        }
+                    }
+                }
+                Console.WriteLine("It's a tie!");
+                return true;
+            }
 
         public void Upgrade()
         {
@@ -401,13 +650,13 @@ namespace WorldOfZuul
 
         static void BuildHoneyHive()
         {
-            if (resources >= 50)
+            if (Resources >= 50)
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write("Enter a name for your honey hive: ");
                 string hiveName = Console.ReadLine();
                 honeyHives.Add(new HoneyHive(hiveName, 1));
-                resources -= 50;
+                Resources -= 50;
                 Console.WriteLine($"{hiveName} honey hive built successfully!");
                 Console.ResetColor();
             }
@@ -433,10 +682,10 @@ namespace WorldOfZuul
                 if (int.TryParse(Console.ReadLine(), out int hiveIndex) && hiveIndex >= 1 && hiveIndex <= honeyHives.Count)
                 {
                     HoneyHive selectedHive = honeyHives[hiveIndex - 1];
-                    if (resources >= 30 * selectedHive.Level)
+                    if (Resources >= 30 * selectedHive.Level)
                     {
                         selectedHive.Upgrade();
-                        resources -= 30 * selectedHive.Level;
+                        Resources -= 30 * selectedHive.Level;
                     }
                     else
                     {
@@ -461,7 +710,7 @@ namespace WorldOfZuul
             {
                 Console.WriteLine($"{hive.Name} (Level {hive.Level}) - Honey: {hive.Honey}");
             }
-            Console.WriteLine($"Resources: {resources}");
+            Console.WriteLine($"Resources: {Resources}");
         }
 
         static void CollectHoney()
@@ -469,15 +718,15 @@ namespace WorldOfZuul
             foreach (HoneyHive hive in honeyHives)
             {
                 hive.ProduceHoney();
-                resources += hive.Honey;
+                Resources += hive.Honey;
                 hive.Honey = 0;
             }
             Console.WriteLine("Honey collected from all hives!");
 
-            if (resources >= 1000)  //Win condition 
+            if (Resources >= 1000)  //Win condition 
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Congratulations! You've reached the honey production goal. You win!");
+                Console.WriteLine("Congratulations! You've reached the honey production goal. You won!");
                 Console.ResetColor();
                 isAllMissionsCompleted = true;
             }
