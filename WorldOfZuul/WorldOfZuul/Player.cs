@@ -1,5 +1,5 @@
 using System.Diagnostics;
-
+using static WorldOfZuul.Program;
 namespace WorldOfZuul
 {
     public class Player
