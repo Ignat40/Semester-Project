@@ -6,6 +6,11 @@ namespace WorldOfZuul
     {
         public string? PlayerName;
         public int PlayerScore = 0;
+        public int Score
+        {
+            get { return PlayerScore; }
+            set { PlayerScore = value; }
+        }
         public List<string> Inventory = new List<string>();
 
         public void DisplayPlayer()
@@ -21,8 +26,11 @@ namespace WorldOfZuul
             else
             {
                 PlayerName = "Mr. Eco";
-                Console.WriteLine($"You are our only hope {PlayerName}!");
             }
+            AnimateIntro("\nThe Mayor will be your personal guide during this mission!"
+                        + "He will give you tasks and check whether you've completed them or not!"
+                        +"Be fast and don't hesitate to type 'help' if you are lost."
+                        +$"Good luck {PlayerName}! You are our only hope!", 5000);    
         }
 
         public void DisplayInventory()
@@ -67,6 +75,21 @@ namespace WorldOfZuul
         {
             Console.WriteLine($"Score: {PlayerScore}");
 
+        }
+        public static void AnimateIntro(string inputText, int duration)
+        {
+            int frames = duration/ 50;
+            int startIndex = 0;
+
+            for(int i = 0; i < frames; i++)
+            {
+                Console.Clear();
+                Console.WriteLine(inputText.Substring(startIndex, Math.Min(i * inputText.Length / frames, inputText.Length)));
+                Thread.Sleep(50);
+            }
+
+            Console.Clear();
+            Console.WriteLine(inputText);
         }
     }
 
