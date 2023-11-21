@@ -30,7 +30,12 @@ namespace WorldOfZuul
             AnimateIntro("\nThe Mayor will be your personal guide during this mission!"
                         + "He will give you tasks and check whether you've completed them or not!"
                         +"Be fast and don't hesitate to type 'help' if you are lost."
-                        +$"Good luck {PlayerName}! You are our only hope!", 5000);    
+                        +"Bellow is a short map of the whole quest!"
+                        +$"Good luck {PlayerName}! You are our only hope!", 5000);
+
+            BaseMap baseMap = new();
+            baseMap.DisplayMap();
+            
         }
 
         public void DisplayInventory()

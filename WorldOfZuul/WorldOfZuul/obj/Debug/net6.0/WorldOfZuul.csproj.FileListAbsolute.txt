@@ -55,17 +55,3 @@ C:/Users/Sc/Documents/GitHub/Semester-Project/WorldOfZuul/WorldOfZuul/obj/Debug/
 C:/Users/Sc/Documents/GitHub/Semester-Project/WorldOfZuul/WorldOfZuul/obj/Debug/net6.0/WorldOfZuul.pdb
 C:/Users/Sc/Documents/GitHub/Semester-Project/WorldOfZuul/WorldOfZuul/obj/Debug/net6.0/WorldOfZuul.genruntimeconfig.cache
 C:/Users/Sc/Documents/GitHub/Semester-Project/WorldOfZuul/WorldOfZuul/obj/Debug/net6.0/ref/WorldOfZuul.dll
-C:\Users\Sc\Documents\GitHub\Semester-Project\WorldOfZuul\WorldOfZuul\bin\Debug\net6.0\WorldOfZuul.exe
-C:\Users\Sc\Documents\GitHub\Semester-Project\WorldOfZuul\WorldOfZuul\bin\Debug\net6.0\WorldOfZuul.deps.json
-C:\Users\Sc\Documents\GitHub\Semester-Project\WorldOfZuul\WorldOfZuul\bin\Debug\net6.0\WorldOfZuul.runtimeconfig.json
-C:\Users\Sc\Documents\GitHub\Semester-Project\WorldOfZuul\WorldOfZuul\bin\Debug\net6.0\WorldOfZuul.dll
-C:\Users\Sc\Documents\GitHub\Semester-Project\WorldOfZuul\WorldOfZuul\bin\Debug\net6.0\WorldOfZuul.pdb
-C:\Users\Sc\Documents\GitHub\Semester-Project\WorldOfZuul\WorldOfZuul\obj\Debug\net6.0\WorldOfZuul.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Sc\Documents\GitHub\Semester-Project\WorldOfZuul\WorldOfZuul\obj\Debug\net6.0\WorldOfZuul.AssemblyInfoInputs.cache
-C:\Users\Sc\Documents\GitHub\Semester-Project\WorldOfZuul\WorldOfZuul\obj\Debug\net6.0\WorldOfZuul.AssemblyInfo.cs
-C:\Users\Sc\Documents\GitHub\Semester-Project\WorldOfZuul\WorldOfZuul\obj\Debug\net6.0\WorldOfZuul.csproj.CoreCompileInputs.cache
-C:\Users\Sc\Documents\GitHub\Semester-Project\WorldOfZuul\WorldOfZuul\obj\Debug\net6.0\WorldOfZuul.dll
-C:\Users\Sc\Documents\GitHub\Semester-Project\WorldOfZuul\WorldOfZuul\obj\Debug\net6.0\refint\WorldOfZuul.dll
-C:\Users\Sc\Documents\GitHub\Semester-Project\WorldOfZuul\WorldOfZuul\obj\Debug\net6.0\WorldOfZuul.pdb
-C:\Users\Sc\Documents\GitHub\Semester-Project\WorldOfZuul\WorldOfZuul\obj\Debug\net6.0\WorldOfZuul.genruntimeconfig.cache
-C:\Users\Sc\Documents\GitHub\Semester-Project\WorldOfZuul\WorldOfZuul\obj\Debug\net6.0\ref\WorldOfZuul.dll

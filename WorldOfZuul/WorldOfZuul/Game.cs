@@ -34,9 +34,9 @@ namespace WorldOfZuul
             theatre = new("Theatre", "You find yourself inside a large lecture theatre. Rows of seats ascend up to the back, and there's a podium at the front. It's quite dark and quiet.");
             pub = new("Pub", "You've entered the campus pub. It's a cozy place, with a few students chatting over drinks. There's a bar near you and some pool tables at the far end.");
             farm = new("Lab", "You're in a computing lab. Desks with computers line the walls, and there's an office to the east. The hum of machines fills the room.");
-            kitchen = new("Office", "You've entered what seems to be an administration office. There's a large desk with a computer on it, and some bookshelves lining one wall.");
+            kitchen = new("The Kitchen", "Here all the hungry souls find their peace with the best sandwich maker in the city");
             localBeach = new("The local beach", "This the local beach. Over the year people have been neglecting the importance of keeping free of litter. Unfortunately this has led to wildlife leaving the coast and disrupting the ecosystem");
-            basement = new("The Basement", "asljdfhaljksdhflajksdhfljkasdhflkjsadhfljk");
+            basement = new("The Basement", "The town's sewage system. It's been running for ages but unfortunately due to the lack of maintanance the water quality and the pipes have been damaged.");
             roof = new("The roof of the university", "From atop the university rooftop, the panorama is a juxtaposition of academia and the natural world. The roof itself is a sea of technology—sleek, photovoltaic panels arrayed like a modern art installation, engineered to harvest the sun's power.");
 
             mainHall.SetExits(null, theatre, farm, pub, localBeach, roof, basement);
@@ -51,30 +51,6 @@ namespace WorldOfZuul
 
             currentRoom = mainHall;
 
-            //We need to decide room names and contents to develop faster
-            //Direction information in descriptions should be added
-            // Room? outside = new("Outside", "You are standing outside the main entrance of the university. To the east is a large building, to the south is a computing lab, and to the west is the campus pub.");
-            // Room? farm = new("Farm", "There is a farm in front of you. Beautfiul flowers and huge trees are covering all way around. If you look more carefully, you can see that there are lots of hives for bees But why honey is not existing inside the hives? Interesting\n");
-            // Room? beach = new("Beach", "Your are now locating on a local beach. The gold color sand and beautiful sea covers all around you. But it looks dirty. People didn't behave excellently to this beach.");
-            // Room? lab = new("Lab", "You're in university's lab. It contains lots of equipment, for instance,  broken water filtration system, lots of scientific calculator and other tools. There is a stairs to the rooftop of the university east of the lab. Labs are useful rooms for development, this one is also looking good.\nYou saw Professor next to the mainframe computers. Should you talk wit him?");
-            // Room? rooftop = new("Rooftop", "That's the highest point of university. It's mostly empty. Only one red light is situating next to the edge of the rooftop. When looking at around, this empty part can be useful for building something there ...... something cool. Also, you can see all the city on this point.");
-            // Room? basement = new("Basement", "base...");
-            // Room? station = new("Station", "You are standing opposite the city's only train station. There is no one there except a young man.\nApparently there are no trains passing through here today except an old one standing left side of the station. Still, this place is clean.");
-            // outside.SetExits(basement, farm, lab, beach); // North, East, South, West
-            // //Need to create visual map for the rooms
-            // farm.SetExit("west", outside);
-
-            // beach.SetExit("east", outside);
-
-            // basement.SetExit("south", outside);
-
-            // lab.SetExits(outside, rooftop, null, station);
-
-            // rooftop.SetExit("west", lab);
-
-            // station.SetExit("east", lab);
-
-            // currentRoom = outside;
         }
 
         public void Play()
@@ -94,6 +70,7 @@ namespace WorldOfZuul
                 while (continuePlaying)
                 {
                     Console.WriteLine(currentRoom?.ShortDescription);
+                    player.DisplayScore();
                     Console.Write("> ");
 
                     string? input = Console.ReadLine();
@@ -169,7 +146,8 @@ namespace WorldOfZuul
 
                         case "university":
                             Task1 task1 = new();
-                            task1.Sandwich();
+                            Console.WriteLine("Task 1");
+                            //task1.Sandwich();
                             player.UpdateScore(10);
                             break;
 
@@ -177,10 +155,9 @@ namespace WorldOfZuul
                             if (player.Score == 10)
                             {
                                 Move(command.Name);
-                                
-                                WaterPurificaiton waterPurificaiton = new();
-                                waterPurificaiton.BasementTask(waterPurificaiton);
-                                player.UpdateScore(10);
+                                Console.WriteLine("Task 2");
+                                // WaterPurificaiton waterPurificaiton = new();
+                                // waterPurificaiton.BasementTask(waterPurificaiton);
                             }
                             else
                             {
@@ -194,19 +171,20 @@ namespace WorldOfZuul
                             if (player.Score == 20)
                             {
                                 Move(command.Name);
-                                RooftopMission rooftopMission = new();
-                                Console.WriteLine("Do you wish to accept the mission!");
-                                Console.Write(">");
-                                string? yesNo = Console.ReadLine().ToLower();
-                                if (yesNo == "yes")
-                                {
-                                    rooftopMission.StartMission(player);
-                                    player.UpdateScore(10);
-                                }
-                                else
-                                {
-                                    Console.WriteLine("You won't be able to finish The Quest this way!");
-                                }
+                                Console.WriteLine("Task 3");
+                                // RooftopMission rooftopMission = new();
+                                // Console.WriteLine("Do you wish to accept the mission!");
+                                // Console.Write(">");
+                                // string? yesNo = Console.ReadLine().ToLower();
+                                // if (yesNo == "yes")
+                                // {
+                                //     rooftopMission.StartMission(player);
+                                player.UpdateScore(10);
+                                // }
+                                // else
+                                // {
+                                //     Console.WriteLine("You won't be able to finish The Quest this way!");
+                                // }
                                 break;
 
                             }
@@ -220,22 +198,23 @@ namespace WorldOfZuul
                             if (player.Score == 30)
                             {
                                 Move(command.Name);
-                                AcsiiArt acsiiArt = new();
-                                acsiiArt.Beach();
+                                Console.WriteLine("Task 4");
+                                // AcsiiArt acsiiArt = new();
+                                // acsiiArt.Beach();
 
-                                Console.WriteLine("Do you wish to accept the mission!");
-                                Console.Write(">");
-                                string? yesNo = Console.ReadLine().ToLower();
-                                if (yesNo == "yes")
-                                {
-                                    BeachCleanupMission beachCleanupMission = new BeachCleanupMission();
-                                    beachCleanupMission.StartMission(player);
-                                    player.UpdateScore(10);
-                                }
-                                else
-                                {
-                                    Console.WriteLine("You won't be able to finish The Quest this way!");
-                                }
+                                // Console.WriteLine("Do you wish to accept the mission!");
+                                // Console.Write(">");
+                                // string? yesNo = Console.ReadLine().ToLower();
+                                // if (yesNo == "yes")
+                                // {
+                                //     BeachCleanupMission beachCleanupMission = new BeachCleanupMission();
+                                //     beachCleanupMission.StartMission(player);
+                                player.UpdateScore(10);
+                                // }
+                                // else
+                                // {
+                                //     Console.WriteLine("You won't be able to finish The Quest this way!");
+                                // }
                                 break;
                             }
                             else
@@ -248,18 +227,19 @@ namespace WorldOfZuul
                             if (player.Score == 40)
                             {
                                 Move(command.Name);
-                                Console.WriteLine("Do you wish to accept the mission!");
-                                Console.Write(">");
-                                string? yesNo = Console.ReadLine().ToLower();
-                                if (yesNo == "yes")
-                                {
-                                    honeyHive.StartMissionsTask5(player);
-                                }
-                                else
-                                {
-                                    Console.WriteLine("You won't be able to finish The Quest this way!");
-                                }
-                                
+                                Console.WriteLine("Task 5");
+                                // Console.WriteLine("Do you wish to accept the mission!");
+                                // Console.Write(">");
+                                // string? yesNo = Console.ReadLine().ToLower();
+                                // if (yesNo == "yes")
+                                // {
+                                //     honeyHive.StartMissionsTask5(player);
+                                // }
+                                // else
+                                // {
+                                //     Console.WriteLine("You won't be able to finish The Quest this way!");
+                                // }
+
                                 player.UpdateScore(10);
                                 break;
                             }
@@ -271,6 +251,39 @@ namespace WorldOfZuul
 
                         case "quit":
                             continuePlaying = false;
+                            break;
+
+                        case "view":
+                            if (currentRoom == mainHall)
+                            {
+                                MapInHall map = new();
+                                map.DisplayMap();
+                            }
+                            else if (currentRoom == basement)
+                            {
+                                MapTask2 mapTask2 = new();
+                                mapTask2.DisplayMap();
+                            }
+                            else if (currentRoom == localBeach)
+                            {
+                                MapTask3 mapTask3 = new();
+                                mapTask3.DisplayMap();
+                            }
+                            else if (currentRoom == localBeach)
+                            {
+                                MapTask4 mapTask4 = new();
+                                mapTask4.DisplayMap();
+                            }
+                            else if (currentRoom == localBeach)
+                            {
+                                MapTask5 mapTask5 = new();
+                                mapTask5.DisplayMap();
+                            }
+                            else
+                            {
+                                BaseMap baseMap = new();
+                                baseMap.DisplayMap();
+                            }
                             break;
 
                         case "help":
@@ -367,7 +380,6 @@ namespace WorldOfZuul
             }
         }
 
-
         private static void PrintWelcome(Player player)
         {
             Console.WriteLine("██████╗ ██████╗ ██████╗      ███████╗██╗  ██╗██████╗ ██╗      ██████╗ ██████╗ ███████╗██████╗");
@@ -390,7 +402,8 @@ namespace WorldOfZuul
             Console.WriteLine("what to do from there on. ");
             Console.WriteLine();
             Console.WriteLine("Navigate by typing 'university', 'basement', 'beach', 'rooftop', 'farm'.");
-            Console.WriteLine("Type 'look' for more details.");
+            Console.WriteLine("Type 'look' for more information.");
+            Console.WriteLine("Type 'view' for you location on the map.");
             Console.WriteLine("Type 'back' to go to the previous room.");
             Console.WriteLine("Type 'quit' to exit the game.");
         }
