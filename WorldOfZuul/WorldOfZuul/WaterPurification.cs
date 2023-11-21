@@ -12,13 +12,13 @@ namespace WorldOfZuul
         public bool talkedToPlumber = false;
         public static ConsoleColor[] pipeColor =
         {
-            ConsoleColor.Red,
-            ConsoleColor.White,
-            ConsoleColor.Blue,
-            ConsoleColor.Cyan,
-            ConsoleColor.Yellow,
             ConsoleColor.Green,
-            ConsoleColor.Magenta
+            ConsoleColor.Green,
+            ConsoleColor.Green,
+            ConsoleColor.Green,
+            ConsoleColor.Green,
+            ConsoleColor.Green,
+            ConsoleColor.Green
         };
         public static int isComplete = 0;
         public static int beforeChallengeSelection = 0;
@@ -81,25 +81,46 @@ namespace WorldOfZuul
         {
             string[] bChallenge =
             {
-                "What are you witing for",
-                "We need to fix the pipes ass soon possible.",
-                "Lets go",
-                "Lets start"
+                "What are we waiting for",
+                "We need to fix the pipes as soon as possible.",
+                "Let's go",
+                "Let's start",
+                "The pipes won't fix themselves!",
+                "Time is of the essence!",
+                "Every moment counts when dealing with plumbing issues.",
+                "Your help is crucial in resolving this situation.",
+                "Let's tackle this problem together.",
+                "The school's water system depends on us!"
             };
             string[] aChallenge =
             {
                 "Thank you for your help",
                 "Thanks!",
-                "There are more things that you can do around the school to make  this place better.",
-                "you are the best"
+                "There are more things that you can do around the school to make this place better.",
+                "You are the best",
+                "Your assistance is greatly appreciated",
+                "Together, we can make a positive impact",
+                "The school community values your efforts",
+                "Keep up the good work!"
             };
             if (WaterPurificaiton.isComplete == 0)
             {
                 if (WaterPurificaiton.beforeChallengeSelection == 0)
                 {
                     Console.WriteLine(
-                        "This is the  main message that is seen when the player talks with the npc for the fist time"
+                        "Hey there, young one. Sorry about the mess, but these pipes need some attention. "
+                            + "Clean water is vital, you know? It's something we should never take for granted.\n"
+                            + "Have you ever stopped to think about how fortunate we are to have access to clean water right at our fingertips? "
+                            + "In many places, it's a daily struggle. That's why I'm down here, doing my best to ensure we have reliable, safe water.\n"
+                            + "It's not the most glamorous work, but it's necessary. The last thing we want are leaks and contaminated water affecting everyone in the school. "
+                            + "We've got to keep this place running smoothly.\n"
+                            + "And when you think about the bigger picture, it's even more important. Access to clean water is a global issue, connected to so many other challenges we face. "
+                            + "It's like a puzzle with a thousand pieces, and we're trying to put them all together.\n"
+                            + "So, if you've got a moment, maybe lend a hand or at least keep an eye out for any potential issues. "
+                            + "We're all in this together, after all. Thanks for stopping by and showing an interest in what we're doing down here.",
+                        8000
                     );
+
                     WaterPurificaiton.beforeChallengeSelection++;
                 }
                 else
@@ -134,34 +155,46 @@ namespace WorldOfZuul
             bool plumb = true;
             while (plumb)
             {
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("----------");
                 Console.WriteLine("1.Talk\n2.Challenge\n3.Exit");
+                Console.WriteLine("----------");
+                Console.ForegroundColor = ConsoleColor.Green;
                 string? basementChoice = Console.ReadLine().ToLower();
                 if (basementChoice == "talk")
                 {
+                    Console.WriteLine("----------");
+                    Console.ResetColor();
                     PlumberTalk();
                     waterPurificaiton.talkedToPlumber = true;
                 }
                 else if (basementChoice == "challenge" && !waterPurificaiton.talkedToPlumber)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("You need to talk with the plumber first!");
+                    Console.ResetColor();
                 }
                 else if (basementChoice == "challenge" && waterPurificaiton.talkedToPlumber)
                 {
+                    Console.ResetColor();
                     PipePuzzle(waterPurificaiton);
                 }
                 else if (basementChoice == "exit")
                 {
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.WriteLine("Exiting");
+                    Console.ResetColor();
                     plumb = false;
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("INCORRECT INPUT!");
+                    Console.ResetColor();
                 }
             }
         }
-    
-        
+
         public void filtrationTest()
         {
             int correctNum = 0;
@@ -247,8 +280,7 @@ namespace WorldOfZuul
                     Console.ResetColor();
                     Console.WriteLine("---------------");
                     Console.WriteLine();
-                    //Filtration();
-                    Console.WriteLine("Burasda filtration test olurdu normalde");
+                    Filtration();
                 }
                 else
                 {
@@ -256,12 +288,10 @@ namespace WorldOfZuul
                 }
             }
         }
-        //burasini filtration test gibin yapip gurtul
-        /*
+
         public void Filtration()
         {
             double target = 7.5;
-
             Console.WriteLine("This is the list of all the pH levels of the pipes:");
             Console.WriteLine("---------------");
             Console.WriteLine($"Pipe1-->{pipe1pH}");
@@ -289,47 +319,44 @@ namespace WorldOfZuul
             Console.WriteLine(
                 "To decrase the pH level from 8 to 7.5 you will need to add sodium bisulfate."
             );
-
             while (true)
             {
-                int i = 0;
-                int x = 1;
-                int z = 0;
-                
-                while (i < 7 && z == 0)
+                Console.WriteLine($"Pipe1-->{pipe1pH}");
+                double a1 = double.Parse(Console.ReadLine());
+                Console.WriteLine(a1);
+                Console.WriteLine($"Pipe2-->{pipe2pH}");
+                double a2 = double.Parse(Console.ReadLine());
+                Console.WriteLine($"Pipe3-->{pipe3pH}");
+                double a3 = double.Parse(Console.ReadLine());
+                Console.WriteLine($"Pipe4-->{pipe4pH}");
+                double a4 = double.Parse(Console.ReadLine());
+                Console.WriteLine($"Pipe5-->{pipe5pH}");
+                double a5 = double.Parse(Console.ReadLine());
+                Console.WriteLine($"Pipe6-->{pipe6pH}");
+                double a6 = double.Parse(Console.ReadLine());
+                Console.WriteLine($"Pipe7-->{pipe7pH}");
+                double a7 = double.Parse(Console.ReadLine());
+                if (
+                    (pipe1pH + a1) == target
+                    && (pipe2pH + a2) == target
+                    && (pipe3pH + a3) == target
+                    && (pipe4pH + a4) == target
+                    && (pipe5pH + a5) == target
+                    && (pipe6pH + a6) == target
+                    && (pipe7pH + a7) == target
+                )
                 {
-                    Console.WriteLine($"Pipe{x}-->{pipepH[i]}");
-                    x++;
-                    Console.Write("Enter what you want to add:");
-                    string input = Console.ReadLine();
-                    //double num = double.Parse(input);
-                    if (!double.TryParse(Console.ReadLine(), out double num))
-                    {
-                        System.Console.WriteLine("Invalid data entry");
-                    }
-
-                    else
-                    {
-                        double finalNum = num + pipepH[i];
-                        if (finalNum == target)
-                        {
-                            i++;
-                            Console.WriteLine("Correct!");
-                        }
-                        else
-                        {
-                            
-                            Console.WriteLine("Incorrect");
-                            z++;
-                        }
-                    }
-                    
+                    Console.WriteLine(
+                        "congratulations! You have completed the Water pipe challenges"
+                    );
+                    break;
                 }
-                Console.WriteLine("They aint believe in us GOD DID!");
-                break;
+                else
+                {
+                    Console.WriteLine("One of the calculations are wrong. Please do them again.");
+                }
             }
         }
-        */
 
         private void PipePuzzle(WaterPurificaiton waterPurificaiton)
         {
