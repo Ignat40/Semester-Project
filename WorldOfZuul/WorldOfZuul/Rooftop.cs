@@ -18,7 +18,7 @@ namespace WorldOfZuul
             TalkToDanielGarcia(player);
         }
 
-        private void TalkToDanielGarcia(Player player)
+        public void TalkToDanielGarcia(Player player)
         {
             Console.WriteLine("Dani: Hi " + player);
             Console.WriteLine(">        : Today you will help the university by adjusting the solar panels.");

@@ -12,12 +12,15 @@
             LongDescription = longDesc;
         }
 
-        public void SetExits(Room? north, Room? east, Room? south, Room? west)
+        public void SetExits(Room? mainHall, Room? theatre, Room? farm, Room? kitchen, Room? beach, Room? basement, Room? roof)
         {
-            SetExit("north", north);
-            SetExit("east", east);
-            SetExit("south", south);
-            SetExit("west", west);
+            SetExit("mainHall", mainHall);
+            SetExit("theatre", theatre);
+            SetExit("farm", farm);
+            SetExit("kitchen", kitchen);
+            SetExit("beach", beach);
+            SetExit("basement", basement);
+            SetExit("roof", neighbor: roof);
         }
 
         public void SetExit(string direction, Room? neighbor)

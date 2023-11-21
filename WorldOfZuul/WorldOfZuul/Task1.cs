@@ -3,7 +3,7 @@ namespace WorldOfZuul
 {
     public class Task1
     {
-        public void sandwich()
+        public void Sandwich()
         {
             Console.WriteLine ("After searching throughout the university you find the physics professor,");
             Console.WriteLine ("sitting in the library reading Brave New World by Aldous Huxley. The");

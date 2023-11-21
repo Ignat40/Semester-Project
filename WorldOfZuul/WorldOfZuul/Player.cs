@@ -68,7 +68,6 @@ namespace WorldOfZuul
         public void UpdateScore(int points)
         {
             PlayerScore += points;
-            DisplayScore();
         }
 
         public void DisplayScore()
