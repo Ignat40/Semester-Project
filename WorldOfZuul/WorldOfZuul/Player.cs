@@ -5,6 +5,7 @@ namespace WorldOfZuul
     public class Player
     {
         public string? PlayerName;
+        public int PlayerScore = 0;
         public List<string> Inventory = new List<string>();
 
         public void DisplayPlayer()
@@ -56,7 +57,17 @@ namespace WorldOfZuul
             }
         }
 
-        //Add score system for the player
+        public void UpdateScore(int points)
+        {
+            PlayerScore += points;
+            DisplayScore();
+        }
+
+        public void DisplayScore()
+        {
+            Console.WriteLine($"Score: {PlayerScore}");
+
+        }
     }
 
 
