@@ -87,12 +87,10 @@ namespace WorldOfZuul
 {
     public class Program
     {
-        //public static System.Timers.Timer timer;
         public static void Main()
         {
             Game game = new();
             game.Play();
-
         }
        
         public class NPCs
@@ -102,10 +100,7 @@ namespace WorldOfZuul
             public string? Sentence {get; set;}
         }
 
-        public static void PlayMusic(string filePath)
-        {
-            
-        }
+        
 
     }
 }    

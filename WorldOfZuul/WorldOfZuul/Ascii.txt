@@ -100,3 +100,41 @@ _____`--._ ''      . '---'``--._|:::::::|:::::::::::::::::::::::|
   YYYYYYYYYYYY UUUUUU YYYYYYYYYYYYYYYYYY UUUUUU YYYYYYYYYYYY
                UUUUUU                    UUUUUU
                UUUUUU                    UUUUUU
+
+
+
+
+
+
+              try
+              {
+                  // Run a simple command prompt as a test
+                  Process.Start("cmd.exe");
+
+                  // Add your ffmpeg-related code below
+                  string musicFilePath = @"C:\Users\admin\Desktop\SDU\GitHub\Semester-Project\WorldOfZuul\";
+                  string ffmpegPath = @"C:\Users\admin\Desktop\JavaScript";
+
+                  ProcessStartInfo psi = new ProcessStartInfo
+                  {
+                      FileName = ffmpegPath,
+                      Arguments = $"-i \"{musicFilePath}\" -acodec pcm_s16le -ar 44100 -ac 2 -f wav - | aplay -",
+                      RedirectStandardOutput = true,
+                      UseShellExecute = false,
+                      CreateNoWindow = true,
+                      WorkingDirectory = @"C:\Users\admin\Desktop\SDU\GitHub\Semester-Project\WorldOfZuul"
+                  };
+
+                  using (Process process = new Process { StartInfo = psi })
+                  {
+                      process.Start();
+                      process.WaitForExit();
+                  }
+
+                  Console.WriteLine("Press Enter to exit.");
+                  Console.ReadLine();
+              }
+              catch (Exception ex)
+              {
+                  Console.WriteLine($"An error occurred: {ex.Message}");
+              }
