@@ -17,9 +17,9 @@ namespace WorldOfZuul
         public int Level {get; set;}
         public int Honey {get; set;}
         static List<HoneyHive> honeyHives = new List<HoneyHive>();
-        static int Resources = 500;
+        static int Resources = 0;
         static int Score = 0;
-        static char[,] board = {
+        static char[,] Board = {
         {'1', '2', '3'},
         {'4', '5', '6'},
         {'7', '8', '9'}
@@ -96,11 +96,11 @@ namespace WorldOfZuul
                         }
                         else if (!isCompletedTicTacToeGame)
                         {
-                            System.Console.WriteLine("You must complete TicTacToe game before starting Communication wiyh bees mission.");
+                            Console.WriteLine("You must complete TicTacToe game before starting Communication wiyh bees mission.");
                         }
                         else
                         {
-                            System.Console.WriteLine("You already talked with queen bee.");
+                            Console.WriteLine("You already talked with queen bee.");
                         }
                         break;
                     
@@ -204,20 +204,25 @@ namespace WorldOfZuul
         public void HiveQuiz(Player player)
         {
             NPCs communicate = new();
-            System.Console.WriteLine("\nWelcome to last mission.\n");
-            System.Console.WriteLine($"Hi {player.PlayerName}");
-            System.Console.WriteLine("Finally, when you complete this mission, you will have your goals.\n");
-            System.Console.WriteLine("You need to build new hives to create advanced infrastructure of honey production for bees.\n");
+            Console.WriteLine("\nWelcome to last mission.\n");
+            Console.WriteLine($"Hi {player.PlayerName}");
+            Console.WriteLine("Finally, when you complete this mission, you will have your goals.\n");
+            Console.WriteLine("You need to build new hives to create advanced infrastructure of honey production for bees.\n");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            System.Console.WriteLine("   _   _");
-            System.Console.WriteLine("  ( | / )"); 
-            System.Console.WriteLine("\\\\ ||/,'");
-            System.Console.WriteLine("('')(_)()))=");
-            System.Console.WriteLine("    <\\\\\n");
+            Console.WriteLine("   _   _");
+            Thread.Sleep(100);
+            Console.WriteLine("  ( | / )"); 
+            Thread.Sleep(100);
+            Console.WriteLine("\\\\ ||/,'");
+            Thread.Sleep(100);
+            Console.WriteLine("('')(_)()))=");
+            Thread.Sleep(100);
+            Console.WriteLine("    <\\\\\n");
+            Thread.Sleep(100);
             Console.ResetColor();
-            System.Console.WriteLine("For this, you will need materials. You need to gain beekeeper trust to obtain materails and build hives.");
-            System.Console.WriteLine();
-            System.Console.WriteLine("GOOD LUCK!!!\n");
+            Console.WriteLine("For this, you will need materials. You need to gain beekeeper trust to obtain materails and build hives.");
+            Console.WriteLine();
+            Console.WriteLine("GOOD LUCK!!!\n");
 
             communicate.NpcName = "Beekeeper Wazolski";
             communicate.Sentence = "Welcome to my farm. My name is Wazolski. To obtain my tools and materials for hives, you need to pass my quiz. You know..... trust issues.";
@@ -245,7 +250,7 @@ namespace WorldOfZuul
                 if (Score >= 5)
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    System.Console.WriteLine("\nYou passed the quiz!");
+                    Console.WriteLine("\nYou passed the quiz!");
                     Console.ResetColor();
                     isCompletedHiveQuiz = true;
                     return;
@@ -253,34 +258,39 @@ namespace WorldOfZuul
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    System.Console.WriteLine("\nYou failed this attempt.");
+                    Console.WriteLine("\nYou failed this attempt.");
                     Console.ResetColor();
                 }
 
                 attempt++;
             } while (attempt < maxAttempts);
 
-                System.Console.WriteLine("You used your all attempts.");
+                Console.WriteLine("You used your all attempts.");
         }
 
         public void CommunicationWithBees()
         {
-            System.Console.WriteLine("\nWazolski\n");
-            System.Console.WriteLine("As we promised, here is the guidline book.");
-            System.Console.WriteLine("      __...--~~~~~-._   _.-~~~~~--...__");
-            System.Console.WriteLine("    //               `V'               \\\\ ");
-            System.Console.WriteLine("   //                 |                 \\\\ ");
-            System.Console.WriteLine("  //__...--~~~~~~-._  |  _.-~~~~~~--...__\\\\ ");
+            Console.WriteLine("\nWazolski\n");
+            Console.WriteLine("As we promised, here is the guidline book.");
+            Console.WriteLine("      __...--~~~~~-._   _.-~~~~~--...__");
+            Thread.Sleep(100);
+            Console.WriteLine("    //               `V'               \\\\ ");
+            Thread.Sleep(100);
+            Console.WriteLine("   //                 |                 \\\\ ");
+            Thread.Sleep(100);
+            Console.WriteLine("  //__...--~~~~~~-._  |  _.-~~~~~~--...__\\\\ ");
+            Thread.Sleep(100);
             Console.ForegroundColor = ConsoleColor.DarkRed;
-            System.Console.WriteLine(" //__.....----~~~~._\\ | /_.~~~~----.....__\\\\");
+            Console.WriteLine(" //__.....----~~~~._\\ | /_.~~~~----.....__\\\\");
+            Thread.Sleep(100);
             Console.ResetColor();
             Console.ForegroundColor = ConsoleColor.Red;
-            System.Console.WriteLine("====================\\\\|//====================");
-            System.Console.WriteLine("                    `---`");
+            Console.WriteLine("====================\\\\|//====================");
+            Console.WriteLine("                    `---`");
             Console.ResetColor();
-            System.Console.WriteLine("You need to use this book to talk with Queen bee.\n");
+            Console.WriteLine("You need to use this book to talk with Queen bee.\n");
             Player player = new();
-            GuidLine(player);
+            GuidLine(player); //Player name didn't exit here, need fix.
             Dialogues();
 
         }
@@ -288,43 +298,47 @@ namespace WorldOfZuul
         public void GuidLine(Player player)
         {
             Console.ForegroundColor = ConsoleColor.Magenta;
-            System.Console.WriteLine("1-\t[Wzzzzzzzzzwz] = Hi, You need to say only hello or hi to queen bee.");
-            System.Console.WriteLine("2-\t[WzWzWzWz] = What is your purpose of visiting my kingdom, You need to tell her about honey.");
-            System.Console.WriteLine("3-\t[Wzzzzzzzzzzzzzzzz] = I understand, You can either say nice, okay or good.");
-            System.Console.WriteLine("4-\t[WzzzzzzWzz] = I accept your offer, I hope she is going to say this sentence to you. You must say [Thank you or thanks] to caress her soul.\n");
+            Console.WriteLine("1-\t[Wzzzzzzzzzwz] = Hi, You need to say only hello or hi to queen bee.");
+            Console.WriteLine("2-\t[WzWzWzWz] = What is your purpose of visiting my kingdom, You need to tell her about honey.");
+            Console.WriteLine("3-\t[Wzzzzzzzzzzzzzzzz] = I understand, You can either say nice, okay or good.");
+            Console.WriteLine("4-\t[WzzzzzzWzz] = I accept your offer, I hope she is going to say this sentence to you. You must say [Thank you or thanks] to caress her soul.\n");
             Console.ResetColor();
-            System.Console.WriteLine();
-            System.Console.WriteLine("Be careful while talking with queen!\n");
+            Console.WriteLine();
+            Console.WriteLine("Be careful while talking with queen!\n");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            System.Console.WriteLine("   __         .' '.");
-            System.Console.WriteLine(" _/__)        .   .       .");
-            System.Console.WriteLine("(8|)_}}- .      .        .");
-            System.Console.WriteLine(" `\\__)    '. . ' ' .  . '\n");
+            Console.WriteLine("   __         .' '.");
+            Thread.Sleep(100);
+            Console.WriteLine(" _/__)        .   .       .");
+            Thread.Sleep(100);
+            Console.WriteLine("(8|)_}}- .      .        .");
+            Thread.Sleep(100);
+            Console.WriteLine(" `\\__)    '. . ' ' .  . '\n");
+            Thread.Sleep(100);
             Console.ResetColor();
-            System.Console.WriteLine($"Good luck {player}");
+            Console.WriteLine($"Good luck {player}");
                
         }
 
         public void Dialogues()
         {
-            System.Console.WriteLine("She is here.\n");
-            System.Console.WriteLine("You can only do one mistake while talking therefore be careful.\n");
-            System.Console.WriteLine("Quenn\n");
+            Console.WriteLine("She is here.\n");
+            Console.WriteLine("You can only do one mistake while talking therefore be careful.\n");
+            Console.WriteLine("Quenn\n");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            System.Console.WriteLine("Wzzzzzzzzzwz\n");
+            Console.WriteLine("Wzzzzzzzzzwz\n");
             Thread.Sleep(1000);
             Console.ResetColor();
             string? response1 = Console.ReadLine().ToLower();
             if (response1 == "hello" || response1 == "hi")
             {
                 Count++;
-                System.Console.WriteLine("\nWazolski: Nice start!\n");
+                Console.WriteLine("\nWazolski: Nice start!\n");
             }
             else
             {
                 Count--;
             }
-            System.Console.WriteLine("WzWzWzWz\n");
+            Console.WriteLine("WzWzWzWz\n");
             Thread.Sleep(1000);
             string? response2 = Console.ReadLine().ToLower();
             if (response2.Contains("honey"))
@@ -335,19 +349,19 @@ namespace WorldOfZuul
             {
                 Count--;
             }
-            System.Console.WriteLine("\nWzzzzzzzzzzzzzzzz\n");
+            Console.WriteLine("\nWzzzzzzzzzzzzzzzz\n");
             Thread.Sleep(1000);
             string? response3 = Console.ReadLine().ToLower();
             if (response3 == "good" || response3 == "okay" || response3 == "nice")
             {
                 Count++;
-                System.Console.WriteLine("\nYou are doing this job!!\n");
+                Console.WriteLine("\nYou are doing this job!!\n");
             }
             else
             {
                 Count--;
             }
-            System.Console.WriteLine("\nWzzzzzzWzz\n");
+            Console.WriteLine("\nWzzzzzzWzz\n");
             Thread.Sleep(1000);
             string? response4 = Console.ReadLine().ToLower();
             if (response4 == "thank you" || response4 == "thanks")
@@ -359,19 +373,19 @@ namespace WorldOfZuul
                 Count--;
             }
             Console.ForegroundColor = ConsoleColor.Green;
-            System.Console.WriteLine("\n'End of the talking'\n");
+            Console.WriteLine("\n'End of the talking'\n");
             Thread.Sleep(1000);
             Console.ResetColor();
             if (Count >= 3)
             {
                 isCompletedCommunicationWithBees = true;
-                System.Console.WriteLine("\nWonderfull talking, well done!\n");
+                Console.WriteLine("\nWonderfull talking, well done!\n");
                 Thread.Sleep(1000);
             }
             else
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                System.Console.WriteLine("\nMission failed.\n");
+                Console.WriteLine("\nMission failed.\n");
                 Thread.Sleep(1000);
                 Console.ResetColor();
             }
@@ -380,8 +394,8 @@ namespace WorldOfZuul
 
             static void TicTacToe()
             {
-                System.Console.WriteLine("Welcome to third mission of the task5");
-                System.Console.WriteLine("You must beat my friend Bob for the guidline of communication with bees.\n");
+                Console.WriteLine("Welcome to third mission of the task5");
+                Console.WriteLine("You must beat my friend Bob for the guidline of communication with bees.\n");
                 bool cont = false;
                 do
                 {
@@ -413,7 +427,6 @@ namespace WorldOfZuul
                             Console.WriteLine("It's a tie!");
                             isCompletedTicTacToeGame = false;
                         }
-                        //need small fix
                         cont = PlayAgain();
                         if (cont)
                         {
@@ -448,7 +461,7 @@ namespace WorldOfZuul
 
             static void InitializeGame()
             {
-                board = new char[,]
+                Board = new char[,]
                 {
                     { '1', '2', '3' },
                     { '4', '5', '6' },
@@ -468,7 +481,7 @@ namespace WorldOfZuul
                 {
                     for (int col = 0; col < 3; col++)
                     {
-                        Console.Write($" {board[row, col]} ");
+                        Console.Write($" {Board[row, col]} ");
                         if (col < 2) Console.Write("|");
                     }
                     Console.WriteLine();
@@ -518,7 +531,7 @@ namespace WorldOfZuul
                 int row = (move - 1) / 3;
                 int col = (move - 1) % 3;
 
-                board[row, col] = currentPlayer;
+                Board[row, col] = currentPlayer;
             }
 
             static void SwitchPlayer()
@@ -531,7 +544,7 @@ namespace WorldOfZuul
                 int row = (move - 1) / 3;
                 int col = (move - 1) % 3;
 
-                return board[row, col] == 'X' || board[row, col] == 'O' ? false : true;
+                return Board[row, col] == 'X' || Board[row, col] == 'O' ? false : true;
             }
 
             static bool CheckForWin()
@@ -543,7 +556,7 @@ namespace WorldOfZuul
             {
                 for (int row = 0; row < 3; row++)
                 {
-                    if (board[row, 0] == currentPlayer && board[row, 1] == currentPlayer && board[row, 2] == currentPlayer)
+                    if (Board[row, 0] == currentPlayer && Board[row, 1] == currentPlayer && Board[row, 2] == currentPlayer)
                     {
                         return true;
                     }
@@ -555,7 +568,7 @@ namespace WorldOfZuul
             {
                 for (int col = 0; col < 3; col++)
                 {
-                    if (board[0, col] == currentPlayer && board[1, col] == currentPlayer && board[2, col] == currentPlayer)
+                    if (Board[0, col] == currentPlayer && Board[1, col] == currentPlayer && Board[2, col] == currentPlayer)
                     {
                         return true;
                     }
@@ -565,8 +578,8 @@ namespace WorldOfZuul
 
             static bool CheckDiagonal()
             {
-                if ((board[0, 0] == currentPlayer && board[1, 1] == currentPlayer && board[2, 2] == currentPlayer) ||
-                    (board[0, 2] == currentPlayer && board[1, 1] == currentPlayer && board[2, 0] == currentPlayer))
+                if ((Board[0, 0] == currentPlayer && Board[1, 1] == currentPlayer && Board[2, 2] == currentPlayer) ||
+                    (Board[0, 2] == currentPlayer && Board[1, 1] == currentPlayer && Board[2, 0] == currentPlayer))
                 {
                     return true;
                 }
@@ -579,7 +592,7 @@ namespace WorldOfZuul
                 {
                     for (int col = 0; col < 3; col++)
                     {
-                        if (board[row, col] != 'X' && board[row, col] != 'O')
+                        if (Board[row, col] != 'X' && Board[row, col] != 'O')
                         {
                             return false;
                         }
@@ -610,7 +623,7 @@ namespace WorldOfZuul
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Wazolski\n");
             Console.WriteLine("You had accepted for the construction of honey hives. Let's begin!");
-            Console.WriteLine("You must collect 1000 resources to finish the task.");
+            Console.WriteLine("You must collect 200 resources to finish the task.");
             Console.WriteLine("\nOptions:");
             Thread.Sleep(1000);
             Console.WriteLine("1. Build a honey hive");
@@ -720,7 +733,7 @@ namespace WorldOfZuul
             }
             Console.WriteLine("Honey collected from all hives!");
 
-            if (Resources >= 1000)  //Win condition 
+            if (Resources >= 200)  //Win condition 
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Congratulations! You've reached the honey production goal. You won!");

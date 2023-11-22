@@ -82,6 +82,7 @@ using System.Media;
 using System.Threading;
 using System.IO;
 using System.Diagnostics;
+using System.Security.Cryptography;
 namespace WorldOfZuul
 {
     public class Program
@@ -91,6 +92,7 @@ namespace WorldOfZuul
         {
             Game game = new();
             game.Play();
+
         }
        
         public class NPCs
@@ -98,14 +100,12 @@ namespace WorldOfZuul
             public string? NpcName;
             public string? NpcName2;
             public string? Sentence {get; set;}
+        }
 
+        public static void PlayMusic(string filePath)
+        {
             
         }
 
-        /*public class Bees
-        {
-            //static List<Task5> honeyHives = new List<Task5>();
-            //static int resources = 100;
-        }*/
     }
 }    

@@ -2,7 +2,7 @@ using System.Net.Http.Headers;
 
 namespace WorldOfZuul
 {
-    class AcsiiArt
+    class AsciiArt
     {
         public void Beach()
         {

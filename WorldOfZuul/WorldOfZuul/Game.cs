@@ -33,7 +33,7 @@ namespace WorldOfZuul
             mainHall = new("The Main Hall", "This is where you meet with The Mayor and return after a mission.");
             theatre = new("Theatre", "You find yourself inside a large lecture theatre. Rows of seats ascend up to the back, and there's a podium at the front. It's quite dark and quiet.");
             pub = new("Pub", "You've entered the campus pub. It's a cozy place, with a few students chatting over drinks. There's a bar near you and some pool tables at the far end.");
-            farm = new("Lab", "You're in a computing lab. Desks with computers line the walls, and there's an office to the east. The hum of machines fills the room.");
+            farm = new("The farm", "You're in a computing lab. Desks with computers line the walls, and there's an office to the east. The hum of machines fills the room.");
             kitchen = new("The Kitchen", "Here all the hungry souls find their peace with the best sandwich maker in the city");
             localBeach = new("The local beach", "This the local beach. Over the year people have been neglecting the importance of keeping free of litter. Unfortunately this has led to wildlife leaving the coast and disrupting the ecosystem");
             basement = new("The Basement", "The town's sewage system. It's been running for ages but unfortunately due to the lack of maintanance the water quality and the pipes have been damaged.");
@@ -55,7 +55,6 @@ namespace WorldOfZuul
 
         public void Play()
         {
-            //Bees bees = new();
             Parser parser = new();
             Player player = new Player();
             HoneyHive honeyHive = new("Hive1", 1);
@@ -92,6 +91,29 @@ namespace WorldOfZuul
                     switch (command.Name)
                     {
                         case "look":
+                        AsciiArt asciiArt = new();
+                            Console.WriteLine(currentRoom?.LongDescription);
+                            switch (currentRoom?.ShortDescription)
+                            {
+                                case "The local beach":
+                                asciiArt.Beach();
+                                break;
+                                case "The farm":
+                                asciiArt.Cow();
+                                Console.WriteLine();
+                                Console.WriteLine();
+                                asciiArt.Horse();
+                                break;
+                                case "The roof of the university":
+                                asciiArt.Bridge();
+                                Console.WriteLine();
+                                Console.WriteLine();
+                                asciiArt.Town();
+                                break;
+                                default:
+                                Console.WriteLine();
+                                break;
+                            }
                             // Console.WriteLine(currentRoom?.LongDescription);
                             // switch (currentRoom?.ShortDescription)
                             // {
@@ -134,7 +156,7 @@ namespace WorldOfZuul
                             //     default:
                             //         System.Console.WriteLine();
                             //         break;
-                            // }
+                            // }    
                             break;
 
                         case "back":
@@ -326,44 +348,59 @@ namespace WorldOfZuul
 
 
             Console.WriteLine("Thank you for playing World of Zuul!");
-            System.Console.WriteLine();
-            System.Console.WriteLine("We hope you enjoyed and gain educational information about SDGs.");
-            System.Console.WriteLine();
-            System.Console.WriteLine("Creators are:");
-            System.Console.WriteLine();
-            System.Console.WriteLine("___Vedat Esendag___");
+            Console.WriteLine();
+            Console.WriteLine("We hope you enjoyed and gain educational information about SDGs.");
+            Console.WriteLine();
+            Console.WriteLine("Creators are:");
+            Console.WriteLine();
+            Console.WriteLine("___Vedat Esendag___");
             Thread.Sleep(1000);
-            System.Console.WriteLine("___Altan Esmer___");
+            Console.WriteLine("___Altan Esmer___");
             Thread.Sleep(1000);
-            System.Console.WriteLine("___Frederik Handberg___");
+            Console.WriteLine("___Frederik Handberg___");
             Thread.Sleep(1000);
-            System.Console.WriteLine("___Ignat Bozhinov___");
+            Console.WriteLine("___Ignat Bozhinov___");
             Thread.Sleep(1000);
-            System.Console.WriteLine("___Leonardo Gianola___");
-            Thread.Sleep(1000);
-            System.Console.WriteLine("___Habib Ahmed Wasi___\n");
-            Thread.Sleep(1000);
+            Console.WriteLine("___Leonardo Gianola___");
+            Thread.Sleep(1000);;
             Console.ForegroundColor = ConsoleColor.Yellow;
-            System.Console.WriteLine("            ^^                   @@@@@@@@@");
-            System.Console.WriteLine("       ^^       ^^            @@@@@@@@@@@@@@@");
-            System.Console.WriteLine("                           @@@@@@@@@@@@@@@@@@              ^^");
-            System.Console.WriteLine("                           @@@@@@@@@@@@@@@@@@@@");
+            Console.WriteLine("            ^^                   @@@@@@@@@");
+            Thread.Sleep(100);
+            Console.WriteLine("       ^^       ^^            @@@@@@@@@@@@@@@");
+            Thread.Sleep(100);
+            Console.WriteLine("                           @@@@@@@@@@@@@@@@@@              ^^");
+            Thread.Sleep(100);
+            Console.WriteLine("                           @@@@@@@@@@@@@@@@@@@@");
+            Thread.Sleep(100);
             Console.ResetColor();
             Console.ForegroundColor = ConsoleColor.Blue;
-            System.Console.WriteLine(" ~~~~ ~~ ~~~~~ ~~~~~~~~ ~~ &&&&&&&&&&&&&&&&&&&& ~~~~~~~ ~~~~~~~~~~~ ~~~");
-            System.Console.WriteLine(" ~         ~~   ~  ~       ~~~~~~~~~~~~~~~~~~~~ ~       ~~     ~~ ~");
-            System.Console.WriteLine("   ~      ~~      ~~ ~~ ~~  ~~~~~~~~~~~~~ ~~~~  ~     ~~~    ~ ~~~  ~ ~~");
-            System.Console.WriteLine("   ~  ~~     ~         ~      ~~~~~~  ~~ ~~~       ~~ ~ ~~  ~~ ~");
-            System.Console.WriteLine(" ~  ~       ~ ~      ~           ~~ ~~~~~~  ~      ~~  ~             ~~");
-            System.Console.WriteLine("       ~             ~        ~      ~      ~~   ~             ~\n");
+            Console.WriteLine(" ~~~~ ~~ ~~~~~ ~~~~~~~~ ~~ &&&&&&&&&&&&&&&&&&&& ~~~~~~~ ~~~~~~~~~~~ ~~~");
+            Thread.Sleep(100);
+            Console.WriteLine(" ~         ~~   ~  ~       ~~~~~~~~~~~~~~~~~~~~ ~       ~~     ~~ ~");
+            Thread.Sleep(100);
+            Console.WriteLine("   ~      ~~      ~~ ~~ ~~  ~~~~~~~~~~~~~ ~~~~  ~     ~~~    ~ ~~~  ~ ~~");
+            Thread.Sleep(100);
+            Console.WriteLine("   ~  ~~     ~         ~      ~~~~~~  ~~ ~~~       ~~ ~ ~~  ~~ ~");
+            Thread.Sleep(100);
+            Console.WriteLine(" ~  ~       ~ ~      ~           ~~ ~~~~~~  ~      ~~  ~             ~~");
+            Thread.Sleep(100);
+            Console.WriteLine("       ~             ~        ~      ~      ~~   ~             ~\n");
+            Thread.Sleep(100);
             Console.ResetColor();
-            System.Console.WriteLine("▄█▀▀║░▄█▀▄║▄█▀▄║██▀▄║");
-            System.Console.WriteLine("██║▀█║██║█║██║█║██║█║");
-            System.Console.WriteLine("▀███▀║▀██▀║▀██▀║███▀║");
-            System.Console.WriteLine("───────────────────────");
-            System.Console.WriteLine("───▐█▀▄─ ▀▄─▄▀ █▀▀──█───");
-            System.Console.WriteLine("───▐█▀▀▄ ──█── █▀▀──▀───");
-            System.Console.WriteLine("───▐█▄▄▀ ──▀── ▀▀▀──▄───");
+            Console.WriteLine("▄█▀▀║░▄█▀▄║▄█▀▄║██▀▄║");
+            Thread.Sleep(100);
+            Console.WriteLine("██║▀█║██║█║██║█║██║█║");
+            Thread.Sleep(100);
+            Console.WriteLine("▀███▀║▀██▀║▀██▀║███▀║");
+            Thread.Sleep(100);
+            Console.WriteLine("───────────────────────");
+            Thread.Sleep(100);
+            Console.WriteLine("───▐█▀▄─ ▀▄─▄▀ █▀▀──█───");
+            Thread.Sleep(100);
+            Console.WriteLine("───▐█▀▀▄ ──█── █▀▀──▀───");
+            Thread.Sleep(100);
+            Console.WriteLine("───▐█▄▄▀ ──▀── ▀▀▀──▄───");
+            Thread.Sleep(100);
             Console.Beep();
         }
 
@@ -417,25 +454,25 @@ namespace WorldOfZuul
                 case "Lab":
                     communicate.NpcName = "Professor Mike";
                     communicate.Sentence = "[Some Sentences(will discuss during meeting)]";
-                    System.Console.WriteLine($"This is {communicate.NpcName}.");
-                    System.Console.WriteLine();
-                    System.Console.WriteLine("|Professor|");
-                    System.Console.WriteLine(communicate.Sentence);
+                    Console.WriteLine($"This is {communicate.NpcName}.");
+                    Console.WriteLine();
+                    Console.WriteLine("|Professor|");
+                    Console.WriteLine(communicate.Sentence);
                     break;
 
                 case "outside":
                     communicate.NpcName = "Mayor";
                     communicate.Sentence = "Someting......";
-                    System.Console.WriteLine($"{communicate.NpcName} is standing in front of you.");
-                    System.Console.WriteLine();
-                    System.Console.WriteLine($"|{communicate.NpcName}|");
+                    Console.WriteLine($"{communicate.NpcName} is standing in front of you.");
+                    Console.WriteLine();
+                    Console.WriteLine($"|{communicate.NpcName}|");
                     break;
                 case "Station":
                     communicate.NpcName = "Jackson";
                     communicate.Sentence = "";
                     break;
                 default:
-                    System.Console.WriteLine("There is nobody to talk with.");
+                    Console.WriteLine("There is nobody to talk with.");
                     break;
             }
         }
