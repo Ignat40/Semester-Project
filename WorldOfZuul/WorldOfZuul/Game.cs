@@ -15,8 +15,8 @@ namespace WorldOfZuul
         private Room? currentRoom;
         private Room? previousRoom;
         private Room? mainHall;
-        private Room? theatre;
-        private Room? pub;
+        //private Room? theatre;
+        //private Room? pub;
         private Room? farm;
         private Room? kitchen;
         private Room? localBeach;
@@ -32,21 +32,21 @@ namespace WorldOfZuul
         private void CreateRooms()
         {
             mainHall = new("The Main Hall", "This is where you meet with The Mayor and return after a mission.");
-            theatre = new("Theatre", "You find yourself inside a large lecture theatre. Rows of seats ascend up to the back, and there's a podium at the front. It's quite dark and quiet.");
-            pub = new("Pub", "You've entered the campus pub. It's a cozy place, with a few students chatting over drinks. There's a bar near you and some pool tables at the far end.");
+            //theatre = new("Theatre", "You find yourself inside a large lecture theatre. Rows of seats ascend up to the back, and there's a podium at the front. It's quite dark and quiet.");
+            //pub = new("Pub", "You've entered the campus pub. It's a cozy place, with a few students chatting over drinks. There's a bar near you and some pool tables at the far end.");
             farm = new("The farm", "You're in a computing lab. Desks with computers line the walls, and there's an office to the east. The hum of machines fills the room.");
             kitchen = new("The Kitchen", "Here all the hungry souls find their peace with the best sandwich maker in the city");
             localBeach = new("The local beach", "This the local beach. Over the year people have been neglecting the importance of keeping free of litter. Unfortunately this has led to wildlife leaving the coast and disrupting the ecosystem");
             basement = new("The Basement", "The town's sewage system. It's been running for ages but unfortunately due to the lack of maintanance the water quality and the pipes have been damaged.");
             roof = new("The roof of the university", "From atop the university rooftop, the panorama is a juxtaposition of academia and the natural world. The roof itself is a sea of technology—sleek, photovoltaic panels arrayed like a modern art installation, engineered to harvest the sun's power.");
 
-            mainHall.SetExits(null, theatre, farm, pub, localBeach, roof, basement);
+            mainHall.SetExits(null, farm, localBeach, roof, basement, null);
 
-            theatre.SetExit("west", mainHall);
+            //theatre.SetExit("west", mainHall);
 
-            pub.SetExit("east", mainHall);
+            //pub.SetExit("east", mainHall);
 
-            farm.SetExits(mainHall, kitchen, null, null, null, null, null);
+            farm.SetExits(mainHall, kitchen, null, null, localBeach, roof);
 
             kitchen.SetExit("west", farm);
 
@@ -67,9 +67,9 @@ namespace WorldOfZuul
             string? decide = Console.ReadLine().ToLower();
             if (decide != null && decide == "yes")
             {
-                AnimateFirstHelp("\nYou need to first enter the univesirty"
-                                        + " to find the professor. \nHe'll tell you"
-                                        + " what to do from there on!", 5000);
+                // AnimateFirstHelp("\nYou need to first enter the univesirty"
+                //                         + " to find the professor. \nHe'll tell you"
+                //                         + " what to do from there on!", 5000);
                 bool continuePlaying = true;
                 while (continuePlaying)
                 {
@@ -130,6 +130,7 @@ namespace WorldOfZuul
                             break;
 
                         case "university":
+                            Console.Clear();
                             Task1 task1 = new();
                             Console.WriteLine("Task 1");
                             //task1.Sandwich();
@@ -140,6 +141,8 @@ namespace WorldOfZuul
                             if (player.Score == 10)
                             {
                                 Move(command.Name);
+                                MapTask2 mapTask2 = new();
+                                mapTask2.DisplayMap();
                                 Console.WriteLine("Task 2");
                                 Console.WriteLine("Do you wish to accept the mission? (yes/no)");
                                 string? yesNo = Console.ReadLine().ToLower();
@@ -168,6 +171,8 @@ namespace WorldOfZuul
                             if (player.Score == 20)
                             {
                                 Move(command.Name);
+                                MapTask3 mapTask3 = new();
+                                mapTask3.DisplayMap();
                                 Console.WriteLine("Task 3");
                                 // RooftopMission rooftopMission = new();
                                 // Console.WriteLine("Do you wish to accept the mission!");
@@ -195,6 +200,8 @@ namespace WorldOfZuul
                             if (player.Score == 30)
                             {
                                 Move(command.Name);
+                                MapTask4 mapTask4 = new();
+                                mapTask4.DisplayMap();
                                 Console.WriteLine("Task 4");
                                 // AcsiiArt acsiiArt = new();
                                 // acsiiArt.Beach();
@@ -224,6 +231,8 @@ namespace WorldOfZuul
                             if (player.Score == 40)
                             {
                                 Move(command.Name);
+                                MapTask5 mapTask5 = new();
+                                mapTask5.DisplayMap();
                                 Console.WriteLine("Task 5");
                                 // Console.WriteLine("Do you wish to accept the mission!");
                                 // Console.Write(">");
@@ -250,7 +259,7 @@ namespace WorldOfZuul
                             continuePlaying = false;
                             break;
 
-                        case "view":
+                        case "view": //do the upgrade fam
                             if (currentRoom == mainHall)
                             {
                                 MapInHall map = new();
@@ -261,7 +270,7 @@ namespace WorldOfZuul
                                 MapTask2 mapTask2 = new();
                                 mapTask2.DisplayMap();
                             }
-                            else if (currentRoom == localBeach)
+                            else if (currentRoom == roof)
                             {
                                 MapTask3 mapTask3 = new();
                                 mapTask3.DisplayMap();
@@ -271,7 +280,7 @@ namespace WorldOfZuul
                                 MapTask4 mapTask4 = new();
                                 mapTask4.DisplayMap();
                             }
-                            else if (currentRoom == localBeach)
+                            else if (currentRoom == farm)
                             {
                                 MapTask5 mapTask5 = new();
                                 mapTask5.DisplayMap();
