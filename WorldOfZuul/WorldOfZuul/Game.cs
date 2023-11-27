@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.ComponentModel.Design.Serialization;
 using System.Formats.Asn1;
 using System.IO.Compression;
@@ -57,6 +58,7 @@ namespace WorldOfZuul
         {
             Parser parser = new();
             Player player = new Player();
+            AsciiArt asciiArt = new();
             HoneyHive honeyHive = new("Hive1", 1);
             PrintWelcome(player);
 
@@ -65,11 +67,15 @@ namespace WorldOfZuul
             string? decide = Console.ReadLine().ToLower();
             if (decide != null && decide == "yes")
             {
+                AnimateFirstHelp("\nYou need to first enter the univesirty"
+                                        + " to find the professor. \nHe'll tell you"
+                                        + " what to do from there on!", 5000);
                 bool continuePlaying = true;
                 while (continuePlaying)
                 {
                     Console.WriteLine(currentRoom?.ShortDescription);
                     player.DisplayScore();
+                    asciiArt.MainHall();
                     Console.Write("> ");
 
                     string? input = Console.ReadLine();
@@ -91,72 +97,29 @@ namespace WorldOfZuul
                     switch (command.Name)
                     {
                         case "look":
-                        AsciiArt asciiArt = new();
                             Console.WriteLine(currentRoom?.LongDescription);
                             switch (currentRoom?.ShortDescription)
                             {
                                 case "The local beach":
-                                asciiArt.Beach();
-                                break;
+                                    asciiArt.Beach();
+                                    break;
                                 case "The farm":
-                                asciiArt.Cow();
-                                Console.WriteLine();
-                                Console.WriteLine();
-                                asciiArt.Horse();
-                                break;
+                                    asciiArt.Cow();
+                                    Console.WriteLine();
+                                    Console.WriteLine();
+                                    asciiArt.Horse();
+                                    break;
                                 case "The roof of the university":
-                                asciiArt.Bridge();
-                                Console.WriteLine();
-                                Console.WriteLine();
-                                asciiArt.Town();
-                                break;
+                                    asciiArt.Bridge();
+                                    Console.WriteLine();
+                                    Console.WriteLine();
+                                    asciiArt.Town();
+                                    break;
                                 default:
-                                Console.WriteLine();
-                                break;
+                                    Console.WriteLine();
+                                    break;
                             }
-                            // Console.WriteLine(currentRoom?.LongDescription);
-                            // switch (currentRoom?.ShortDescription)
-                            // {
-                            //     case "Station":
-                            //         string ascii_Station = "Ascii.txt";
-                            //         string text = File.ReadAllText(ascii_Station);
-                            //         System.Console.WriteLine(text);
-                            //         break;
-                            //     case "Beach":
-                            //         string ascii_Beach = "Ascii2.txt";
-                            //         string text2 = File.ReadAllText(ascii_Beach);
-                            //         System.Console.WriteLine(text2);
-                            //         System.Console.WriteLine();
-                            //         Move(command.Name);
-                            //         BeachCleanupMission beachCleanupMission = new();
-                            //         beachCleanupMission.StartMission(player);
-                            //         break;
-                            //     case "Lab":
-                            //         string ascii_Lab = "Ascii3.txt";
-                            //         string text3 = File.ReadAllText(ascii_Lab);
-                            //         System.Console.WriteLine(text3);
-                            //         break;
-                            //     case "Farm":
-                            //         string ascii_Farm = "Ascii4.txt";
-                            //         string text4 = File.ReadAllText(ascii_Farm);
-                            //         System.Console.WriteLine(text4);
-                            //         System.Console.WriteLine();
-                            //         System.Console.WriteLine("Love animals");
-                            //         break;
-                            //     case "Rooftop":
-                            //         string ascii_Rooftop = "Ascii5.txt";
-                            //         string text5 = File.ReadAllText(ascii_Rooftop);
-                            //         System.Console.WriteLine(text5);
-                            //         System.Console.WriteLine();
-                            //         System.Console.WriteLine("What a gorgeous city");
-                            //         Move(command.Name);
-                            //         RooftopMission rooftopMission = new();
-                            //         rooftopMission.StartMission(player);
-                            //         break;
-                            //     default:
-                            //         System.Console.WriteLine();
-                            //         break;
-                            // }    
+
                             break;
 
                         case "back":
@@ -178,15 +141,27 @@ namespace WorldOfZuul
                             {
                                 Move(command.Name);
                                 Console.WriteLine("Task 2");
+                                Console.WriteLine("Do you wish to accept the mission? (yes/no)");
+                                string? yesNo = Console.ReadLine().ToLower();
+                                if (yesNo == "yes")
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    Console.WriteLine("You won't be able to finish The Quest this way!");
+                                }
                                 // WaterPurificaiton waterPurificaiton = new();
                                 // waterPurificaiton.BasementTask(waterPurificaiton);
+                                player.UpdateScore(10);
+                                currentRoom = previousRoom;
                             }
                             else
                             {
                                 Console.WriteLine("You don't have enough score");
                                 break;
                             }
-                            player.UpdateScore(10);
+
                             break;
 
                         case "rooftop":
@@ -316,24 +291,6 @@ namespace WorldOfZuul
                             Talk(currentRoom?.ShortDescription);
                             break;
 
-                        // case "accept":
-                        //     switch (currentRoom?.ShortDescription)
-                        //     {
-                        //         case "Farm":
-                        //             honeyHive.StartMissionsTask5(player);
-                        //             break;
-                        //         case "Basement":
-                        //             Move(command.Name);
-                        //             WaterPurificaiton waterPurificaiton = new();
-                        //             waterPurificaiton.BasementTask(waterPurificaiton);
-                        //             break;
-
-                        //         default:
-                        //             System.Console.WriteLine("There is no mission in this area(room)");
-                        //             break;
-                        //     }
-                        //break;
-
                         default:
                             Console.WriteLine("I don't know what command.");
                             break;
@@ -362,7 +319,7 @@ namespace WorldOfZuul
             Console.WriteLine("___Ignat Bozhinov___");
             Thread.Sleep(1000);
             Console.WriteLine("___Leonardo Gianola___");
-            Thread.Sleep(1000);;
+            Thread.Sleep(1000); ;
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("            ^^                   @@@@@@@@@");
             Thread.Sleep(100);
@@ -429,17 +386,26 @@ namespace WorldOfZuul
         }
 
 
+        private static void AnimateFirstHelp(string inputText, int duration)
+        {
+            int frames = duration/ 50;
+            int startIndex = 0;
 
+            for(int i = 0; i < frames; i++)
+            {
+                Console.Clear();
+                Console.WriteLine(inputText.Substring(startIndex, Math.Min(i * inputText.Length / frames, inputText.Length)));
+                Thread.Sleep(50);
+            }
+
+            Console.Clear();
+            Console.WriteLine(inputText);
+        }
         private static void PrintHelp()
         {
-            // MapInHall map = new();
-            // map.DisplayMap();
-            Console.WriteLine("You need to enter the univesirty");
-            Console.WriteLine("to find the professor. He'll tell you.");
-            Console.WriteLine("what to do from there on. ");
             Console.WriteLine();
             Console.WriteLine("Navigate by typing 'university', 'basement', 'beach', 'rooftop', 'farm'.");
-            Console.WriteLine("Type 'look' for more information.");
+            Console.WriteLine("Type 'look' to look around.");
             Console.WriteLine("Type 'view' for you location on the map.");
             Console.WriteLine("Type 'back' to go to the previous room.");
             Console.WriteLine("Type 'quit' to exit the game.");
