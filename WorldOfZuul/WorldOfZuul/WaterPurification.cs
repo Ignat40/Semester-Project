@@ -107,18 +107,19 @@ namespace WorldOfZuul
             {
                 if (WaterPurificaiton.beforeChallengeSelection == 0)
                 {
-                    Console.WriteLine(
-                        "Hey there, young one. Sorry about the mess, but these pipes need some attention. "
-                            + "Clean water is vital, you know? It's something we should never take for granted.\n"
-                            + "Have you ever stopped to think about how fortunate we are to have access to clean water right at our fingertips? "
-                            + "In many places, it's a daily struggle. That's why I'm down here, doing my best to ensure we have reliable, safe water.\n"
-                            + "It's not the most glamorous work, but it's necessary. The last thing we want are leaks and contaminated water affecting everyone in the school. "
-                            + "We've got to keep this place running smoothly.\n"
-                            + "And when you think about the bigger picture, it's even more important. Access to clean water is a global issue, connected to so many other challenges we face. "
-                            + "It's like a puzzle with a thousand pieces, and we're trying to put them all together.\n"
-                            + "So, if you've got a moment, maybe lend a hand or at least keep an eye out for any potential issues. "
-                            + "We're all in this together, after all. Thanks for stopping by and showing an interest in what we're doing down here.",
-                        8000
+                    Console.WriteLine("\n" +
+                         "Hey there, young one. Sorry about the mess, but these pipes need some attention. Clean water is vital, you know? It's something we should never take for granted.\n" +
+                         "\n" +
+                         "Have you ever stopped to think about how fortunate we are to have access to clean water right at our fingertips? In many places, it's a daily struggle. That's why I'm down here, doing my best to ensure we have reliable, safe water.\n" +
+                         "\n" +
+                         "It's not the most glamorous work, but it's necessary. The last thing we want are leaks and contaminated water affecting everyone in the town. We've got to keep this place running smoothly. And when you think about the bigger picture, it's even more important.\n" +
+                         "\n" +
+                         "Access to clean water is a global issue, connected to so many other challenges we face. It's like a puzzle with a thousand pieces, and we're trying to put them all together.\n" +
+                         "\n" +
+                         "So, if you've got a moment, maybe lend a hand or at least keep an eye out for any potential issues. We're all in this together, after all. Thanks for stopping by and showing an interest in what we're doing down here.\n" +
+                         "\n" +
+                         "In addressing these challenges, we're not only safeguarding the local community but contributing to a broader commitment to create sustainable environments, promote global health, and foster equality—a shared aspiration for a brighter and healthier future for all.\n" +
+                         "\n"
                     );
 
                     WaterPurificaiton.beforeChallengeSelection++;
@@ -136,7 +137,7 @@ namespace WorldOfZuul
                 if (WaterPurificaiton.afterTalkSelection == 0)
                 {
                     Console.WriteLine(
-                        "This is the message that is seen after completing the challenge"
+                        "Congratulations! The pipes are now flowing smoothly, and the town's water is safe and secure thanks to your efforts."
                     );
                     WaterPurificaiton.afterTalkSelection++;
                 }
