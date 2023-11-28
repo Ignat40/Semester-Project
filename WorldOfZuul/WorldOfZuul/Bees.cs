@@ -25,7 +25,7 @@ namespace WorldOfZuul
         {'7', '8', '9'}
     };
 
-        static char currentPlayer = 'X';
+        static char CurrentPlayer = 'X';
 
         public HoneyHive(string name, int level)
         {
@@ -244,7 +244,7 @@ namespace WorldOfZuul
                 TrueFalseQuestion("Only female bees can sting. (True/False)", "true");
                 OpenEndedQuestion("What is the name of this city", "sonderborg");
                 MultipleChoiceQuestion("Which programming language is this game written in?", new Dictionary<string, string> { { "a", "Java" }, { "b", "Python" }, { "c", "C#" } }, "c");
-                TrueFalseQuestion("SDG 5 is supported in this mission. (True/False)", "false");
+                TrueFalseQuestion("There is a queen and king exist in every hive. (True/False)", "false");
                 OpenEndedQuestion("Finally, a riddle time. I'm tall when I'm young, and I'm short when I'm old. What am I?", "candle");
 
                 if (Score >= 5)
@@ -289,13 +289,12 @@ namespace WorldOfZuul
             Console.WriteLine("                    `---`");
             Console.ResetColor();
             Console.WriteLine("You need to use this book to talk with Queen bee.\n");
-            Player player = new();
-            GuidLine(player); //Player name didn't exit here, need fix.
+            GuidLine(); 
             Dialogues();
 
         }
 
-        public void GuidLine(Player player)
+        public void GuidLine()
         {
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("1-\t[Wzzzzzzzzzwz] = Hi, You need to say only hello or hi to queen bee.");
@@ -315,7 +314,7 @@ namespace WorldOfZuul
             Console.WriteLine(" `\\__)    '. . ' ' .  . '\n");
             Thread.Sleep(100);
             Console.ResetColor();
-            Console.WriteLine($"Good luck {player}");
+            Console.WriteLine("Good luck!");
                
         }
 
@@ -325,7 +324,7 @@ namespace WorldOfZuul
             Console.WriteLine("You can only do one mistake while talking therefore be careful.\n");
             Console.WriteLine("Quenn\n");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Wzzzzzzzzzwz\n");
+            Console.WriteLine("Queen - Wzzzzzzzzzwz\n");
             Thread.Sleep(1000);
             Console.ResetColor();
             string? response1 = Console.ReadLine().ToLower();
@@ -338,7 +337,7 @@ namespace WorldOfZuul
             {
                 Count--;
             }
-            Console.WriteLine("WzWzWzWz\n");
+            Console.WriteLine("Queen - WzWzWzWz\n");
             Thread.Sleep(1000);
             string? response2 = Console.ReadLine().ToLower();
             if (response2.Contains("honey"))
@@ -349,7 +348,7 @@ namespace WorldOfZuul
             {
                 Count--;
             }
-            Console.WriteLine("\nWzzzzzzzzzzzzzzzz\n");
+            Console.WriteLine("\nQueen - Wzzzzzzzzzzzzzzzz\n");
             Thread.Sleep(1000);
             string? response3 = Console.ReadLine().ToLower();
             if (response3 == "good" || response3 == "okay" || response3 == "nice")
@@ -361,7 +360,7 @@ namespace WorldOfZuul
             {
                 Count--;
             }
-            Console.WriteLine("\nWzzzzzzWzz\n");
+            Console.WriteLine("\nQueen - WzzzzzzWzz\n");
             Thread.Sleep(1000);
             string? response4 = Console.ReadLine().ToLower();
             if (response4 == "thank you" || response4 == "thanks")
@@ -401,7 +400,7 @@ namespace WorldOfZuul
                 {
                     DrawBoard();
 
-                    if (currentPlayer == 'X')
+                    if (CurrentPlayer == 'X')
                     {
                         int move = GetPlayerMove();
                         MakeMove(move);
@@ -419,7 +418,7 @@ namespace WorldOfZuul
                         Console.WriteLine("Game Over!");
                         if (CheckForWin())
                         {
-                            Console.WriteLine($"Player {currentPlayer} wins!");
+                            Console.WriteLine($"Player {CurrentPlayer} wins!");
                             isCompletedTicTacToeGame = true;
                         }
                         else
@@ -468,7 +467,7 @@ namespace WorldOfZuul
                     { '7', '8', '9' }
                 };
                 
-                currentPlayer = 'X';
+                CurrentPlayer = 'X';
             }
 
 
@@ -498,7 +497,7 @@ namespace WorldOfZuul
 
                 do
                 {
-                    Console.Write($"Player {currentPlayer}, enter your move (1-9): ");
+                    Console.Write($"Player {CurrentPlayer}, enter your move (1-9): ");
                     isValidMove = int.TryParse(Console.ReadLine(), out move) && move >= 1 && move <= 9 && IsSpaceFree(move);
 
                     if (!isValidMove)
@@ -531,12 +530,12 @@ namespace WorldOfZuul
                 int row = (move - 1) / 3;
                 int col = (move - 1) % 3;
 
-                Board[row, col] = currentPlayer;
+                Board[row, col] = CurrentPlayer;
             }
 
             static void SwitchPlayer()
             {
-                currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
+                CurrentPlayer = (CurrentPlayer == 'X') ? 'O' : 'X';
             }
 
             static bool IsSpaceFree(int move)
@@ -556,7 +555,7 @@ namespace WorldOfZuul
             {
                 for (int row = 0; row < 3; row++)
                 {
-                    if (Board[row, 0] == currentPlayer && Board[row, 1] == currentPlayer && Board[row, 2] == currentPlayer)
+                    if (Board[row, 0] == CurrentPlayer && Board[row, 1] == CurrentPlayer && Board[row, 2] == CurrentPlayer)
                     {
                         return true;
                     }
@@ -568,7 +567,7 @@ namespace WorldOfZuul
             {
                 for (int col = 0; col < 3; col++)
                 {
-                    if (Board[0, col] == currentPlayer && Board[1, col] == currentPlayer && Board[2, col] == currentPlayer)
+                    if (Board[0, col] == CurrentPlayer && Board[1, col] == CurrentPlayer && Board[2, col] == CurrentPlayer)
                     {
                         return true;
                     }
@@ -578,8 +577,8 @@ namespace WorldOfZuul
 
             static bool CheckDiagonal()
             {
-                if ((Board[0, 0] == currentPlayer && Board[1, 1] == currentPlayer && Board[2, 2] == currentPlayer) ||
-                    (Board[0, 2] == currentPlayer && Board[1, 1] == currentPlayer && Board[2, 0] == currentPlayer))
+                if ((Board[0, 0] == CurrentPlayer && Board[1, 1] == CurrentPlayer && Board[2, 2] == CurrentPlayer) ||
+                    (Board[0, 2] == CurrentPlayer && Board[1, 1] == CurrentPlayer && Board[2, 0] == CurrentPlayer))
                 {
                     return true;
                 }
