@@ -107,18 +107,19 @@ namespace WorldOfZuul
             {
                 if (WaterPurificaiton.beforeChallengeSelection == 0)
                 {
-                    Console.WriteLine(
-                        "Hey there, young one. Sorry about the mess, but these pipes need some attention. "
-                            + "Clean water is vital, you know? It's something we should never take for granted.\n"
-                            + "Have you ever stopped to think about how fortunate we are to have access to clean water right at our fingertips? "
-                            + "In many places, it's a daily struggle. That's why I'm down here, doing my best to ensure we have reliable, safe water.\n"
-                            + "It's not the most glamorous work, but it's necessary. The last thing we want are leaks and contaminated water affecting everyone in the school. "
-                            + "We've got to keep this place running smoothly.\n"
-                            + "And when you think about the bigger picture, it's even more important. Access to clean water is a global issue, connected to so many other challenges we face. "
-                            + "It's like a puzzle with a thousand pieces, and we're trying to put them all together.\n"
-                            + "So, if you've got a moment, maybe lend a hand or at least keep an eye out for any potential issues. "
-                            + "We're all in this together, after all. Thanks for stopping by and showing an interest in what we're doing down here.",
-                        8000
+                    Console.WriteLine("\n" +
+                         "Hey there, young one. Sorry about the mess, but these pipes need some attention. Clean water is vital, you know? It's something we should never take for granted.\n" +
+                         "\n" +
+                         "Have you ever stopped to think about how fortunate we are to have access to clean water right at our fingertips? In many places, it's a daily struggle. That's why I'm down here, doing my best to ensure we have reliable, safe water.\n" +
+                         "\n" +
+                         "It's not the most glamorous work, but it's necessary. The last thing we want are leaks and contaminated water affecting everyone in the town. We've got to keep this place running smoothly. And when you think about the bigger picture, it's even more important.\n" +
+                         "\n" +
+                         "Access to clean water is a global issue, connected to so many other challenges we face. It's like a puzzle with a thousand pieces, and we're trying to put them all together.\n" +
+                         "\n" +
+                         "So, if you've got a moment, maybe lend a hand or at least keep an eye out for any potential issues. We're all in this together, after all. Thanks for stopping by and showing an interest in what we're doing down here.\n" +
+                         "\n" +
+                         "In addressing these challenges, we're not only safeguarding the local community but contributing to a broader commitment to create sustainable environments, promote global health, and foster equality—a shared aspiration for a brighter and healthier future for all.\n" +
+                         "\n"
                     );
 
                     WaterPurificaiton.beforeChallengeSelection++;
@@ -136,7 +137,7 @@ namespace WorldOfZuul
                 if (WaterPurificaiton.afterTalkSelection == 0)
                 {
                     Console.WriteLine(
-                        "This is the message that is seen after completing the challenge"
+                        "Congratulations! The pipes are now flowing smoothly, and the town's water is safe and secure thanks to your efforts."
                     );
                     WaterPurificaiton.afterTalkSelection++;
                 }
@@ -194,14 +195,12 @@ namespace WorldOfZuul
                 }
             }
         }
-
+        //second challenge
         public void filtrationTest()
         {
             int correctNum = 0;
-            Console.WriteLine("Safe water pH level is ranged between 6.5pH and 8.5pH");
-            Console.WriteLine(
-                "Type safe to  the pH leves range between the safe range and  unsafe the ones that are not in the safe range"
-            );
+            Console.WriteLine("The safe water pH level ranges from 6.5 to 8.5.");
+            Console.WriteLine("Type 'safe' if the pH is within this range. Otherwise, type 'unsafe' for levels considered outside the safe range.");
             Console.WriteLine("---------------");
             while (correctNum != 8)
             {
@@ -253,72 +252,61 @@ namespace WorldOfZuul
                 {
                     Console.WriteLine("You have answered all of them correctly");
                     correctNum++;
-                    Console.WriteLine("This list shows the pipes that failed the test:");
-                    Console.WriteLine("---------------");
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("1.Pipe");
-                    Thread.Sleep(1000);
-                    Console.ResetColor();
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("2.Pipe");
-                    Thread.Sleep(1000);
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("3.Pipe");
-                    Thread.Sleep(1000);
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("4.Pipe");
-                    Thread.Sleep(1000);
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("5.Pipe");
-                    Thread.Sleep(1000);
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("6.Pipe");
-                    Thread.Sleep(1000);
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("7.Pipe");
-                    Thread.Sleep(1000);
-                    Console.ResetColor();
-                    Console.WriteLine("---------------");
-                    Console.WriteLine();
                     Filtration();
                 }
                 else
                 {
-                    Console.WriteLine("Answer them again.");
+                    Console.WriteLine("You've calculated one of them incorrectly, please start over.");
                 }
             }
         }
-
+        //third challenge
         public void Filtration()
         {
             double target = 7.5;
-            Console.WriteLine("This is the list of all the pH levels of the pipes:");
-            Console.WriteLine("---------------");
-            Console.WriteLine($"Pipe1-->{pipe1pH}");
-
-            Console.WriteLine($"Pipe2-->{pipe2pH}");
-
-            Console.WriteLine($"Pipe3-->{pipe3pH}");
-
-            Console.WriteLine($"Pipe4-->{pipe4pH}");
-
-            Console.WriteLine($"Pipe5-->{pipe5pH}");
-
-            Console.WriteLine($"Pipe6-->{pipe6pH}");
-
-            Console.WriteLine($"Pipe7-->{pipe7pH}");
-            Console.WriteLine("---------------");
+            Console.WriteLine("This list shows the pipes that failed the test:\t\tThis is the list of all the pH levels of the pipes:");
+            Console.WriteLine("---------------\t\t\t\t\t\t---------------");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("1.Pipe");
+            Console.ResetColor();
+            Console.WriteLine($"\t\t\t\t\t\t\tPipe1-->{pipe1pH}pH");
+            Thread.Sleep(1000);
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("2.Pipe");
+            Console.ResetColor();
+            Console.WriteLine($"\t\t\t\t\t\t\tPipe2-->{pipe2pH}pH");
+            Thread.Sleep(1000);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write("3.Pipe");
+            Console.ResetColor();
+            Console.WriteLine($"\t\t\t\t\t\t\tPipe3-->{pipe3pH}pH");
+            Thread.Sleep(1000);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("4.Pipe");
+            Console.ResetColor();
+            Console.WriteLine($"\t\t\t\t\t\t\tPipe4-->{pipe4pH}pH");
+            Thread.Sleep(1000);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write("5.Pipe");
+            Console.ResetColor();
+            Console.WriteLine($"\t\t\t\t\t\t\tPipe5-->{pipe5pH}pH");
+            Thread.Sleep(1000);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write("6.Pipe");
+            Console.ResetColor();
+            Console.WriteLine($"\t\t\t\t\t\t\tPipe6-->{pipe6pH}  pH");
+            Thread.Sleep(1000);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("7.Pipe");
+            Console.ResetColor();
+            Console.WriteLine($"\t\t\t\t\t\t\tPipe7-->{pipe7pH}  pH");
+            Thread.Sleep(1000);
+            Console.ResetColor();
+            Console.WriteLine("---------------\t\t\t\t\t\t---------------");
             Console.WriteLine();
-            Console.WriteLine(
-                "The optimal ph level is 7.5. We will need to add soda ash or sodium bisulfate  to make all of them the pH level"
-            );
-            Console.WriteLine();
-            Console.WriteLine(
-                "For example to increase the pH level from 7 to 7.5 you will need to add 0.5 grams of soda ash."
-            );
-            Console.WriteLine(
-                "To decrase the pH level from 8 to 7.5 you will need to add sodium bisulfate."
-            );
+            Console.WriteLine("The optimal pH level is 7.5. Adjustments are necessary to achieve this level. For example, to raise the pH from 7 to 7.5, add 0.5 grams. \nTo lower the pH from 8 to 7.5, subtract 0.5 grams. Specify the pH adjustment needed for each pipe to reach the optimal pH levels");
+              
             while (true)
             {
                 Console.WriteLine($"Pipe1-->{pipe1pH}");
@@ -346,9 +334,28 @@ namespace WorldOfZuul
                     && (pipe7pH + a7) == target
                 )
                 {
-                    Console.WriteLine(
-                        "congratulations! You have completed the Water pipe challenges"
-                    );
+                    Console.WriteLine("Final pH levels of the pipes:");
+                    Console.WriteLine("---------------");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Pipe1-->7.5pH");
+                    Thread.Sleep(1000);
+                    Console.WriteLine("Pipe2-->7.5pH");
+                    Thread.Sleep(1000);
+                    Console.WriteLine("Pipe3-->7.5pH");
+                    Thread.Sleep(1000);
+                    Console.WriteLine("Pipe4-->7.5pH");
+                    Thread.Sleep(1000);
+                    Console.WriteLine("Pipe5-->7.5pH");
+                    Thread.Sleep(1000);
+                    Console.WriteLine("Pipe6-->7.5pH");
+                    Thread.Sleep(1000);
+                    Console.WriteLine("Pipe7-->7.5pH");
+                    Console.ResetColor();
+                    Console.WriteLine("---------------");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write("CONGRATULATIONS!");
+                    Console.ResetColor();
+                    Console.WriteLine(" You have completed the water purification puzzle.");
                     break;
                 }
                 else
@@ -358,6 +365,8 @@ namespace WorldOfZuul
             }
         }
 
+        //first challenge
+        
         private void PipePuzzle(WaterPurificaiton waterPurificaiton)
         {
             string[] pipe =
@@ -373,7 +382,7 @@ namespace WorldOfZuul
             string[] cSequence = { "Blue", "Red", "Green", "Yellow", "Magenta", "Cyan", "White" };
             int sequenceIndex = 0;
             Console.WriteLine(
-                "There is a secret sequence to connect all 7 pipes. You need to solve the secret sequence and connect them. If you make a mistake you have to star all over  again so becarefull."
+                "There is a hidden sequence to link the seven pipes. You must decipher the secret sequence to connect them successfully. If you connect one of them in the wrong order, you will have to start all over again."
             );
             while (true)
             {

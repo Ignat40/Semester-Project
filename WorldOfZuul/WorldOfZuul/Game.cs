@@ -239,7 +239,7 @@ namespace WorldOfZuul
                                 // string? yesNo = Console.ReadLine().ToLower();
                                 // if (yesNo == "yes")
                                 // {
-                                //     honeyHive.StartMissionsTask5(player);
+                                     honeyHive.StartMissionsTask5(player);
                                 // }
                                 // else
                                 // {
