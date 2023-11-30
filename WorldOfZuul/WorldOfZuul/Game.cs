@@ -67,9 +67,9 @@ namespace WorldOfZuul
             string? decide = Console.ReadLine().ToLower();
             if (decide != null && decide == "yes")
             {
-                // AnimateFirstHelp("\nYou need to first enter the univesirty"
-                //                         + " to find the professor. \nHe'll tell you"
-                //                         + " what to do from there on!", 5000);
+                AnimateFirstHelp("\nYou need to first enter the univesirty"
+                                         + " to find the professor. \nHe'll tell you"
+                                         + " what to do from there on!", 5000);
                 bool continuePlaying = true;
                 while (continuePlaying)
                 {
