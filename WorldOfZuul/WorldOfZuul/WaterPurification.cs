@@ -310,20 +310,75 @@ namespace WorldOfZuul
             while (true)
             {
                 Console.WriteLine($"Pipe1-->{pipe1pH}");
-                double a1 = double.Parse(Console.ReadLine());
-                Console.WriteLine(a1);
+                if (!double.TryParse(Console.ReadLine(), out double a1))
+                {
+                    Console.WriteLine("INVALID INPUT!");
+                } 
+                else
+                {
+                    Console.WriteLine(a1);
+                }
+
                 Console.WriteLine($"Pipe2-->{pipe2pH}");
-                double a2 = double.Parse(Console.ReadLine());
+                if(!double.TryParse(Console.ReadLine(),out double a2))
+                {
+                    Console.WriteLine("INVALID INPUT!");
+                }
+                else
+                {
+                    Console.WriteLine(a2);
+                }
+                
                 Console.WriteLine($"Pipe3-->{pipe3pH}");
-                double a3 = double.Parse(Console.ReadLine());
+                if(!double.TryParse(Console.ReadLine(),out double a3))
+                {
+                    Console.WriteLine("INVALID INPUT!");
+                }
+                else
+                {
+                    Console.WriteLine(a3);
+                }
+                
                 Console.WriteLine($"Pipe4-->{pipe4pH}");
-                double a4 = double.Parse(Console.ReadLine());
+                if(!double.TryParse(Console.ReadLine(),out double a4))
+                {
+                    Console.WriteLine("INVALID INPUT!");
+                }
+                else
+                {
+                    Console.WriteLine(a4);
+                }
+                
                 Console.WriteLine($"Pipe5-->{pipe5pH}");
-                double a5 = double.Parse(Console.ReadLine());
+                if(!double.TryParse(Console.ReadLine(), out double a5))
+                {
+                    Console.WriteLine("INVALID INPUT!");
+                }
+                else
+                {
+                    Console.WriteLine(a5);
+                }
+                
                 Console.WriteLine($"Pipe6-->{pipe6pH}");
-                double a6 = double.Parse(Console.ReadLine());
+                if(!double.TryParse(Console.ReadLine(),out double a6))
+                {
+                    Console.WriteLine("INVALID INPUT!");
+                }
+                else
+                {
+                    Console.WriteLine(a6);
+                }
+                
                 Console.WriteLine($"Pipe7-->{pipe7pH}");
-                double a7 = double.Parse(Console.ReadLine());
+                if(!double.TryParse(Console.ReadLine(),out double a7))
+                {
+                    Console.WriteLine("INVALID INPUT!");
+                }
+                else
+                {
+                    Console.WriteLine(a7);
+                }
+                
                 if (
                     (pipe1pH + a1) == target
                     && (pipe2pH + a2) == target
