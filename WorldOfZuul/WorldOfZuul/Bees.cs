@@ -17,7 +17,7 @@ namespace WorldOfZuul
         public int Level {get; set;}
         public int Honey {get; set;}
         static List<HoneyHive> honeyHives = new List<HoneyHive>();
-        static int Resources = 0;
+        static int Resources = 200;
         static int Score = 0;
         static char[,] Board = {
         {'1', '2', '3'},
@@ -322,7 +322,6 @@ namespace WorldOfZuul
         {
             Console.WriteLine("She is here.\n");
             Console.WriteLine("You can only do one mistake while talking therefore be careful.\n");
-            Console.WriteLine("Quenn\n");
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Queen - Wzzzzzzzzzwz\n");
             Thread.Sleep(1000);
@@ -732,7 +731,7 @@ namespace WorldOfZuul
             }
             Console.WriteLine("Honey collected from all hives!");
 
-            if (Resources >= 200)  //Win condition 
+            if (Resources >= 450)  //Win condition 
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Congratulations! You've reached the honey production goal. You won!");
