@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "oBJNWRaEitxyMMn0D3jJYcPExCIe80o/RdzlIK06p81yRKGZx2Hs1MxtH8T0/1E2s8cJH04/oePYo2upFfYM/w==",
+  "dgSpecHash": "aBuK5CrncvJgZG31nKTzvWp6qvNAEgbh7MYB6zJvlpnXSJhHQjkmHAATbIWbF5ANyBjaiKt/BLgmMxbpxFBmFw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\admin\\Desktop\\SDU\\GitHub\\Semester-Project\\WorldOfZuul\\WorldOfZuul\\WorldOfZuul.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\leona\\Documents\\GitHub\\Project_big\\Semester-Project\\WorldOfZuul\\WorldOfZuul\\WorldOfZuul.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\leona\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.25\\microsoft.netcore.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\leona\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.25\\microsoft.windowsdesktop.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\leona\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.25\\microsoft.aspnetcore.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\leona\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.25\\microsoft.netcore.app.host.win-x64.6.0.25.nupkg.sha512"
+  ],
   "logs": []
 }

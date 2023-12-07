@@ -133,7 +133,7 @@ namespace WorldOfZuul
                             Console.Clear();
                             Task1 task1 = new();
                             Console.WriteLine("Task 1");
-                            //task1.Sandwich();
+                            task1.Sandwich();
                             player.UpdateScore(10);
                             break;
 
