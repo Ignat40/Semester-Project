@@ -8,6 +8,7 @@ namespace WorldOfZuul
 {
     public class HoneyHive
     {
+        static int HiveCreated = 0;
         public int Count = 0;
         public bool isCompletedHiveQuiz = false;
         public bool isCompletedCommunicationWithBees = false;
@@ -668,6 +669,7 @@ namespace WorldOfZuul
                 honeyHives.Add(new HoneyHive(hiveName, 1));
                 Resources -= 50;
                 Console.WriteLine($"{hiveName} honey hive built successfully!");
+                HiveCreated++;
                 Console.ResetColor();
             }
             else
@@ -716,13 +718,13 @@ namespace WorldOfZuul
         static void ViewHoneyHives()
         {
             Console.WriteLine("\nYour Honey Hives:");
-            foreach (HoneyHive hive in honeyHives)
+            if (HiveCreated == 0)
             {
-                if (hive.Name == "")
-                {
-                    Console.WriteLine("You must enter a name");
-                }
-                else
+                Console.WriteLine("First you need to create a hive.");
+            }
+            else
+            {
+                foreach (HoneyHive hive in honeyHives)
                 {
                     Console.WriteLine($"{hive.Name} (Level {hive.Level}) - Honey: {hive.Honey}");
                 }

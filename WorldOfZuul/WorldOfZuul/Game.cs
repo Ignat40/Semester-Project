@@ -137,7 +137,7 @@ namespace WorldOfZuul
                             string? yesNo1 = Console.ReadLine().ToLower();
                             if (yesNo1 == "yes")
                             {
-                                task1.Sandwich();
+                                //task1.Sandwich();
                                 player.UpdateScore(10);
                             }
                             else
