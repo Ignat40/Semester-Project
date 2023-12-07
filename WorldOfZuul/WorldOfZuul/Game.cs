@@ -157,15 +157,14 @@ namespace WorldOfZuul
                                 string? yesNo = Console.ReadLine().ToLower();
                                 if (yesNo == "yes")
                                 {
-                                    
+                                    // WaterPurificaiton waterPurificaiton = new();
+                                    // waterPurificaiton.BasementTask(waterPurificaiton);
+                                    player.UpdateScore(10);
                                 }
                                 else
                                 {
                                     Console.WriteLine("You won't be able to finish The Quest this way!");
                                 }
-                                // WaterPurificaiton waterPurificaiton = new();
-                                // waterPurificaiton.BasementTask(waterPurificaiton);
-                                player.UpdateScore(10);
                                 currentRoom = previousRoom;
                             }
                             else
@@ -190,7 +189,7 @@ namespace WorldOfZuul
                                 // if (yesNo == "yes")
                                 // {
                                 //     rooftopMission.StartMission(player);
-                                player.UpdateScore(10);
+                                    player.UpdateScore(10);
                                 // }
                                 // else
                                 // {
