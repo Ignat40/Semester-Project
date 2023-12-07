@@ -133,8 +133,17 @@ namespace WorldOfZuul
                             Console.Clear();
                             Task1 task1 = new();
                             Console.WriteLine("Task 1");
-                            //task1.Sandwich();
-                            player.UpdateScore(10);
+                            Console.WriteLine("Do you wish to accept the mission? (yes/no)");
+                            string? yesNo1 = Console.ReadLine().ToLower();
+                            if (yesNo1 == "yes")
+                            {
+                                task1.Sandwich();
+                                player.UpdateScore(10);
+                            }
+                            else
+                            {
+                                Console.WriteLine("You won't be able to finish The Quest this way!");
+                            }
                             break;
 
                         case "basement":
@@ -148,15 +157,14 @@ namespace WorldOfZuul
                                 string? yesNo = Console.ReadLine().ToLower();
                                 if (yesNo == "yes")
                                 {
-                                    
+                                    // WaterPurificaiton waterPurificaiton = new();
+                                    // waterPurificaiton.BasementTask(waterPurificaiton);
+                                    player.UpdateScore(10);
                                 }
                                 else
                                 {
                                     Console.WriteLine("You won't be able to finish The Quest this way!");
                                 }
-                                // WaterPurificaiton waterPurificaiton = new();
-                                // waterPurificaiton.BasementTask(waterPurificaiton);
-                                player.UpdateScore(10);
                                 currentRoom = previousRoom;
                             }
                             else
@@ -181,7 +189,7 @@ namespace WorldOfZuul
                                 // if (yesNo == "yes")
                                 // {
                                 //     rooftopMission.StartMission(player);
-                                player.UpdateScore(10);
+                                    player.UpdateScore(10);
                                 // }
                                 // else
                                 // {
