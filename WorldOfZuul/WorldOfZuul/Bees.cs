@@ -67,10 +67,7 @@ namespace WorldOfZuul
                         }
                         break;
 
-                    //Fix later
                     case 2:
-                        //TicTacToe();
-                        //break;
                         if (isCompletedHiveQuiz && !isCompletedTicTacToeGame)
                         {
                             TicTacToe();
@@ -129,7 +126,7 @@ namespace WorldOfZuul
                         break;
 
                     case 5:
-                        Console.WriteLine("Exiting the world of missions.");
+                        Console.WriteLine("Exiting the task 5.");
                         return;
 
                     default:
@@ -220,7 +217,7 @@ namespace WorldOfZuul
             Console.WriteLine("    <\\\\\n");
             Thread.Sleep(100);
             Console.ResetColor();
-            Console.WriteLine("For this, you will need materials. You need to gain beekeeper trust to obtain materails and build hives.");
+            Console.WriteLine("For this, you will need resources. You need to gain beekeeper trust to obtain resources which are used to build hives.");
             Console.WriteLine();
             Console.WriteLine("GOOD LUCK!!!\n");
 
@@ -377,7 +374,7 @@ namespace WorldOfZuul
             if (Count >= 3)
             {
                 isCompletedCommunicationWithBees = true;
-                Console.WriteLine("\nWonderfull talking, well done!\n");
+                Console.WriteLine("\nWonderful talking, well done!\n");
                 Thread.Sleep(1000);
             }
             else
@@ -392,8 +389,8 @@ namespace WorldOfZuul
 
             static void TicTacToe()
             {
-                Console.WriteLine("Welcome to third mission of the task5");
-                Console.WriteLine("You must beat my friend Bob for the guidline of communication with bees.\n");
+                Console.WriteLine("Welcome to second mission of the task5");
+                Console.WriteLine("You must beat my friend Bob for the guideline of communication with bees.\n");
                 bool cont = false;
                 do
                 {
@@ -630,30 +627,35 @@ namespace WorldOfZuul
             Console.WriteLine("4. Collect honey");
             Console.WriteLine("5. Exit");
             Console.ResetColor();
-            Console.Write("Enter your choice: ");
-            string? choice = Console.ReadLine();
-
-            switch (choice)
+            bool eray = true;
+            while (eray)
             {
-                case "1":
-                    BuildHoneyHive();
-                    break;
-                case "2":
-                    UpgradeHoneyHive();
-                    break;
-                case "3":
-                    ViewHoneyHives();
-                    break;
-                case "4":
-                    CollectHoney();
-                    break;
-                case "5":
-                    Console.WriteLine("Exiting the game. Thanks for playing!");
-                    return;
-                default:
-                    Console.WriteLine("Invalid choice. Please try again.");
-                    break;
+                Console.Write("Enter your choice: ");
+                string? choice = Console.ReadLine();
+                switch (choice)
+                {
+                    case "1":
+                        BuildHoneyHive();
+                        break;
+                    case "2":
+                        UpgradeHoneyHive();
+                        break;
+                    case "3":
+                        ViewHoneyHives();
+                        break;
+                    case "4":
+                        CollectHoney();
+                        break;
+                    case "5":
+                        Console.WriteLine("Exiting the game. Thanks for playing!");
+                        eray = false;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid choice. Please try again.");
+                        break;
+                }
             }
+            
         }
 
         static void BuildHoneyHive()
@@ -662,7 +664,7 @@ namespace WorldOfZuul
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write("Enter a name for your honey hive: ");
-                string hiveName = Console.ReadLine();
+                string? hiveName = Console.ReadLine();
                 honeyHives.Add(new HoneyHive(hiveName, 1));
                 Resources -= 50;
                 Console.WriteLine($"{hiveName} honey hive built successfully!");
@@ -716,7 +718,14 @@ namespace WorldOfZuul
             Console.WriteLine("\nYour Honey Hives:");
             foreach (HoneyHive hive in honeyHives)
             {
-                Console.WriteLine($"{hive.Name} (Level {hive.Level}) - Honey: {hive.Honey}");
+                if (hive.Name == "")
+                {
+                    Console.WriteLine("You must enter a name");
+                }
+                else
+                {
+                    Console.WriteLine($"{hive.Name} (Level {hive.Level}) - Honey: {hive.Honey}");
+                }
             }
             Console.WriteLine($"Resources: {Resources}");
         }
@@ -731,7 +740,7 @@ namespace WorldOfZuul
             }
             Console.WriteLine("Honey collected from all hives!");
 
-            if (Resources >= 450)  //Win condition 
+            if (Resources >= 400)  //Win condition
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Congratulations! You've reached the honey production goal. You won!");

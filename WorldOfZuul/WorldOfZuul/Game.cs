@@ -62,12 +62,12 @@ namespace WorldOfZuul
             HoneyHive honeyHive = new("Hive1", 1);
             PrintWelcome(player);
 
-            Console.WriteLine("Are you ready for the challange? (yes/no)");
+            Console.WriteLine("Are you ready for the challenge? (yes/no)");
             Console.Write(">");
             string? decide = Console.ReadLine().ToLower();
             if (decide != null && decide == "yes")
             {
-                AnimateFirstHelp("\nYou need to first enter the univesirty"
+                AnimateFirstHelp("\nYou need to first enter the university"
                                          + " to find the professor. \nHe'll tell you"
                                          + " what to do from there on!", 5000);
                 bool continuePlaying = true;
@@ -228,7 +228,7 @@ namespace WorldOfZuul
                             }
 
                         case "farm":
-                            if (player.Score == 40)
+                            if (player.Score >= 40)
                             {
                                 Move(command.Name);
                                 MapTask5 mapTask5 = new();
@@ -425,7 +425,6 @@ namespace WorldOfZuul
             NPCs communicate = new();
             switch (location)
             {
-                //Under development, Npc locations and senteces will be dicussed
                 case "Lab":
                     communicate.NpcName = "Professor Mike";
                     communicate.Sentence = "[Some Sentences(will discuss during meeting)]";
