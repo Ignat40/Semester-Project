@@ -136,12 +136,11 @@ namespace WorldOfZuul
                             string? yesNo1 = Console.ReadLine().ToLower();
                             if (yesNo1 == "yes")
                             {
-                                player.UpdateScore(10);
-                                /*task1.Sandwich();
+                                task1.Sandwich();
                                 if (task1.IsCompletedTask())
                                 {
                                     player.UpdateScore(10);
-                                }*/
+                                }
                             }
                             else
                             {
@@ -160,10 +159,9 @@ namespace WorldOfZuul
                                 string? yesNo = Console.ReadLine().ToLower();
                                 if (yesNo == "yes")
                                 {
-                                    player.UpdateScore(10);
-                                    /*WaterPurificaiton waterPurificaiton = new();
+                                    WaterPurificaiton waterPurificaiton = new();
                                     waterPurificaiton.BasementTask(waterPurificaiton);
-                                    player.UpdateScore(10);*/
+                                    player.UpdateScore(10);
                                 }
                                 else
                                 {
@@ -187,14 +185,13 @@ namespace WorldOfZuul
                                 mapTask3.DisplayMap();
                                 Console.WriteLine("Task 3");
                                 RooftopMission rooftopMission = new();
-                                Console.WriteLine("Do you wish to accept the mission!");
+                                Console.WriteLine("Do you wish to accept the mission!(yes/no)");
                                 Console.Write(">");
                                 string? yesNo = Console.ReadLine().ToLower();
                                 if (yesNo == "yes")
                                 {
+                                    rooftopMission.StartMission(player);
                                     player.UpdateScore(10);
-                                    /*rooftopMission.StartMission(player);
-                                    player.UpdateScore(10);*/
                                 }
                                 else
                                 {
@@ -219,14 +216,15 @@ namespace WorldOfZuul
                                 AsciiArt acsiiArt = new();
                                 acsiiArt.Beach();
 
-                                Console.WriteLine("Do you wish to accept the mission!");
+                                Console.WriteLine("Do you wish to accept the mission!(yes/no)");
                                 Console.Write(">");
                                 string? yesNo = Console.ReadLine().ToLower();
                                 if (yesNo == "yes")
                                 {
                                     BeachCleanupMission beachCleanupMission = new BeachCleanupMission();
                                     beachCleanupMission.StartMission(player);
-                                player.UpdateScore(10);
+                                    currentRoom = previousRoom;
+                                    player.UpdateScore(10);
                                 }
                                 else
                                 {
@@ -241,18 +239,18 @@ namespace WorldOfZuul
                             }
 
                         case "farm":
-                            if (player.Score >= 40)
+                            if (player.Score == 40)
                             {
                                 Move(command.Name);
                                 MapTask5 mapTask5 = new();
                                 mapTask5.DisplayMap();
                                 Console.WriteLine("Task 5");
-                                Console.WriteLine("Do you wish to accept the mission!");
+                                Console.WriteLine("Do you wish to accept the mission!(yes/no)");
                                 Console.Write(">");
                                 string? yesNo = Console.ReadLine().ToLower();
                                 if (yesNo == "yes")
                                 {
-                                     honeyHive.StartMissionsTask5(player);
+                                    honeyHive.StartMissionsTask5(player);
                                 }
                                 else
                                 {
@@ -260,6 +258,18 @@ namespace WorldOfZuul
                                 }
 
                                 player.UpdateScore(10);
+                                if (player.Score == 50)
+                                {
+                                    GameEnd gameEnd = new();
+                                    gameEnd.GameEnding();
+                                    continuePlaying = false;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("You didn't score the maximum points!");
+                                    Console.WriteLine("That's why you get the looser ending!");
+                                    Console.WriteLine("Thank you for playing World Of Zuul!");
+                                }
                                 break;
                             }
                             else
@@ -319,64 +329,6 @@ namespace WorldOfZuul
             {
                 Console.WriteLine("We thought you were the one...");
             }
-
-
-
-            Console.WriteLine("Thank you for playing World of Zuul!");
-            Console.WriteLine();
-            Console.WriteLine("We hope you enjoyed and gain educational information about SDGs.");
-            Console.WriteLine();
-            Console.WriteLine("Creators are:");
-            Console.WriteLine();
-            Console.WriteLine("___Vedat Esendag___");
-            Thread.Sleep(1000);
-            Console.WriteLine("___Altan Esmer___");
-            Thread.Sleep(1000);
-            Console.WriteLine("___Frederik Handberg___");
-            Thread.Sleep(1000);
-            Console.WriteLine("___Ignat Bozhinov___");
-            Thread.Sleep(1000);
-            Console.WriteLine("___Leonardo Gianola___");
-            Thread.Sleep(1000); ;
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("            ^^                   @@@@@@@@@");
-            Thread.Sleep(100);
-            Console.WriteLine("       ^^       ^^            @@@@@@@@@@@@@@@");
-            Thread.Sleep(100);
-            Console.WriteLine("                           @@@@@@@@@@@@@@@@@@              ^^");
-            Thread.Sleep(100);
-            Console.WriteLine("                           @@@@@@@@@@@@@@@@@@@@");
-            Thread.Sleep(100);
-            Console.ResetColor();
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine(" ~~~~ ~~ ~~~~~ ~~~~~~~~ ~~ &&&&&&&&&&&&&&&&&&&& ~~~~~~~ ~~~~~~~~~~~ ~~~");
-            Thread.Sleep(100);
-            Console.WriteLine(" ~         ~~   ~  ~       ~~~~~~~~~~~~~~~~~~~~ ~       ~~     ~~ ~");
-            Thread.Sleep(100);
-            Console.WriteLine("   ~      ~~      ~~ ~~ ~~  ~~~~~~~~~~~~~ ~~~~  ~     ~~~    ~ ~~~  ~ ~~");
-            Thread.Sleep(100);
-            Console.WriteLine("   ~  ~~     ~         ~      ~~~~~~  ~~ ~~~       ~~ ~ ~~  ~~ ~");
-            Thread.Sleep(100);
-            Console.WriteLine(" ~  ~       ~ ~      ~           ~~ ~~~~~~  ~      ~~  ~             ~~");
-            Thread.Sleep(100);
-            Console.WriteLine("       ~             ~        ~      ~      ~~   ~             ~\n");
-            Thread.Sleep(100);
-            Console.ResetColor();
-            Console.WriteLine("▄█▀▀║░▄█▀▄║▄█▀▄║██▀▄║");
-            Thread.Sleep(100);
-            Console.WriteLine("██║▀█║██║█║██║█║██║█║");
-            Thread.Sleep(100);
-            Console.WriteLine("▀███▀║▀██▀║▀██▀║███▀║");
-            Thread.Sleep(100);
-            Console.WriteLine("───────────────────────");
-            Thread.Sleep(100);
-            Console.WriteLine("───▐█▀▄─ ▀▄─▄▀ █▀▀──█───");
-            Thread.Sleep(100);
-            Console.WriteLine("───▐█▀▀▄ ──█── █▀▀──▀───");
-            Thread.Sleep(100);
-            Console.WriteLine("───▐█▄▄▀ ──▀── ▀▀▀──▄───");
-            Thread.Sleep(100);
-            Console.Beep();
         }
 
         private void Move(string direction)
@@ -386,10 +338,7 @@ namespace WorldOfZuul
                 previousRoom = currentRoom;
                 currentRoom = currentRoom?.Exits[direction];
             }
-            else
-            {
-                Console.WriteLine($"You can't go {direction}!");
-            }
+            
         }
 
         private static void PrintWelcome(Player player)
@@ -406,10 +355,10 @@ namespace WorldOfZuul
 
         private static void AnimateFirstHelp(string inputText, int duration)
         {
-            int frames = duration/ 50;
+            int frames = duration / 50;
             int startIndex = 0;
 
-            for(int i = 0; i < frames; i++)
+            for (int i = 0; i < frames; i++)
             {
                 Console.Clear();
                 Console.WriteLine(inputText.Substring(startIndex, Math.Min(i * inputText.Length / frames, inputText.Length)));

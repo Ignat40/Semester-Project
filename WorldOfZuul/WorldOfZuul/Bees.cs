@@ -238,7 +238,7 @@ namespace WorldOfZuul
 
                 Score = 0;
 
-                MultipleChoiceQuestion("How many SDGs are existing?", new Dictionary<string, string> { { "a", "14" }, { "b", "17" }, { "c", "20" } }, "b");
+                MultipleChoiceQuestion("How many SDGs exist?", new Dictionary<string, string> { { "a", "14" }, { "b", "17" }, { "c", "20" } }, "b");
                 TrueFalseQuestion("Only female bees can sting. (True/False)", "true");
                 OpenEndedQuestion("What is the name of this city", "sonderborg");
                 MultipleChoiceQuestion("Which programming language is this game written in?", new Dictionary<string, string> { { "a", "Java" }, { "b", "Python" }, { "c", "C#" } }, "c");
@@ -742,7 +742,7 @@ namespace WorldOfZuul
             }
             Console.WriteLine("Honey collected from all hives!");
 
-            if (Resources >= 400)  //Win condition
+            if (Resources >= 300)  //Win condition
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Congratulations! You've reached the honey production goal. You won!");

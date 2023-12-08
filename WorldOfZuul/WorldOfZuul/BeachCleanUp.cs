@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection.Metadata;
 
 namespace WorldOfZuul
 {
@@ -9,6 +10,7 @@ namespace WorldOfZuul
         private bool isCompleted = false;
 
         public bool IsCompleted => isCompleted;
+        List<string> trashToPick = new List<string> { "cans", "newspaper", "bottle", "?" };
 
         public void StartMission(Player player)
         {
@@ -20,21 +22,21 @@ namespace WorldOfZuul
 
         private void InteractiveDialogueWithMarineBiologist(Player player)
         {
-            Console.WriteLine("Scientist: Welcome to the beach cleanup mission!");
-            Console.WriteLine(">        : Plastic pollution in oceans is a significant problem.");
-            Console.WriteLine(">        : Would you like to learn about plastic dangers in oceans? (yes/no)");
+            Console.WriteLine("Scientist: Welcome to the beach mission!");
+            Console.WriteLine("Plastic pollution in oceans is a significant problem.");
+            Console.WriteLine("Would you like to learn about plastic dangers in oceans? (yes/no)");
 
-            string response = Console.ReadLine().ToLower();
+            string? response = Console.ReadLine().ToLower();
             if (response == "yes")
             {
                 Console.WriteLine("Scientist: *Provides information about plastic dangers*");
             }
             else
             {
-                Console.WriteLine("Scientist: Alright, let's get started with the cleanup!");
+                Console.WriteLine("Scientist: Alright, let's get started with the cleanup! But ");
             }
 
-            Console.WriteLine("Marine Biologist: Please collect plastic waste and sort it for recycling or safe disposal.");
+            Console.WriteLine("Scientist: Please collect plastic waste and sort it for recycling or safe disposal.");
             PerformCleanupTask(player);
         }
 
@@ -42,13 +44,9 @@ namespace WorldOfZuul
         {
             Parser parser = new();
 
-            // Implement logic for the player to collect and sort plastic waste
-            // Provide feedback to the player based on their actions
-            // Update player's inventory or mission progress accordingly
-
-            Console.WriteLine("Objective: Pick up as much litter as possible. Transport it to recycle bins");
+            Console.WriteLine("Objective: Pick up as much litter as possible. Look careful for speacial items");
             Console.WriteLine();
-            Console.WriteLine($"{player}: I don't see anything here... Hm...");
+            Console.WriteLine($"You: I don't see anything here... Hm...");
             Console.WriteLine("+----------------------------------+");
             Console.WriteLine("|                                  |");
             Console.WriteLine("|                                  |");
@@ -59,6 +57,7 @@ namespace WorldOfZuul
             Console.WriteLine("+----------------------------------+");
 
             Console.WriteLine("Scientist: Move around (m) of abort mission (a)? (m/a)");
+            Console.Write(">");
             string? userchoice = Console.ReadLine().ToLower();
             if (userchoice == "m")
             {
@@ -73,11 +72,12 @@ namespace WorldOfZuul
                 Console.WriteLine("+----------------------------------+");
                 Console.WriteLine();
                 Console.WriteLine("Let's get started!");
-                Console.WriteLine("use 'pick' or 'drop");
+                Console.WriteLine("use 'pick' and then select which item you want to pick");
 
-                int trash = 12;
+                int trash = 5;
+                bool leftTrash = true;
 
-                while (player.Inventory.Count < 12) // Changed the condition to continue until the inventory is full
+                while (leftTrash)
                 {
                     Console.Write("> ");
                     string? cmd = Console.ReadLine();
@@ -85,18 +85,20 @@ namespace WorldOfZuul
 
                     if (cmd != null)
                     {
-                        Console.WriteLine($"Items left to be collected: {trash}");
+                        Console.WriteLine($"{ShowTrash()}: {trash}");
                         if (cmd == "pick")
                         {
-                            player.AddToInventory("trash");
-                        }
-                        else if (cmd == "drop")
-                        {
-                            player.RemoveFromIntentory();
+                            Console.WriteLine("Enter the item to pick: ");
+                            string? item = Console.ReadLine();
+                            if (item != null)
+                            {
+                                player.AddToInventory(item);
+                                trashToPick.Remove(item);
+                            }
                         }
                         else
                         {
-                            Console.WriteLine("Invalid command. Use 'pick' or 'drop'.");
+                            Console.WriteLine("Invalid command. Use 'pick'.");
                         }
                     }
                     else
@@ -104,27 +106,124 @@ namespace WorldOfZuul
                         Console.WriteLine("Please enter a command.");
                         continue;
                     }
+
+                    if (trash == 0)
+                        leftTrash = false;
+
                 }
+            }
+
+            else
+            {
+                System.Environment.Exit(0);
+            }
+
+
+            Console.WriteLine("Scientist: WOW! I don't remember it being this clean!");
+            Console.WriteLine("+---------------------------------+");
+            Console.WriteLine("|      ✨         ✨    ✨        |");
+            Console.WriteLine("|   ✨       ✨               ✨  |");
+            Console.WriteLine("|                    ✨           |");
+            Console.WriteLine("|   ✨                   ✨       |");
+            Console.WriteLine("|           ✨                    |");
+            Console.WriteLine("|   ✨               ✨           |");
+            Console.WriteLine("+--------------------------------+");
+
+            DisposeTrash(player);
+
+            isCompleted = true;
+            player.UpdateScore(10);
+        }
+
+        public void DisposeTrash(Player player)
+        {
+            Console.WriteLine("Scientist: Very nicely done! But your job here is not done yet!");
+            Console.WriteLine($"Scientist: You have to go to the bins\nand dispose the trash acordingly!");
+            Console.WriteLine("Go to the bins or Abord the mission (yes/no)");
+            string? input = Console.ReadLine();
+
+            if (input != null && input.ToLower() == "yes")
+            {
+                string bins = @"
+                     ___/-\___     ___/-\___     ___/-\___
+                    |---------|   |---------|   |---------|
+                     | | | | |     | | | | |     | | | | | 
+                     | | 1 | |     | | 2 | |     | | 3 | | 
+                     | | | | |     | | | | |     | | | | | 
+                     | | | | |     | | | | |     | | | | | 
+                     |_______|     |_______|     |_______|";
+
+                Console.WriteLine(bins);
+                Console.WriteLine("\nScientist: You have to choose where to throw the trash accordingly!");
+                Console.WriteLine("View your inventory and select the index of the item \nand then the index of the bin you want to throw it in!");
+                Console.WriteLine();
+                player.DisplayInventory();
+                int itemsLeftToDispose = 3;
+
+                while (itemsLeftToDispose != 0)
+                {
+                    Console.WriteLine("Enter the index of the item to throw: ");
+                    if (int.TryParse(Console.ReadLine(), out int itemIndex) && itemIndex >= 0 && itemIndex < player.Inventory.Count)
+                    {
+                        string thrownItem = player.Inventory[itemIndex];
+
+                        Console.WriteLine($"You have '{thrownItem}'.");
+                        Console.WriteLine($"Choose the bin to throw it in:");
+
+                        if (int.TryParse(Console.ReadLine(), out int binIndex))
+                        {
+                            if (thrownItem == "cans" && binIndex == 3)
+                            {
+                                Console.WriteLine("Correct!");
+                                itemsLeftToDispose--;
+                            }
+                            else if (thrownItem == "newspaper" && binIndex == 1)
+                            {
+                                Console.WriteLine("Correct!");
+                                itemsLeftToDispose--;
+                            }
+                            else if (thrownItem == "bottle" && binIndex == 2)
+                            {
+                                Console.WriteLine("Correct!");
+                                itemsLeftToDispose--;
+                            }
+                            else
+                            {
+                                Console.WriteLine($"You can't throw {thrownItem} in trash can {binIndex}");
+                                continue;
+                            }
+
+                        }
+
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid item index. Please enter a valid index.");
+                    }
+                }
+
+
             }
             else
             {
-                return;
+                Console.WriteLine("You won't be able to continue with the other missions!");
             }
 
-            Console.WriteLine("Scientist: WOW! I don't remember it this clean!");
-            Console.WriteLine("+---------------------------------+");
-            Console.WriteLine("|      ✨         ✨    ✨       |");
-            Console.WriteLine("|   ✨       ✨               ✨ |");
-            Console.WriteLine("|                    ✨          |");
-            Console.WriteLine("|   ✨                   ✨      |");
-            Console.WriteLine("|           ✨                   |");
-            Console.WriteLine("|   ✨               ✨          |");
-            Console.WriteLine("+--------------------------------+");
+        }
 
-
-            // Assume the cleanup task is completed successfully
-            isCompleted = true;
+        public string ShowTrash()
+        {
+            string trashString = string.Join(" ", trashToPick.Select(el => $"['{el}']"));
+            return trashString;
         }
 
     }
+
+
+
 }
+
+
+
+

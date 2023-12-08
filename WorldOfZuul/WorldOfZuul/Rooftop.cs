@@ -148,7 +148,7 @@ private void DisplaySolarPanel(int angle)
         {
             string maximizedArt = @"
       +---------------------------+
-      |   🌞 EFFICIENCY MAXIMIZED 🌞   |
+      | 🌞 EFFICIENCY MAXIMIZED 🌞 |
       +---------------------------+
             /""---...___
            /           \

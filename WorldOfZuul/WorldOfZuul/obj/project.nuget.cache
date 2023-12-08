@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "oBJNWRaEitxyMMn0D3jJYcPExCIe80o/RdzlIK06p81yRKGZx2Hs1MxtH8T0/1E2s8cJH04/oePYo2upFfYM/w==",
+  "dgSpecHash": "OlWz1mpe/sOxiKSD2XKtojrDQFaR9zgrBUaUAxqoFsuNluJUuvI2MujcFwaLtLvpWoZS0DJkRWWRj8z85+/ldA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\admin\\Desktop\\SDU\\GitHub\\Semester-Project\\WorldOfZuul\\WorldOfZuul\\WorldOfZuul.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/Users/ignat/Desktop/EcoExplorer/Semester-Project/WorldOfZuul/WorldOfZuul/WorldOfZuul.csproj",
+  "expectedPackageFiles": [
+    "/Users/ignat/.nuget/packages/microsoft.netcore.app.ref/6.0.21/microsoft.netcore.app.ref.6.0.21.nupkg.sha512",
+    "/Users/ignat/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.21/microsoft.aspnetcore.app.ref.6.0.21.nupkg.sha512",
+    "/Users/ignat/.nuget/packages/microsoft.netcore.app.host.osx-arm64/6.0.21/microsoft.netcore.app.host.osx-arm64.6.0.21.nupkg.sha512"
+  ],
   "logs": []
 }

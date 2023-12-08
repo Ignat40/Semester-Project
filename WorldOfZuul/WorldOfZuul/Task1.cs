@@ -43,95 +43,111 @@ namespace WorldOfZuul
         Console.WriteLine ("the password is in a book that is on the shelf but you");
         Console.WriteLine ("don't remember which one, so you will have to search.");
         Console.WriteLine ("");
-        Console.WriteLine ("Press en 'C' to continue or 'X' to exit.");
-        string? continueToLibrary = Console.ReadLine();
-              
-        if(continueToLibrary != null)
+        
+        bool continueLoop_1 = true;
+        
+        while (continueLoop_1)
         {
-          if (continueToLibrary.ToUpper() == "C")
+          Console.WriteLine ("Press en 'C' to continue or 'X' to exit.");
+          string? continueToLibrary = Console.ReadLine()?.ToUpper() ?? "";
+
+          if (continueToLibrary == "C")
           {
+            continueLoop_1 = false;
             Console.Clear();
+            Minigame.ExecuteMinigame();
           }
-          else if (continueToLibrary.ToUpper() == "X")
+          else if (continueToLibrary == "X")
           {
-              return;
+            continueLoop_1 = false;
+            return;
           }
           else
           {
             Console.WriteLine ("Invalid entry, press en 'C' to continue or 'X' to exit.");
           }
-        } 
-        else
-        {
-          Console.WriteLine ("Invalid entry, the input has to be 'C' or 'X', not a null value.");
         }
-
-
-        Minigame.ExecuteMinigame();
-
+        
         Console.WriteLine ("Good! Now you have the password, perfect,");
         Console.WriteLine ("now you just have to go to the lab.");
         Console.WriteLine (" ");
         Console.WriteLine (" ");
-        Console.WriteLine ("Now, you enter the password at the lab door.                                      Note: the password is: 911/000/23/1-LAB");
-        Console.WriteLine 
-        (@"
-        ,-----------------------------------------------------------,
-        |Intruce password:                                          |
-        |                                                           |
-        |                                                           |
-        |---,---,---,---,---,---,---,---,---,---,---,---,---,-------|
-        |1/2| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | + | ' | <-    |
-        |---'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-----|
-        | ->| | Q | W | E | R | T | Y | U | I | O | P | ] | ^ |     |
-        |-----',--',--',--',--',--',--',--',--',--',--',--',--'|    |
-        | Caps | A | S | D | F | G | H | J | K | L | \ | [ | * |    |
-        |----,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'---'----|
-        |    | < | Z | X | C | V | B | N | M | , | . | - |          |
-        |----'-,-',--'--,'---'---'---'---'---'---'-,-'---',--,------|
-        | ctrl |  | alt |                          |altgr |  | ctrl |
-        '------'  '-----'--------------------------'------'  '------'
         
-        ");
-        string? labPassword = Console.ReadLine();
-        if (labPassword != null)
+        bool loopPassDoor = true;
+
+        while (loopPassDoor)
         {
-            if(labPassword =="911/000/23/1-LAB")
-            {
-              Console.WriteLine ("Now you are inside the lab and unfortunately, the teacher");
-              Console.WriteLine ("is not there, so you have to go quickly to his class,");
-              Console.WriteLine ("which is the only place he can be.");
-              Console.WriteLine ("Press en 'C' to continue or 'X' to exit.");
-              string? continueToClass = Console.ReadLine();
-              
-              if(continueToClass != null)
+        
+          Console.WriteLine ("Now, you enter the password at the lab door.                                      Note: the password is: 911/000/23/1-LAB");
+          Console.WriteLine 
+          (@"
+          ,-----------------------------------------------------------,
+          |Intruce password:                                          |
+          |                                                           |
+          |                                                           |
+          |---,---,---,---,---,---,---,---,---,---,---,---,---,-------|
+          |1/2| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | + | ' | <-    |
+          |---'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-----|
+          | ->| | Q | W | E | R | T | Y | U | I | O | P | ] | ^ |     |
+          |-----',--',--',--',--',--',--',--',--',--',--',--',--'|    |
+          | Caps | A | S | D | F | G | H | J | K | L | \ | [ | * |    |
+          |----,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'-,-'---'----|
+          |    | < | Z | X | C | V | B | N | M | , | . | - |          |
+          |----'-,-',--'--,'---'---'---'---'---'---'-,-'---',--,------|
+          | ctrl |  | alt |                          |altgr |  | ctrl |
+          '------'  '-----'--------------------------'------'  '------'
+          
+          ");
+          string? labPassword = Console.ReadLine();
+          if (labPassword != null)
+          {
+              if(labPassword =="911/000/23/1-LAB")
               {
-                  if (continueToClass.ToUpper() == "C")
+                loopPassDoor = false;
+                Console.WriteLine ("Now you are inside the lab and unfortunately, the teacher");
+                Console.WriteLine ("is not there, so you have to go quickly to his class,");
+                Console.WriteLine ("which is the only place he can be.");
+                
+                bool continueQuiz = true;
+
+                while (continueQuiz)
+                {
+                
+                  Console.WriteLine ("Press en 'C' to continue or 'X' to exit.");
+                  string? continueToClass = Console.ReadLine();
+                  
+                  if(continueToClass != null)
                   {
-                    Console.Clear();
-                  }
-                  else if (continueToClass.ToUpper() == "X")
-                  {
-                    return;
-                  }
+                      if (continueToClass.ToUpper() == "C")
+                      {
+                        continueQuiz = false;
+                        Console.Clear();
+                      }
+                      else if (continueToClass.ToUpper() == "X")
+                      {
+                        continueQuiz = false;
+                        return;
+                      }
+                      else
+                      {
+                        Console.WriteLine ("Invalid entry, press en 'C' to continue or 'X' to exit.");
+                      }
+                  } 
                   else
                   {
-                    Console.WriteLine ("Invalid entry, press en 'C' to continue or 'X' to exit.");
+                    Console.WriteLine ("Invalid entry, the input has to be 'C' or 'X', not a null value.");
                   }
-              } 
+                }
+              }
               else
               {
-                Console.WriteLine ("Invalid entry, the input has to be 'C' or 'X', not a null value.");
+                Console.WriteLine($"You know the password but you have typed it wrong.");
               }
-            }
-            else
-            {
-              Console.WriteLine($"You know the password but you have typed it wrong.");
-            }
-        }
-        else
-        {
-          Console.WriteLine ("Invalid entry, the input has to be the password, not a null value.");
+          }
+          else
+          {
+            Console.WriteLine ("Invalid entry, the input has to be the password, not a null value.");
+          }
         }
 
         Console.WriteLine (" ");
@@ -180,28 +196,36 @@ namespace WorldOfZuul
           }
         }
         Console.WriteLine("Okay, now that you've completed the quiz we can move on.");
-        Console.WriteLine ("Press en 'C' to continue or 'X' to exit.");
-        string? continueAfterQuiz = Console.ReadLine();
-              
-        if(continueAfterQuiz != null)
+        
+        bool continueQuizLoop = true;
+
+        while(continueQuizLoop)
         {
-          if (continueAfterQuiz.ToUpper() == "C")
+          Console.WriteLine ("Press en 'C' to continue or 'X' to exit.");
+          string? continueAfterQuiz = Console.ReadLine();
+                
+          if(continueAfterQuiz != null)
           {
-            Console.Clear();
-          }
-          else if (continueAfterQuiz.ToUpper() == "X")
-          {
-             return;
-          }
+            if (continueAfterQuiz.ToUpper() == "C")
+            {
+              continueQuizLoop = false;
+              Console.Clear();
+            }
+            else if (continueAfterQuiz.ToUpper() == "X")
+            {
+              continueQuizLoop = false;
+              return;
+            }
+            else
+            {
+              Console.WriteLine ("Invalid entry, press en 'C' to continue or 'X' to exit.");
+            }
+          } 
           else
           {
-            Console.WriteLine ("Invalid entry, press en 'C' to continue or 'X' to exit.");
-          }
-        } 
-        else
-        {
-          Console.WriteLine ("Invalid entry, the input has to be 'C' or 'X', not a null value.");
-        } 
+            Console.WriteLine ("Invalid entry, the input has to be 'C' or 'X', not a null value.");
+          } 
+        }
 
         Console.WriteLine ("You arrive at the class and there you finally find the Professor,");
         Console.WriteLine ("who has just finished teaching, you greet him and ask him for");
@@ -212,27 +236,35 @@ namespace WorldOfZuul
         Console.WriteLine ("Okay, while you go get the sandwich I'm going to tell you");
         Console.WriteLine ("about the second SDG that deals with hunger too.");
         Console.WriteLine (" ");
-        Console.WriteLine ("Press en 'C' to continue or 'X' to exit.");
-        string? continueSandwich = Console.ReadLine();
+        
+        bool finalLoop = true;
 
-        if(continueSandwich != null)
+        while (finalLoop)
         {
-          if (continueSandwich.ToUpper() == "C")
+          Console.WriteLine ("Press en 'C' to continue or 'X' to exit.");
+          string? continueSandwich = Console.ReadLine();
+
+          if(continueSandwich != null)
           {
-            Console.Clear();
-          }
-          else if (continueSandwich.ToUpper() == "X")
-          {
+            if (continueSandwich.ToUpper() == "C")
+            {
+              finalLoop = false;
+              Console.Clear();
+            }
+            else if (continueSandwich.ToUpper() == "X")
+            {
+              finalLoop = false;
               return;
-          }
+            }
+            else
+            {
+              Console.WriteLine ("Invalid entry, press en 'C' to continue or 'X' to exit.");
+            }
+          } 
           else
           {
-            Console.WriteLine ("Invalid entry, press en 'C' to continue or 'X' to exit.");
+            Console.WriteLine ("Invalid entry, the input has to be 'C' or 'X', not a null value.");
           }
-        } 
-        else
-        {
-          Console.WriteLine ("Invalid entry, the input has to be 'C' or 'X', not a null value.");
         }
 
         Console.WriteLine ("The second SDG is called Zero Hunger.");
@@ -255,27 +287,35 @@ namespace WorldOfZuul
         Console.WriteLine ("After this presentation, from the second SDG you already"); 
         Console.WriteLine ("have the sandwich and you hand it to the Professor.");
         Console.WriteLine (" ");
-        Console.WriteLine ("Press en 'C' to continue or 'X' to exit.");
-        string? finalPart = Console.ReadLine();
+        
+        bool finalLoop_2 = true;
 
-        if(finalPart != null)
+        while (finalLoop_2)
         {
-          if (finalPart.ToUpper() == "C")
+          Console.WriteLine ("Press en 'C' to continue or 'X' to exit.");
+          string? finalPart = Console.ReadLine();
+
+          if(finalPart != null)
           {
-            Console.Clear();
-          }
-          else if (finalPart.ToUpper() == "X")
-          {
+            if (finalPart.ToUpper() == "C")
+            {
+              finalLoop_2 = false;
+              Console.Clear();
+            }
+            else if (finalPart.ToUpper() == "X")
+            {
+              finalLoop_2 = false;
               return;
-          }
+            }
+            else
+            {
+              Console.WriteLine ("Invalid entry, press en 'C' to continue or 'X' to exit.");
+            }
+          } 
           else
           {
-            Console.WriteLine ("Invalid entry, press en 'C' to continue or 'X' to exit.");
+            Console.WriteLine ("Invalid entry, the input has to be 'C' or 'X', not a null value.");
           }
-        } 
-        else
-        {
-          Console.WriteLine ("Invalid entry, the input has to be 'C' or 'X', not a null value.");
         }
         Console.WriteLine ("The professor now well fed, see your interest in sustainability, explained to you the importance");
         Console.WriteLine ("of the Sustainability Development Goals.");
@@ -293,27 +333,35 @@ namespace WorldOfZuul
         Console.WriteLine ("At the same time, they urge efforts to combat climate change and protect our oceans");
         Console.WriteLine ("and forests, underscoring the importance of united global collaboration.");
         Console.WriteLine (" ");
-        Console.WriteLine ("Press en 'C' to continue or 'X' to exit.");
-        string? final = Console.ReadLine();
+        
+        bool finalLoop_3 = true;
 
-        if(final != null)
+        while (finalLoop_3)
         {
-          if (final.ToUpper() == "C")
+          Console.WriteLine ("Press en 'C' to continue or 'X' to exit.");
+          string? final = Console.ReadLine();
+
+          if(final != null)
           {
-            Console.Clear();
-          }
-          else if (final.ToUpper() == "X")
-          {
+            if (final.ToUpper() == "C")
+            {
+              finalLoop_3 = false;
+              Console.Clear();
+            }
+            else if (final.ToUpper() == "X")
+            {
+              finalLoop_3 = false;
               return;
-          }
+            }
+            else
+            {
+              Console.WriteLine ("Invalid entry, press en 'C' to continue or 'X' to exit.");
+            }
+          } 
           else
           {
-            Console.WriteLine ("Invalid entry, press en 'C' to continue or 'X' to exit.");
+            Console.WriteLine ("Invalid entry, the input has to be 'C' or 'X', not a null value.");
           }
-        } 
-        else
-        {
-          Console.WriteLine ("Invalid entry, the input has to be 'C' or 'X', not a null value.");
         }
         Console.WriteLine ("This is the end of the first part of the game, thanks for playing.");
         Count++;

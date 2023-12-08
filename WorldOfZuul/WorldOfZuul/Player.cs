@@ -29,18 +29,18 @@ namespace WorldOfZuul
             }
             AnimateIntro("\nThe Mayor will be your personal guide during this mission! "
                         + "He will give you tasks and check whether you've completed them or not!"
-                        +"Be fast and don't hesitate to type 'help' if you are lost."
-                        +"Below is a mini map of the whole quest!"
-                        +$"Good luck {PlayerName}! You are our only hope!", 5000);
+                        + "Be fast and don't hesitate to type 'help' if you are lost."
+                        + "Below is a mini map of the whole quest!"
+                        + $"Good luck {PlayerName}! You are our only hope!", 5000);
 
             BaseMap baseMap = new();
             baseMap.DisplayMap();
-            
+
         }
 
         public void DisplayInventory()
         {
-            foreach(var el in Inventory)
+            foreach (var el in Inventory)
             {
                 Console.Write($" [{el}]");
             }
@@ -53,14 +53,14 @@ namespace WorldOfZuul
         public void RemoveFromIntentory()
         {
             Int32 inventoryCapacity = Inventory.Count;
-            if(inventoryCapacity <= 0)
+            if (inventoryCapacity <= 0)
             {
                 Console.WriteLine("You don't have anything at the moment!");
             }
             else
             {
                 System.Console.WriteLine("Enter index for the item you want to drop!");
-                for(int i = 0; i < Inventory.Count; i++)
+                for (int i = 0; i < Inventory.Count; i++)
                 {
                     Console.WriteLine($"{i}. {Inventory[i]}");
                 }
@@ -82,10 +82,10 @@ namespace WorldOfZuul
         }
         public static void AnimateIntro(string inputText, int duration)
         {
-            int frames = duration/ 50;
+            int frames = duration / 50;
             int startIndex = 0;
 
-            for(int i = 0; i < frames; i++)
+            for (int i = 0; i < frames; i++)
             {
                 Console.Clear();
                 Console.WriteLine(inputText.Substring(startIndex, Math.Min(i * inputText.Length / frames, inputText.Length)));
