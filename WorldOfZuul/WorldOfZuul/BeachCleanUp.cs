@@ -108,7 +108,7 @@ namespace WorldOfZuul
             }
             else
             {
-                System.Environment.Exit(0);
+                return;
             }
 
             Console.WriteLine("Scientist: WOW! I don't remember it this clean!");

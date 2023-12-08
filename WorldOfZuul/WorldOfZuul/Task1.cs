@@ -2,6 +2,7 @@ namespace WorldOfZuul
 { 
   public class Task1
   {
+    public int Count = 0;
       public void Sandwich()
       {
         Console.WriteLine ("Hello player, the first task that you will have to complete in this beautiful game will");
@@ -53,7 +54,7 @@ namespace WorldOfZuul
           }
           else if (continueToLibrary.ToUpper() == "X")
           {
-            Environment.Exit(0);
+              return;
           }
           else
           {
@@ -111,7 +112,7 @@ namespace WorldOfZuul
                   }
                   else if (continueToClass.ToUpper() == "X")
                   {
-                    Environment.Exit(0);
+                    return;
                   }
                   else
                   {
@@ -190,7 +191,7 @@ namespace WorldOfZuul
           }
           else if (continueAfterQuiz.ToUpper() == "X")
           {
-            Environment.Exit(0);
+             return;
           }
           else
           {
@@ -222,7 +223,7 @@ namespace WorldOfZuul
           }
           else if (continueSandwich.ToUpper() == "X")
           {
-            Environment.Exit(0);
+              return;
           }
           else
           {
@@ -265,7 +266,7 @@ namespace WorldOfZuul
           }
           else if (finalPart.ToUpper() == "X")
           {
-            Environment.Exit(0);
+              return;
           }
           else
           {
@@ -303,7 +304,7 @@ namespace WorldOfZuul
           }
           else if (final.ToUpper() == "X")
           {
-            Environment.Exit(0);
+              return;
           }
           else
           {
@@ -315,6 +316,20 @@ namespace WorldOfZuul
           Console.WriteLine ("Invalid entry, the input has to be 'C' or 'X', not a null value.");
         }
         Console.WriteLine ("This is the end of the first part of the game, thanks for playing.");
+        Count++;
       }
+
+      public bool IsCompletedTask()
+      {
+          if (Count > 0)
+          {
+              return true;
+          }
+          else
+          {
+              return false;
+          }
+      }
+
   }
 }

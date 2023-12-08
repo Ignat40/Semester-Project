@@ -5,7 +5,6 @@ using System.Formats.Asn1;
 using System.IO.Compression;
 using System.Net;
 using System.Reflection.Metadata;
-//using System.Timers;
 using static WorldOfZuul.Program;
 
 namespace WorldOfZuul
@@ -69,7 +68,7 @@ namespace WorldOfZuul
             {
                 AnimateFirstHelp("\nYou need to first enter the university"
                                          + " to find the professor. \nHe'll tell you"
-                                         + " what to do from there on!", 5000);
+                                         + " what to do from there on! ", 5000);
                 bool continuePlaying = true;
                 while (continuePlaying)
                 {
@@ -137,8 +136,12 @@ namespace WorldOfZuul
                             string? yesNo1 = Console.ReadLine().ToLower();
                             if (yesNo1 == "yes")
                             {
-                                //task1.Sandwich();
                                 player.UpdateScore(10);
+                                /*task1.Sandwich();
+                                if (task1.IsCompletedTask())
+                                {
+                                    player.UpdateScore(10);
+                                }*/
                             }
                             else
                             {
@@ -157,9 +160,10 @@ namespace WorldOfZuul
                                 string? yesNo = Console.ReadLine().ToLower();
                                 if (yesNo == "yes")
                                 {
-                                    // WaterPurificaiton waterPurificaiton = new();
-                                    // waterPurificaiton.BasementTask(waterPurificaiton);
                                     player.UpdateScore(10);
+                                    /*WaterPurificaiton waterPurificaiton = new();
+                                    waterPurificaiton.BasementTask(waterPurificaiton);
+                                    player.UpdateScore(10);*/
                                 }
                                 else
                                 {
@@ -182,19 +186,20 @@ namespace WorldOfZuul
                                 MapTask3 mapTask3 = new();
                                 mapTask3.DisplayMap();
                                 Console.WriteLine("Task 3");
-                                // RooftopMission rooftopMission = new();
-                                // Console.WriteLine("Do you wish to accept the mission!");
-                                // Console.Write(">");
-                                // string? yesNo = Console.ReadLine().ToLower();
-                                // if (yesNo == "yes")
-                                // {
-                                //     rooftopMission.StartMission(player);
+                                RooftopMission rooftopMission = new();
+                                Console.WriteLine("Do you wish to accept the mission!");
+                                Console.Write(">");
+                                string? yesNo = Console.ReadLine().ToLower();
+                                if (yesNo == "yes")
+                                {
                                     player.UpdateScore(10);
-                                // }
-                                // else
-                                // {
-                                //     Console.WriteLine("You won't be able to finish The Quest this way!");
-                                // }
+                                    /*rooftopMission.StartMission(player);
+                                    player.UpdateScore(10);*/
+                                }
+                                else
+                                {
+                                    Console.WriteLine("You won't be able to finish The Quest this way!");
+                                }
                                 break;
 
                             }
@@ -211,22 +216,22 @@ namespace WorldOfZuul
                                 MapTask4 mapTask4 = new();
                                 mapTask4.DisplayMap();
                                 Console.WriteLine("Task 4");
-                                // AcsiiArt acsiiArt = new();
-                                // acsiiArt.Beach();
+                                AsciiArt acsiiArt = new();
+                                acsiiArt.Beach();
 
-                                // Console.WriteLine("Do you wish to accept the mission!");
-                                // Console.Write(">");
-                                // string? yesNo = Console.ReadLine().ToLower();
-                                // if (yesNo == "yes")
-                                // {
-                                //     BeachCleanupMission beachCleanupMission = new BeachCleanupMission();
-                                //     beachCleanupMission.StartMission(player);
+                                Console.WriteLine("Do you wish to accept the mission!");
+                                Console.Write(">");
+                                string? yesNo = Console.ReadLine().ToLower();
+                                if (yesNo == "yes")
+                                {
+                                    BeachCleanupMission beachCleanupMission = new BeachCleanupMission();
+                                    beachCleanupMission.StartMission(player);
                                 player.UpdateScore(10);
-                                // }
-                                // else
-                                // {
-                                //     Console.WriteLine("You won't be able to finish The Quest this way!");
-                                // }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("You won't be able to finish The Quest this way!");
+                                }
                                 break;
                             }
                             else
@@ -242,17 +247,17 @@ namespace WorldOfZuul
                                 MapTask5 mapTask5 = new();
                                 mapTask5.DisplayMap();
                                 Console.WriteLine("Task 5");
-                                // Console.WriteLine("Do you wish to accept the mission!");
-                                // Console.Write(">");
-                                // string? yesNo = Console.ReadLine().ToLower();
-                                // if (yesNo == "yes")
-                                // {
+                                Console.WriteLine("Do you wish to accept the mission!");
+                                Console.Write(">");
+                                string? yesNo = Console.ReadLine().ToLower();
+                                if (yesNo == "yes")
+                                {
                                      honeyHive.StartMissionsTask5(player);
-                                // }
-                                // else
-                                // {
-                                //     Console.WriteLine("You won't be able to finish The Quest this way!");
-                                // }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("You won't be able to finish The Quest this way!");
+                                }
 
                                 player.UpdateScore(10);
                                 break;
@@ -302,10 +307,6 @@ namespace WorldOfZuul
 
                         case "help":
                             PrintHelp();
-                            break;
-
-                        case "talk":
-                            Talk(currentRoom?.ShortDescription);
                             break;
 
                         default:
@@ -426,37 +427,6 @@ namespace WorldOfZuul
             Console.WriteLine("Type 'view' for you location on the map.");
             Console.WriteLine("Type 'back' to go to the previous room.");
             Console.WriteLine("Type 'quit' to exit the game.");
-        }
-        private static void Talk(string? location)
-        {
-            Game game = new();
-            NPCs communicate = new();
-            switch (location)
-            {
-                case "Lab":
-                    communicate.NpcName = "Professor Mike";
-                    communicate.Sentence = "[Some Sentences(will discuss during meeting)]";
-                    Console.WriteLine($"This is {communicate.NpcName}.");
-                    Console.WriteLine();
-                    Console.WriteLine("|Professor|");
-                    Console.WriteLine(communicate.Sentence);
-                    break;
-
-                case "outside":
-                    communicate.NpcName = "Mayor";
-                    communicate.Sentence = "Someting......";
-                    Console.WriteLine($"{communicate.NpcName} is standing in front of you.");
-                    Console.WriteLine();
-                    Console.WriteLine($"|{communicate.NpcName}|");
-                    break;
-                case "Station":
-                    communicate.NpcName = "Jackson";
-                    communicate.Sentence = "";
-                    break;
-                default:
-                    Console.WriteLine("There is nobody to talk with.");
-                    break;
-            }
         }
     }
 }

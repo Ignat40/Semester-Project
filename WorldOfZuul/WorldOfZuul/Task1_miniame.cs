@@ -1,7 +1,10 @@
+using WorldOfZuul;
+
 public class Minigame
 {
     public static void ExecuteMinigame()
     {
+        Task1 task1 = new();
         Console.WriteLine ("The password has the form xxx/xxx/xx/x-LAB and");
         Console.WriteLine ("is on the first page of one of these books.");
         Console.WriteLine ("");
@@ -160,7 +163,7 @@ public class Minigame
             }
             else if (continueToMain.ToUpper() == "X")
             {
-                Environment.Exit(0);
+                task1.Sandwich();
             }
             else
             {

@@ -443,7 +443,7 @@ namespace WorldOfZuul
 
             static bool PlayAgain()
             {
-                Console.Write("Do you want to play again? (y/n): ");
+                Console.Write("Press any key to jump into menu for next mission.");
                 string? selection = Console.ReadLine().Trim().ToLower();
                 if (selection == "y")
                 {
