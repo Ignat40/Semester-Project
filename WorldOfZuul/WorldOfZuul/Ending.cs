@@ -86,6 +86,8 @@ namespace WorldOfZuul
             Thread.Sleep(100);
             Console.WriteLine("     •Leonardo Gianola");
             Thread.Sleep(100); ;
+            Console.WriteLine("     •Habib Ahmed Wasi");
+            Thread.Sleep(100); ;
         }
     }
 }
